@@ -47,6 +47,9 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('add.student') }}">Add Student</a></li>
                         <li><a href="{{ route('manage.student') }}">Manage Student</a></li>
+                        <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
+
+                        
 
                     </ul>
                 </li>

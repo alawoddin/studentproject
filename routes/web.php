@@ -29,7 +29,7 @@ Route::controller(StudentController::class)->group(function() {
 
     Route::get('add/student' ,  'AddStudent')->name('add.student');
     Route::get('manage/student' ,  'ManageStudent')->name('manage.student');
-
+    Route::get('add/teacher', 'AddTeacher')->name('add.teacher');
 });
 
 
@@ -40,3 +40,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+

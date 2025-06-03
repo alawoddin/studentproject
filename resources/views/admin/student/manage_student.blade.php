@@ -37,8 +37,8 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->lastname }}</td>
                     <td>{{ $student->father_name }}</td>
-                    <td>{{ $student->department_name }}</td>
-                    <td>{{ $student->subject_name }}</td>
+                    <td>{{ $student->department->depart_name }}</td>
+                    <td>{{ $student->department->depart_subject }}</td>
                     <td>{{ $student->phone_number }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->teacher->first_name }}</td>

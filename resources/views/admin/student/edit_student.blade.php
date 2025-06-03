@@ -54,7 +54,15 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Department</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="department_name" type="text" value="{{ $student->department_name }}">
+                                <select name="department_id" class="form-select">
+                                    <option value="">Select</option>
+                                    @foreach ($depart as $info)
+                                        <option value="{{ $info->id }}"
+                                            {{ (old('department_id', $student->department_id ?? '') == $info->id) ? 'selected' : '' }}>
+                                            {{ $info->depart_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -62,7 +70,15 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Subject</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="subject_name" type="text" value="{{ $student->subject_name }}">
+                                <select name="depart_subject" class="form-select">
+                                    <option value="">Select</option>
+                                    @foreach ($depart as $info)
+                                        <option value="{{ $info->depart_subject }}"
+                                            {{ (old('depart_subject', $student->depart_subject ?? '') == $info->depart_subject) ? 'selected' : '' }}>
+                                            {{ $info->depart_subject }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -86,7 +102,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Total Fees</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="amount" type="number" value="{{ $student->amount }}">
+                                <input class="form-control" id="amount" name="amount" type="number" value="{{ $student->amount }}">
                             </div>
                         </div>
 
@@ -94,7 +110,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Paid</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="paid" type="number" value="{{ $student->paid }}">
+                                <input class="form-control" id="paid" name="paid" type="number" value="{{ $student->paid }}">
                             </div>
                         </div>
 
@@ -102,7 +118,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Remaining Fees</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="remaining_fees" type="number" value="{{ $student->remaining_fees }}">
+                                <input class="form-control" id="remaining_fees" name="remaining_fees" type="number" value="{{ $student->remaining_fees }}">
                             </div>
                         </div>
 
@@ -157,4 +173,24 @@
     </div>
 
 </div>
+
+<!-- jQuery Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function calculateRemaining() {
+        let amount = parseFloat($('#amount').val()) || 0;
+        let paid = parseFloat($('#paid').val()) || 0;
+        let remaining = amount - paid;
+        $('#remaining_fees').val(remaining >= 0 ? remaining : 0);
+    }
+
+    $(document).ready(function () {
+        // Recalculate on input changes
+        $('#amount, #paid').on('input', calculateRemaining);
+
+        // Initialize on page load
+        calculateRemaining();
+    });
+</script>
+
 @endsection

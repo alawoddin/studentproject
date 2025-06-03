@@ -13,4 +13,10 @@ class Student extends Model
     {
         return $this->belongsTo(Teacher::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
 }

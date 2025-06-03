@@ -58,11 +58,20 @@
                             </div>
                         </div>
 
+                        @php
+                             $depart = App\Models\Department::limit(2)->get();
+                        @endphp
+
                         <!-- Department name -->
                         <div class="col-md-6">
                             <label class="col-sm-2 col-form-label">Department</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="department_name" type="text" placeholder="Department">
+                                <select name="department_id" class="form-select">
+                                    <option value="">Select</option>
+                                    @foreach ($depart as $info)
+                                        <option value="{{ $info->id }}">{{ $info->depart_name }} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -75,7 +84,13 @@
                         <div class="col-md-6">
                             <label class="col-sm-2 col-form-label">Subject</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="subject_name" type="text" placeholder="Subject">
+                                <select name="depart_subject" class="form-select">
+                                    <option value="">Select</option>
+                                    @foreach ($depart as $info)
+                                        <option value="{{ $info->depart_subject }}">{{ $info->depart_subject }}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                         </div>
 
@@ -164,12 +179,14 @@
 
                         <div class="col-md-6">
                             <label class="col-sm-2 ms-1 col-form-label">teacher</label>
-                            <select name="teacher_id" class="form-select">
-                                <option value="">Select</option>
-                                @foreach ($teachers as $info)
-                                    <option value="{{ $info->id }}">{{ $info->first_name }} </option>
-                                @endforeach
-                            </select>
+                            <div class="col-sm-10">
+                                <select name="teacher_id" class="form-select">
+                                    <option value="">Select</option>
+                                    @foreach ($teachers as $info)
+                                        <option value="{{ $info->id }}">{{ $info->first_name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         </div>
@@ -177,7 +194,7 @@
 
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-success">Add Student</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Add Student</button>
 
                     </form>
                 </div>

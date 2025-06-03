@@ -11,11 +11,11 @@ return new class extends Migration
                 Schema::create('students', function (Blueprint $table) {
                     $table->id();
                     $table->unsignedBigInteger('teacher_id');
+                    $table->integer('department_id')->references('id')->on('department')->onDelete('cascade');
                     $table->string('name');
                     $table->string('lastname');
                     $table->string('father_name');
-                    $table->string('department_name');
-                    $table->string('subject_name');
+                    $table->string('depart_subject');
                     $table->string('phone_number');
                     $table->string('email')->unique();
                     $table->integer('amount');
@@ -28,7 +28,9 @@ return new class extends Migration
 
                     $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
                 });
+
             }
+
 
         public function down()
             {

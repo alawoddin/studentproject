@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\backend\DepartmentController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,19 @@ Route::controller(TeacherController::class)->group(function() {
     Route::get('delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     Route::post('teacher/update/{id}', 'UpdateTeacher')->name('update.teacher');
 });
+
+
+//start department
+Route::controller(DepartmentController::class)->group(function() {
+    Route::get('add/depart', 'AddDepart')->name('add.depart');
+    Route::post('store/depart','StoreDepart')->name('store.depart');
+    Route::get('all/depart', 'AllDepart')->name('all.depart');
+    Route::get('edit/depart/{id}', 'EditDepart')->name('edit.depart');
+    Route::post('depart/update/{id}', 'UpdateDepart')->name('update.depart');
+    Route::get('delete/depart/{id}', 'DeleteDepart')->name('delete.depart');
+});
+
+
 
 
 Route::middleware('auth')->group(function () {

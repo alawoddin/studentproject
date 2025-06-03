@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\backend\StudentController;
+use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,16 @@ Route::controller(StudentController::class)->group(function() {
 
     Route::get('add/student' ,  'AddStudent')->name('add.student');
     Route::get('manage/student' ,  'ManageStudent')->name('manage.student');
+});
+
+
+Route::controller(TeacherController::class)->group(function() {
     Route::get('add/teacher', 'AddTeacher')->name('add.teacher');
+    Route::post('store/teacher','StoreTeacher')->name('store.teacher');
+    Route::get('manage/teacher', 'ManageTeacher')->name('manage.teacher');
+    Route::get('edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
+    Route::get('delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
+    Route::post('teacher/update/{id}', 'UpdateTeacher')->name('update.teacher');
 });
 
 

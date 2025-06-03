@@ -16,7 +16,4 @@ class StudentController extends Controller
         return view('admin.student.manage_student');
     }
 
-    public function AddTeacher() {
-        return view('admin.teacher.add_teacher');
-    }
 }

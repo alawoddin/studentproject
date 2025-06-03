@@ -32,21 +32,31 @@
                 <div class="card-body">
 
                     <h4 class="card-title">Fill Teacher Info</h4>
-                    <form action="" method="POST" enctype="multipart/form-data" >
+                    <form action="{{ route('store.teacher') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
 
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">Full Name</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">First Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="full_name" type="text" placeholder="full Name">
+                            <input class="form-control" name="first_name" type="text" placeholder="first Name">
                         </div>
                     </div>
+
+                   <!-- end row -->
+                   <div class="row mb-3">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="last_name" type="text" placeholder="last Name">
+                        </div>
+                    </div>
+
+                   <!--end row -->
 
                     <div class="row mb-3">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Father Name:</label>
                             <div class="col-sm-10">
-                          <input class="form-control" name="full_name" type="text" placeholder="full Name">
+                          <input class="form-control" name="father_name" type="text" placeholder="father Name">
                             </div>
                         </div>
                     <!-- end row -->
@@ -68,13 +78,9 @@
                     <!-- end row -->
 
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">class</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
-                            <select class="form-select" name="class_id" aria-label="Default select example">
-                                <option selected="">-- Select a Class --</option>
-                                <option value="">student name</option>
-
-                                </select>
+                            <input class="form-control" name="phone" type="text" placeholder="Phone number">
                         </div>
                     </div>
                     <!-- end row -->
@@ -87,7 +93,7 @@
                                 Male
                             </label>
 
-                                <input class="form-check-input" name="gender" value="female" id="FormRadios1" type="radio"  placeholder="Email">
+                                <input class="form-check-input" name="gender" value="Female" id="FormRadios1" type="radio"  placeholder="Email">
                                 <label for="formRadios1" class="form-check-label">
                                 Female
                             </label>
@@ -96,34 +102,15 @@
                     <!-- end row -->
 
                     <div class="row mb-3">
-                        <label for="example-text-input" class="col-sm-2 col-form-label">DOB</label>
+                        <label for="example-text-input" class="col-sm-2 col-form-label">National ID:</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="dob" type="date" placeholder="mm/dd/yy">
+                            <input class="form-control" name="national_id" type="text" placeholder="National ID">
                         </div>
                     </div>
                     <!-- end row -->
 
-                    <div class="row mb-3">
-                        <label for="example-email-input" class="col-sm-2 col-form-label">Photo</label>
-                        <div class="col-sm-10">
-                            <input type="file" class="form-control" name="photo" id="Image">
 
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="example-email-input" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            {{-- <img id="ShowImage" src="{{ empty($adminData->photo)? asset('uploads/no_image.png') : asset('uploads/admin_profiles/'.$adminData->photo) }}" alt="avatar-4" class="rounded avatar-md"> --}}
-                            <img id="ShowImage" src="{{ asset('uploads/no_image.png')  }}" alt="avatar-4" class="rounded avatar-md">
-
-
-
-                        </div>
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">Add Student</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Add Teacher</button>
 
                 </form>
 
@@ -135,22 +122,6 @@
     </div>
 
 </div>
-
-<script>
-    $(document).ready(function() {
-        $('#Image').change(function(e) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#ShowImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-    })
-</script>
-
-
-
-
 
 @endsection
 

@@ -1,68 +1,58 @@
 @extends('admin.admin_dashboard')
-
 @section('admin')
-
-  <!-- start page title -->
-  <div class="row">
-    <div class="col-12">
-        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Manage's Student</h4>
-
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Manage</a></li>
-                    <li class="breadcrumb-item active">Student</li>
-                </ol>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- end page title -->
 
 <div class="card">
     <div class="card-body">
 
         <div class="d-flex justify-content-between">
             <h4 class="card-title">View Student Info</h4>
-
             <a href="{{ route('add.student') }}" class="btn btn-primary waves-effect waves-light mb-4">Create Student</a>
         </div>
 
-        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="width: 100%;">
             <thead>
-            <tr>
-                <th>#</th>
-                <th>Photo</th>
-                <th>student name</th>
-                <th>Roll Id</th>
-                <th>Class</th>
-                <th>Req Data</th>
-                <th>Status</th>
-                <th>Action</th>
-
-            </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>Father Name</th>
+                    <th>Department</th>
+                    <th>Subject</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Amount</th>
+                    <th>Paid</th>
+                    <th>Remaining</th>
+                    <th>Entry Date</th>
+                    <th>Paid Date</th>
+                    <th>National ID</th>
+                    <th class="all">Action</th>
+                </tr>
             </thead>
 
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td style="text-align:center; font-size: 20px;">
-                <a href=""><i class="fas fa-edit btn btn-primary waves-effect waves-light"></i></a>
-                <a href="" id="delete"><i  class="fas fa-trash-alt btn btn-primary waves-effect waves-light"></i></a>
-            </td>
-
             <tbody>
+                @foreach ($students as $key => $student)
                 <tr>
-
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->lastname }}</td>
+                    <td>{{ $student->father_name }}</td>
+                    <td>{{ $student->department_name }}</td>
+                    <td>{{ $student->subject_name }}</td>
+                    <td>{{ $student->phone_number }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->amount }}</td>
+                    <td>{{ $student->paid }}</td>
+                    <td>{{ $student->remaining_fees }}</td>
+                    <td>{{ $student->entry_date }}</td>
+                    <td>{{ $student->paid_date }}</td>
+                    <td>{{ $student->national_id }}</td>
+                    <td style="text-align:center; font-size: 20px;">
+                        <a href="{{ route('edit.student', $student->id) }}"><i class="fas fa-edit btn btn-primary"></i></a>
+                        <a href="{{ route('delete.student', $student->id) }}" id="delete"><i class="fas fa-trash-alt btn btn-danger"></i></a>
+                    </td>
                 </tr>
-
-
-
+                @endforeach
             </tbody>
         </table>
 

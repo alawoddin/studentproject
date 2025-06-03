@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\backend\StudentController;
+use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,10 +26,13 @@ Route::controller(AdminController::class)->group(function() {
 
 });
 
-Route::controller(StudentController::class)->group(function() {
-
-    Route::get('add/student' ,  'AddStudent')->name('add.student');
-    Route::get('manage/student' ,  'ManageStudent')->name('manage.student');
+Route::controller(StudentController::class)->group(function () {
+    Route::get('add/student', 'AddStudent')->name('add.student');
+    Route::post('store/student', 'StoreStudent')->name('store.student');
+    Route::get('manage/student', 'ManageStudent')->name('manage.student');
+    Route::get('edit/student/{id}', 'EditStudent')->name('edit.student');
+    Route::post('update/student/{id}', 'UpdateStudent')->name('update.student');
+    Route::get('delete/student/{id}', 'DeleteStudent')->name('delete.student');
 });
 
 

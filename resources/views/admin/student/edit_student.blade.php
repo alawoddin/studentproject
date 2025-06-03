@@ -70,7 +70,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Phone</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="phone" type="text" value="{{ $student->phone }}">
+                                <input class="form-control" name="phone_number" type="text" value="{{ $student->phone_number }}">
                             </div>
                         </div>
 
@@ -129,6 +129,23 @@
                                 <input class="form-control" name="national_id" type="text" value="{{ $student->national_id }}">
                             </div>
                         </div>
+
+
+                        <div class="row mb-3">
+                            <label class="col-sm-2 ms-1 col-form-label">Teacher</label>
+                            <div class="col-sm-10">
+                                <select name="teacher_id" class="form-select">
+                                    <option value="">Select</option>
+                                    @foreach ($teachers as $info)
+                                        <option value="{{ $info->id }}" {{ (int) $student->teacher_id === (int) $info->id ? 'selected' : '' }}>
+                                            {{ $info->first_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary">Update Student</button>

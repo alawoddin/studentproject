@@ -5,24 +5,28 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Teacher;
 
 class StudentController extends Controller
 {
     public function AddStudent()
     {
-        return view('admin.student.add_student');
+        $students = Student::all();
+        $teachers = Teacher::all();
+        return view('admin.student.add_student' , compact('students' , 'teachers'));
     }
 
     public function StoreStudent(Request $request)
     {
         $request->validate([
+            'teacher_id' => 'required',
             'name' => 'required',
             'lastname' => 'required',
             'father_name' => 'required',
             'department_name' => 'required',
             'subject_name' => 'required',
             'phone_number' => 'required',
-            'email' => 'required|email|unique:students,email',
+            'email' => 'required|email',
             'amount' => 'required|numeric',
             'paid' => 'required|numeric',
             'remaining_fees' => 'required|numeric',
@@ -38,21 +42,24 @@ class StudentController extends Controller
 
     public function ManageStudent()
     {
-        $students = Student::all();
+        $students = Student::with('teacher')->get();
         return view('admin.student.manage_student', compact('students'));
     }
 
     public function EditStudent($id)
     {
         $student = Student::findOrFail($id);
-        return view('admin.student.edit_student', compact('student'));
+        $teachers = Teacher::all();
+        return view('admin.student.edit_student', compact('student', 'teachers'));
     }
 
     public function UpdateStudent(Request $request, $id)
     {
+
         $student = Student::findOrFail($id);
 
         $student->update($request->all());
+
 
         return redirect()->route('manage.student')->with('success', 'Student updated successfully');
     }

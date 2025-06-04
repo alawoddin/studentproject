@@ -41,7 +41,9 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Gender</th>
+                    <th>Department</th>
                     <th>National ID</th>
+                    <th>Teacher image </th>
                     <th class="all">Action</th>
                 </tr>
             </thead>
@@ -57,7 +59,16 @@
                     <td>{{ $teacher->email }}</td>
                     <td>{{ $teacher->phone }}</td>
                     <td>{{ $teacher->gender }}</td>
+                    <td>{{ $teacher->department->depart_name }}</td>
                     <td>{{ $teacher->national_id }}</td>
+                    <td>
+                        <img class="header-profile-user"
+     src="{{ !empty($teacher->photo)
+            ? asset($teacher->photo)
+            : asset('uploads/no_image.png') }}"
+     alt="Header Avatar">
+
+                    </td>
                     <td style="text-align:center; font-size: 20px;" class="all">
                         <a href="{{ route('edit.teacher', $teacher->id) }}"><i class="fas fa-edit btn btn-primary waves-effect waves-light"></i></a>
                         <a href="{{ route('delete.teacher', $teacher->id) }}" id="delete"><i class="fas fa-trash-alt btn btn-danger waves-effect waves-light"></i></a>

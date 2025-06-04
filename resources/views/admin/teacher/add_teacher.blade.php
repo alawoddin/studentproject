@@ -101,6 +101,21 @@
                     </div>
                     <!-- end row -->
 
+
+                    <div class="row mb-3">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">Department</label>
+                        <div class="col-sm-10">
+                        <select name="department_id"  class="form-select">
+                            <option value="">Select</option>
+                            @foreach ($depart as $info)
+                                <option value="{{ $info->id }}">{{ $info->depart_name }} </option>
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
+
+
+
                     <div class="row mb-3">
                         <label for="example-text-input" class="col-sm-2 col-form-label">National ID:</label>
                         <div class="col-sm-10">
@@ -108,6 +123,27 @@
                         </div>
                     </div>
                     <!-- end row -->
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Upload Image:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="file" id="image" name="photo" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-10">
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="example-text-input" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <img id="showImage" src="{{ asset('uploads/no_image.png') }}"
+                            alt="Product Image" class="rounded-circle p-1 bg-primary" width="110">
+                        </div>
+                    </div>
 
 
                     <button type="submit" class="btn btn-primary waves-effect waves-light">Add Teacher</button>
@@ -123,6 +159,19 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#image').change(function (e) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
+</script>
 @endsection
 
 

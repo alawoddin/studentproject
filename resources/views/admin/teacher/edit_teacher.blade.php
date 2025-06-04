@@ -94,10 +94,49 @@
                     </div>
 
 
+                   <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">department</label>
+                    <div class="col-sm-10">
+                        <select name="department_id" class="form-select" id="department_id">
+                            <option value="">Select</option>
+                            @foreach ($departments as $department)
+                                <option value="{{ $department->id }}"
+                                    {{ old('department_id', $teacher->department_id) == $department->id ? 'selected' : '' }}>
+                                    {{ $department->depart_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                   </div>
+
+
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">National ID</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="national_id" type="text" value="{{ $teacher->national_id }}" placeholder="National ID">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Upload Image:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="file" id="image" name="photo" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-10">
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="example-text-input" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <img id="showImage" src="{{ $teacher->photo ? asset($teacher->photo) : url('upload/no_image.jpg') }}"
+                            alt="Product Image" class="rounded-circle p-1 bg-primary" width="110">
                         </div>
                     </div>
 
@@ -113,6 +152,20 @@
     </div>
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#image').change(function (e) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
+</script>
 
 
 

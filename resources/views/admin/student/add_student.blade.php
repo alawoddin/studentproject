@@ -66,12 +66,12 @@
                         <div class="col-md-6">
                             <label class="col-sm-2 col-form-label">Department</label>
                             <div class="col-sm-10">
-                                <select name="department_id" class="form-select">
-                                    <option value="">Select</option>
-                                    @foreach ($depart as $info)
-                                        <option value="{{ $info->id }}">{{ $info->depart_name }} </option>
-                                    @endforeach
-                                </select>
+                        <select name="department_id"  class="form-select">
+                            <option value="">Select</option>
+                            @foreach ($depart as $info)
+                                <option value="{{ $info->id }}">{{ $info->depart_name }} </option>
+                            @endforeach
+                        </select>
                             </div>
                         </div>
 

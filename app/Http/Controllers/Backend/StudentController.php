@@ -15,7 +15,8 @@ class StudentController extends Controller
         $students = Student::all();
         $teachers = Teacher::all();
         $depart = department::all();
-        return view('admin.student.add_student' , compact('students' , 'teachers' , 'depart'));
+
+        return view('admin.student.add_student' , compact('students' , 'teachers' , 'depart' , ));
     }
 
     public function StoreStudent(Request $request)
@@ -26,9 +27,9 @@ class StudentController extends Controller
             'lastname' => 'required',
             'father_name' => 'required',
             'department_id' => 'required|exists:departments,id',
-            'depart_subject' => 'required|string',
+            'depart_subject' => 'required',
             'phone_number' => 'required',
-            'email' => 'required|email',
+            'email' => '',
             'amount' => 'required|numeric',
             'paid' => 'required|numeric',
             'remaining_fees' => 'required|numeric',

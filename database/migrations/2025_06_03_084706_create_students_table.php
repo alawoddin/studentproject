@@ -17,7 +17,7 @@ return new class extends Migration
                     $table->string('father_name');
                     $table->string('depart_subject');
                     $table->string('phone_number');
-                    $table->string('email')->unique();
+                    $table->string('email')->nullable();
                     $table->integer('amount');
                     $table->integer('paid');
                     $table->integer('remaining_fees');

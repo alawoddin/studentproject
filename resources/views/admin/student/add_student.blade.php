@@ -58,9 +58,9 @@
                             </div>
                         </div>
 
-                        @php
+                        {{-- @php
                              $depart = App\Models\Department::limit(2)->get();
-                        @endphp
+                        @endphp --}}
 
                         <!-- Department name -->
                         <div class="col-md-6">

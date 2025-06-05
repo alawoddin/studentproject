@@ -1,22 +1,21 @@
-
-
-
 <div class="vertical-menu">
 
     <div data-simplebar class="h-100">
 
         @php
-        $adminData = App\Models\User::find(Auth::user()->id);
-    @endphp
+            $adminData = App\Models\User::find(Auth::user()->id);
+        @endphp
 
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="{{ !empty($adminData->photo) ? asset('uploads/admin_profiles/'.$adminData->photo) : asset('uploads/no_image.png') }}" alt="" class="avatar-md rounded-circle">
+                <img src="{{ !empty($adminData->photo) ? asset('uploads/admin_profiles/' . $adminData->photo) : asset('uploads/no_image.png') }}"
+                    alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
                 <h4 class="font-size-16 mb-1">{{ $adminData->name }}</h4>
-                <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i> {{ $adminData->email  }}</span>
+                <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
+                    {{ $adminData->email }}</span>
             </div>
         </div>
 

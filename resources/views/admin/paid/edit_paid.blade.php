@@ -68,7 +68,7 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label">Entry Date</label>
-                                    <input class="form-control" name="entry_date" type="datetime-local"
+                                    <input class="form-control" name="entry_date" type="date"
                                         value="{{ $paid->entry_date }}">
                                 </div>
                             </div>
@@ -76,8 +76,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Paid Date</label>
-                                    <input class="form-control" name="paid_date" type="datetime-local"
-                                        value="{{ $paid->paid_date }}">
+                                    <input class="form-control" name="paid_date" type="date" value="{{ $paid->paid_date }}">
                                 </div>
                             </div>
 

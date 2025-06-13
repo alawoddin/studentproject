@@ -97,8 +97,7 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-2 col-form-label">entry_date</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="entry_date" type="datetime-local"
-                                            placeholder="entry_date">
+                                        <input class="form-control" name="entry_date" type="date" placeholder="entry_date">
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +107,7 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-2 col-form-label">paid_date</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="paid_date" type="datetime-local"
-                                            placeholder="paid_date">
+                                        <input class="form-control" name="paid_date" type="date" placeholder="paid_date">
                                     </div>
                                 </div>
 

@@ -16,7 +16,7 @@ class StudentController extends Controller
         $teachers = Teacher::all();
         $depart = department::all();
 
-        return view('admin.student.add_student' , compact('students' , 'teachers' , 'depart' , ));
+        return view('admin.student.add_student', compact('students', 'teachers', 'depart',));
     }
 
     public function StoreStudent(Request $request)
@@ -45,7 +45,7 @@ class StudentController extends Controller
 
     public function ManageStudent()
     {
-        $students = Student::with('teacher' , 'department')->get();
+        $students = Student::with('teacher', 'department')->get();
         return view('admin.student.manage_student', compact('students'));
     }
 
@@ -54,7 +54,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $teachers = Teacher::all();
         $depart = department::all();
-        return view('admin.student.edit_student', compact('student', 'teachers' , 'depart'));
+        return view('admin.student.edit_student', compact('student', 'teachers', 'depart'));
     }
 
     public function UpdateStudent(Request $request, $id)

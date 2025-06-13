@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('total_fees');
             $table->integer('paid');
             $table->integer('remaining_Fees');
-            $table->date('entry_date');
-            $table->date('paid_date');
+            $table->date('entry_date')->nullable();
+            $table->date('paid_date')->nullable();
             $table->timestamps();
         });
     }

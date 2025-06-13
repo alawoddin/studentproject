@@ -71,18 +71,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 // route paid
-// Route::controller(piadController::class)->group(function () {
-
-//     Route::get('add/paid', action: 'AddPaid')->name('add.paid');
-
-//     Route::post('store/paid', 'Storepiad')->name('store.paid');
-//     Route::get('manage/paid', 'ManagePaid')->name('manage.paid');
-//     Route::get('edit/paid/{id}', 'EditPaid')->name('edit.paid');
-//     Route::post('/update/student/{id}',  'UpdateStudent')->name('update.student');
-
-//     Route::get('delete/student/{id}', 'DeleteStudent')->name('delete.student');
-// });
-
 
 // ----------------------------
 Route::controller(piadController::class)->group(function () {
@@ -90,6 +78,6 @@ Route::controller(piadController::class)->group(function () {
     Route::post('store/paid', 'Storepiad')->name('store.paid');
     Route::get('manage/paid', 'ManagePaid')->name('manage.paid');
     Route::get('edit/paid/{id}', 'EditPaid')->name('edit.paid');
-    Route::post('update/paid/{id}', 'UpdateStudent')->name('update.student'); // ✅ مسیر آپدیت
-    Route::get('delete/student/{id}', 'DeleteStudent')->name('delete.student');
+    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid'); // ✅ مسیر آپدیت
+    Route::get('delete/paid/{id}', 'DeletePaid')->name('delete.paid');
 });

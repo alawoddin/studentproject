@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Update Student Payment Info</h4>
-                        <form action="{{ route('update.student', $paid->id) }}" method="POST">
+                        <form action="{{ route('update.paid', $paid->id) }}" method="POST">
 
                             @csrf
                             <div class="row mb-3">
@@ -69,9 +69,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Entry Date</label>
                                     <input class="form-control" name="entry_date" type="datetime-local"
-                                        value="{{ \Carbon\Carbon::parse($paid->entry_date)->format('YYYY-MM-DDTHH:MM') }}">
-                                    {{-- <input class="form-control" name="entry_date" type="datetime-local"
-                                        value="{{ $paid->entry_date }}"> --}}
+                                        value="{{ $paid->entry_date }}">
                                 </div>
                             </div>
 
@@ -79,9 +77,7 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Paid Date</label>
                                     <input class="form-control" name="paid_date" type="datetime-local"
-                                        value="{{ \Carbon\Carbon::parse($paid->paid_date)->format('YYYY-MM-DDTHH:MM') }}">
-                                    {{-- <input class="form-control" name="paid_date" type="datetime-local"
-                                        value="{{ $paid->paid_date }}"> --}}
+                                        value="{{ $paid->paid_date }}">
                                 </div>
                             </div>
 

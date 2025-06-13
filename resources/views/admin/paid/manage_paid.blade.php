@@ -6,7 +6,7 @@
 
             <div class="d-flex justify-content-between">
                 <h4 class="card-title">View Student Info</h4>
-                <a href="{{ route('add.student') }}" class="btn btn-primary waves-effect waves-light mb-4">Create
+                <a href="{{ route('add.paid') }}" class="btn btn-primary waves-effect waves-light mb-4">Create
                     Student</a>
             </div>
             @if(session('success'))
@@ -47,17 +47,12 @@
                             <td>{{ $paids->remaining_Fees }}</td>
                             <td>{{ $paids->entry_date }}</td>
                             <td>{{ $paids->paid_date }}</td>
-                            <td>
-                                <a href="{{ route('edit.paid', $paids->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                <a href="{{ route('delete.student', $paids->id) }}" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Are you sure?')">Delete</a>
 
+                            <td style="text-align:center; font-size: 20px;">
+                                <a href="{{ route('edit.paid', $paids->id) }}"><i class="fas fa-edit btn btn-primary"></i></a>
+                                <a href="{{ route('delete.paid', $paids->id) }}" id="delete"><i class="fas fa-trash-alt btn btn-danger"></i></a>
                             </td>
-                            {{-- <td style="text-align:center; font-size: 20px;">
-                                <a href="{{ route('edit2.paid', $paid->id) }}"><i class="fas fa-edit btn btn-primary"></i></a>
-                                <a href="{{ route('delete.paid', $paid->id) }}" id="delete"><i
-                                        class="fas fa-trash-alt btn btn-danger"></i></a>
-                            </td> --}}
+
 
                         </tr>
                     @endforeach

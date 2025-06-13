@@ -19,7 +19,12 @@ class piadController extends Controller
     {
         Paid::create($request->all());
 
-        return redirect()->route('manage.paid')->with('success', 'Paid record added successfully.');
+        $notification = array(
+            'message' => 'Paid Store Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('manage.paid')->with($notification);
     }
 
     // لیست پرداخت‌ها
@@ -37,91 +42,35 @@ class piadController extends Controller
     }
 
     // به‌روزرسانی پرداخت
-    // public function UpdateStudent(Request $request, $id)
-    // {
-    //     $paid = Paid::findOrFail($id);
-    //     $paid->update($request->all());
+    public function UpdatePaid(Request $request, $id)
+    {
+        $paid = Paid::findOrFail($id);
+        $paid->update($request->all());
 
-    //     return redirect()->route('manage.paid')->with('success', 'Paid record updated successfully.');
-    // }
+        $notification = array(
+            'message' => 'Paid Updated Successfully',
+            'alert-type' => 'success'
+        );
 
-    // public function UpdateStudent(Request $request, $id)
-    // {
+        return redirect()->route('manage.paid')->with($notification);
+    }
 
-    //     $request->validate([
-    //         'student' => 'required|string|max:255',
-    //         'department' => 'required|string|max:255',
-    //         'subject' => 'required|string|max:255',
-    //         'teacher' => 'required|string|max:255',
-    //         'total_fees' => 'required|numeric',
-    //         'paid' => 'required|numeric',
-    //         'remaining_Fees' => 'required|numeric',
-    //         'entry_date' => 'required|date',
-    //         'paid_date' => 'required|date',
-    //     ]);
-
-
-    //     $paid = Paid::findOrFail($id);
-
-
-    //     $paid->update([
-    //         'student' => $request->student,
-    //         'department' => $request->department,
-    //         'subject' => $request->subject,
-    //         'teacher' => $request->teacher,
-    //         'total_fees' => $request->total_fees,
-    //         'paid' => $request->paid,
-    //         'remaining_Fees' => $request->remaining_Fees,
-    //         'entry_date' => $request->entry_date,
-    //         'paid_date' => $request->paid_date,
-    //     ]);
-
-
-    //     return redirect()->route('manage.paid')->with('success', 'Paid Info updated successfully!');
-    // }
 
 
 
     // ------------------------------------
-    public function UpdateStudent(Request $request, $id)
-    {
-        dd('form reached', $request->all());
-        $request->validate([
-            'student' => 'required|string|max:255',
-            'department' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
-            'teacher' => 'required|string|max:255',
-            'total_fees' => 'required|numeric',
-            'paid' => 'required|numeric',
-            'remaining_Fees' => 'required|numeric',
-            'entry_date' => 'required|date',
-            'paid_date' => 'required|date',
-        ]);
-
-        $paid = Paid::findOrFail($id);
-
-        $paid->update([
-            'student' => $request->student,
-            'department' => $request->department,
-            'subject' => $request->subject,
-            'teacher' => $request->teacher,
-            'total_fees' => $request->total_fees,
-            'paid' => $request->paid,
-            'remaining_Fees' => $request->remaining_Fees,
-            'entry_date' => $request->entry_date,
-            'paid_date' => $request->paid_date,
-        ]);
-
-        return redirect()->route('manage.paid')->with('success', 'Updated successfully.');
-    }
-    // -------------------------------------
 
     // حذف پرداخت
-    public function DeleteStudent($id)
+    public function DeletePaid($id)
     {
         $paid = Paid::findOrFail($id);
         $paid->delete();
 
-        return redirect()->route('manage.paid')->with('success', 'Paid record deleted successfully.');
+        $notification = array(
+            'message' => 'Paid Delete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('manage.paid')->with($notification);
     }
 }

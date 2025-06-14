@@ -14,15 +14,18 @@ return new class extends Migration
         Schema::create('paids', function (Blueprint $table) {
             $table->id();
             $table->string('student');
-            $table->string('department');
-            $table->string('subject');
-            $table->string('teacher');
+            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('teacher_id');
+
             $table->integer('total_fees');
             $table->integer('paid');
             $table->integer('remaining_Fees');
             $table->date('entry_date')->nullable();
             $table->date('paid_date')->nullable();
             $table->timestamps();
+
+
         });
     }
 

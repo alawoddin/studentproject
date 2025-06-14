@@ -1,69 +1,67 @@
+
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <div class="container-fluid">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-        <!-- Page Title -->
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Student Admission</h4>
-                    <div class="page-title-right">
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="#">Student</a></li>
-                            <li class="breadcrumb-item active">Admission</li>
-                        </ol>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+
+            <h5 class="card-title mb-4">Add Department & Subjects</h5>
+
+            <form action="{{ route('store.depart') }}" method="POST">
+                @csrf
+
+                <!-- Department Name -->
+                <div class="row ">
+                    <div class="col-md-6">
+                        <label for="depart_name" class="form-label">Department Name</label>
+                        <input type="text" name="depart_name" class="form-control" placeholder="Department name" required>
                     </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Admission Form -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Fill Student Info</h4>
-                        <form action="{{ route('store.depart') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                    <div class="col-md-6">
+                            <!-- Subjects Title + Add Button -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label class="form-label mb-0" style="margin-top:-8px">Department Subjects</label>
+                            <button type="button" class="btn btn-outline-primary btn-sm mb-2" id="add-subject"  style="margin-top:-8px">
+                                + Add Subject
+                            </button>
+                        </div>
 
-
-
-
-                            <div class="row mb-3">
-
-                                <!-- Father name -->
-                                <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">Department Name</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" name="depart_name" type="text"
-                                            placeholder="Department name">
-                                    </div>
-                                </div>
-
-                                <!-- Department name -->
-                                <div class="col-md-6">
-                                    <label class="col-sm-3 col-form-label">Department Subject</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" name="depart_subject" type="text"
-                                            placeholder="Department subject">
-                                    </div>
-                                </div>
-
+                        <!-- Subjects Container -->
+                        <div id="subject-container">
+                            <div class="input-group">
+                                <input type="text" name="depart_subjects[]" class="form-control" placeholder="Department subject" required>
+                                <button type="button" class="btn btn-danger remove-subject">Remove</button>
                             </div>
-
-
-
-
-                            <!-- Submit Button -->
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Add department</button>
-
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
+                <!-- Save Button -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success px-4">Save Department</button>
+                </div>
+
+            </form>
+        </div>
     </div>
+</div>
+
+<script>
+    $('#add-subject').on('click', function () {
+        $('#subject-container').append(`
+            <div class="input-group mb-2">
+                <input type="text" name="depart_subjects[]" class="form-control" placeholder="Department subject" required>
+                <button type="button" class="btn btn-danger remove-subject">Remove</button>
+            </div>
+        `);
+    });
+
+    $(document).on('click', '.remove-subject', function () {
+        $(this).closest('.input-group').remove();
+    });
+</script>
+
 @endsection

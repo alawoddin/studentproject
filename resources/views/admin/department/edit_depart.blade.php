@@ -51,15 +51,10 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button type="button" class="btn btn-outline-primary btn-sm" id="add-subject">+ Add Subject</button>
                         </div>
 
 
                         </div>
-
-
-
-
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-success">Add department</button>
 

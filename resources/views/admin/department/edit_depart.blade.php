@@ -46,6 +46,7 @@
                             <div class="col-sm-10" id="subject-container">
                                 @foreach ($depart->subjects as $subject)
                                     <div class="input-group mb-2">
+                                    
                                         <input class="form-control" name="depart_subjects[]" value="{{ $subject->subject_name }}" type="text" placeholder="Department subject">
                                         <button type="button" class="btn btn-danger remove-subject">Remove</button>
                                     </div>

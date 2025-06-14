@@ -4,11 +4,11 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\backend\DepartmentController;
 use App\Http\Controllers\backend\piadController;
-use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\SubjectController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,10 +58,11 @@ Route::controller(DepartmentController::class)->group(function () {
     Route::get('edit/depart/{id}', 'EditDepart')->name('edit.depart');
     Route::post('depart/update/{id}', 'UpdateDepart')->name('update.depart');
     Route::get('delete/depart/{id}', 'DeleteDepart')->name('delete.depart');
-    Route::get('/get-subjects/{department_id}', [App\Http\Controllers\SubjectController::class, 'getSubjectsByDepartment']);
 });
 
 
+Route::get('/get-subjects/{id}', [SubjectController::class, 'getSubjectsByDepartment']);
+Route::get('/get-subjects/{department_id}', [SubjectController::class, 'getSubjectsByDepartment']);
 
 
 

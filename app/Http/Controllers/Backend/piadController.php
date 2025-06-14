@@ -5,14 +5,21 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Paid;
+use App\Models\Department;
+use App\Models\DepartmentSubject;
 
 class piadController extends Controller
 {
     // صفحه فرم ثبت پرداخت
-    public function AddPaid()
+   public function AddPaid()
     {
-        return view('admin.paid.add_paid');
+        $depart = Department::all();
+        $firstDepartId = Department::first()->id ?? null;
+        $subjects = DepartmentSubject::where('department_id', $firstDepartId)->get();
+        return view('admin.paid.add_paid', compact('depart', 'subjects'));
     }
+
+
 
     // ذخیره پرداخت جدید
     public function Storepiad(Request $request)

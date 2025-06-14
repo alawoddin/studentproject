@@ -45,11 +45,12 @@ class DepartmentController extends Controller
         }
 
     //end method
+        public function EditDepart($id) {
+            $depart = Department::with('subjects')->findOrFail($id);
+            return view('admin.department.edit_depart', compact('depart'));
+        }
 
-    public function EditDepart($id) {
-        $depart = Department::with('subjects')->findOrFail($id);
-        return view('admin.department.edit_depart', compact('depart'));
-    }
+
 
     //end method
 

@@ -99,8 +99,12 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Paid Date</label>
+<<<<<<< HEAD
+                                    <input class="form-control" name="paid_date" type="date" value="{{ $paid->paid_date }}">
+=======
                                     <input class="form-control" name="paid_date" type="date"
                                         value="{{ $paid->paid_date }}">
+>>>>>>> 212c3460aa592b313d01367d59cd5ad85b40b244
                                 </div>
                             </div>
 

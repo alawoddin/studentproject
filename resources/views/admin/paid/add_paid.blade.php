@@ -105,8 +105,12 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">Entry_date</label>
                                     <div class="col-sm-10">
+<<<<<<< HEAD
+                                        <input class="form-control" name="entry_date" type="date" placeholder="entry_date">
+=======
                                         <input class="form-control" name="entry_date" type="date"
                                             placeholder="entry_date">
+>>>>>>> 212c3460aa592b313d01367d59cd5ad85b40b244
                                     </div>
                                 </div>
                             </div>
@@ -115,8 +119,12 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">Paid_date</label>
                                     <div class="col-sm-10">
+<<<<<<< HEAD
+                                        <input class="form-control" name="paid_date" type="date" placeholder="paid_date">
+=======
                                         <input class="form-control" name="paid_date" type="date"
                                             placeholder="paid_date">
+>>>>>>> 212c3460aa592b313d01367d59cd5ad85b40b244
                                     </div>
                                 </div>
 
@@ -152,6 +160,8 @@
             calculateRemaining();
         });
     </script>
+<<<<<<< HEAD
+=======
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
@@ -182,4 +192,5 @@
 </script>
 
 
+>>>>>>> 212c3460aa592b313d01367d59cd5ad85b40b244
 @endsection

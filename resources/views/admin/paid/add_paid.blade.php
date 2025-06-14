@@ -68,7 +68,12 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">Teacher</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" name="teacher" type="text" placeholder="teacher">
+                                        <select name="teacher_id" class="form-select">
+                                            <option value="">Select</option>
+                                            @foreach ($teachers as $info)
+                                                <option value="{{ $info->id }}">{{ $info->first_name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -100,12 +105,8 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">Entry_date</label>
                                     <div class="col-sm-10">
-<<<<<<< HEAD
                                         <input class="form-control" name="entry_date" type="date"
                                             placeholder="entry_date">
-=======
-                                        <input class="form-control" name="entry_date" type="datetime-local" value="{{ now()->format('Y-m-d\TH:i') }}">
->>>>>>> d63bda619285e574c98c9a2c098e7c1d90425013
                                     </div>
                                 </div>
                             </div>

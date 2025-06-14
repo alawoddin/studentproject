@@ -38,10 +38,15 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $paids->student }}</td>
-                            <td>{{ $paids->department }}</td>
-                            <td>{{ $paids->subject }}</td>
+                            <td>{{ $paids->department->depart_name }}</td>
+                            <td>{{ $paids->subject->subject_name }}</td>
+                            {{-- <td>
+                                @foreach ($paids->subjects as $subject)
+                                    <span class="badge bg-success">{{ $subject->subject_name }}</span>
+                                @endforeach
+                            </td> --}}
 
-                            <td>{{ $paids->teacher }}</td>
+                            <td>{{ $paids->teacher->first_name }}</td>
                             <td>{{ $paids->total_fees }}</td>
                             <td>{{ $paids->paid }}</td>
                             <td>{{ $paids->remaining_Fees }}</td>

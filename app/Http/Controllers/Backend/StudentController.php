@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\department;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -14,38 +14,41 @@ class StudentController extends Controller
     {
         $students = Student::all();
         $teachers = Teacher::all();
-        $depart = department::all();
+        $departments = Department::all();  // اگر لازم دارید می‌توانید نگه دارید، ولی اگر جدول در مایگریشن شما نیست حذفش کنید
 
-        return view('admin.student.add_student', compact('students', 'teachers', 'depart',));
+        return view('admin.student.add_student', compact('students', 'teachers', 'departments'));
     }
 
     public function StoreStudent(Request $request)
     {
         $request->validate([
-            'teacher_id' => 'required',
-            'name' => 'required',
-            'lastname' => 'required',
-            'father_name' => 'required',
-            'department_id' => 'required|exists:departments,id',
-            'depart_subject' => 'required',
-            'phone_number' => 'required',
-            'email' => '',
-            'amount' => 'required|numeric',
-            'paid' => 'required|numeric',
-            'remaining_fees' => 'required|numeric',
-            'entry_date' => 'required|date',
-            'paid_date' => 'required|date',
-            'national_id' => 'required|unique:students,national_id'
+            'teacher_id' => 'nullable|exists:teachers,id',
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'father_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'national_id' => 'required|string|unique:students,national_id',
+            'time' => 'nullable',
         ]);
 
-        Student::create($request->all());
+        Student::create([
+            'teacher_id' => $request->teacher_id,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'father_name' => $request->father_name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'national_id' => $request->national_id,
+            'time' => $request->time,
+        ]);
 
         return redirect()->route('manage.student')->with('success', 'Student added successfully');
     }
 
     public function ManageStudent()
     {
-        $students = Student::with('teacher', 'department')->get();
+        $students = Student::with('teacher')->get();
         return view('admin.student.manage_student', compact('students'));
     }
 
@@ -53,17 +56,34 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
         $teachers = Teacher::all();
-        $depart = department::all();
-        return view('admin.student.edit_student', compact('student', 'teachers', 'depart'));
+        return view('admin.student.edit_student', compact('student', 'teachers'));
     }
 
     public function UpdateStudent(Request $request, $id)
     {
-
         $student = Student::findOrFail($id);
 
-        $student->update($request->all());
+        $request->validate([
+            'teacher_id' => 'nullable|exists:teachers,id',
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'father_name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'national_id' => 'required|string|unique:students,national_id,' . $id,
+            'time' => 'nullable',
+        ]);
 
+        $student->update([
+            'teacher_id' => $request->teacher_id,
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'father_name' => $request->father_name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'national_id' => $request->national_id,
+            'time' => $request->time,
+        ]);
 
         return redirect()->route('manage.student')->with('success', 'Student updated successfully');
     }

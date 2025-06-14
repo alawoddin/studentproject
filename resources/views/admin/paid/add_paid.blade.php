@@ -32,7 +32,7 @@
                             <div class="row mb-3">
                                 <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">student</label>
+                                    <label class="col-sm-6 col-form-label">Student</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="student" type="text" placeholder="Name">
                                     </div>
@@ -40,7 +40,7 @@
 
                                 <!-- Lastname -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">department</label>
+                                    <label class="col-sm-6 col-form-label">Department</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="department" type="text" placeholder="department">
                                     </div>
@@ -50,7 +50,7 @@
                             <div class="row mb-3">
                                 <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">subject</label>
+                                    <label class="col-sm-6 col-form-label">Subject</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="subject" type="text" placeholder="subject">
                                     </div>
@@ -58,7 +58,7 @@
 
                                 <!-- Lastname -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">teacher</label>
+                                    <label class="col-sm-6 col-form-label">Teacher</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="teacher" type="text" placeholder="teacher">
                                     </div>
@@ -68,7 +68,7 @@
                             <div class="row mb-3">
                                 <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">total_fees</label>
+                                    <label class="col-sm-6 col-form-label">Total_Fees</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="total_fees" type="text" placeholder="total_fees">
                                     </div>
@@ -76,7 +76,7 @@
 
                                 <!-- Lastname -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">Paid</label>
+                                    <label class="col-sm-6 col-form-label">Paid</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="paid" type="text" placeholder="paid">
                                     </div>
@@ -86,7 +86,7 @@
                             <div class="row mb-3">
                                 <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">remaining_Fees</label>
+                                    <label class="col-sm-6 col-form-label">Remaining_Fees</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="remaining_Fees" type="number"
                                             placeholder="remaining_Fees">
@@ -95,7 +95,7 @@
 
                                 <!-- Lastname -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">entry_date</label>
+                                    <label class="col-sm-6 col-form-label">Entry_date</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="entry_date" type="datetime-local"
                                             placeholder="entry_date">
@@ -106,7 +106,7 @@
                             <div class="row mb-3">
                                 <!-- Name -->
                                 <div class="col-md-6">
-                                    <label class="col-sm-2 col-form-label">paid_date</label>
+                                    <label class="col-sm-6 col-form-label">Paid_date</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="paid_date" type="datetime-local"
                                             placeholder="paid_date">

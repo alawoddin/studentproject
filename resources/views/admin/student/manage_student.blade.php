@@ -16,16 +16,10 @@
                     <th>Name</th>
                     <th>Lastname</th>
                     <th>Father Name</th>
-                    <th>Department</th>
-                    <th>Subject</th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>teacher name</th>
-                    <th>Amount</th>
-                    <th>Paid</th>
-                    <th>Remaining</th>
-                    <th>Entry Date</th>
-                    <th>Paid Date</th>
+                    <th>Time</th>
                     <th class="all">Action</th>
                 </tr>
             </thead>
@@ -37,16 +31,10 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->lastname }}</td>
                     <td>{{ $student->father_name }}</td>
-                    <td>{{ $student->department->depart_name }}</td>
-                    <td>{{ $student->department->depart_subject }}</td>
                     <td>{{ $student->phone_number }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->teacher->first_name }}</td>
-                    <td>{{ $student->amount }}</td>
-                    <td>{{ $student->paid }}</td>
-                    <td>{{ $student->remaining_fees }}</td>
-                    <td>{{ $student->entry_date }}</td>
-                    <td>{{ $student->paid_date }}</td>
+                    <td>{{ $student->time }}</td>
                     <td style="text-align:center; font-size: 20px;">
                         <a href="{{ route('edit.student', $student->id) }}"><i class="fas fa-edit btn btn-primary"></i></a>
                         <a href="{{ route('delete.student', $student->id) }}" id="delete"><i class="fas fa-trash-alt btn btn-danger"></i></a>

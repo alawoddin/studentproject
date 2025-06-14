@@ -51,38 +51,6 @@
                                 </div>
                             </div>
 
-                            <!-- Department -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Department</label>
-                                <div class="col-sm-10">
-                                    <select name="department_id" class="form-select">
-                                        <option value="">Select</option>
-                                        @foreach ($depart as $info)
-                                            <option value="{{ $info->id }}"
-                                                {{ old('department_id', $student->department_id ?? '') == $info->id ? 'selected' : '' }}>
-                                                {{ $info->depart_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Subject -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Subject</label>
-                                <div class="col-sm-10">
-                                    <select name="depart_subject" class="form-select">
-                                        <option value="">Select</option>
-                                        @foreach ($depart as $info)
-                                            <option value="{{ $info->depart_subject }}"
-                                                {{ old('depart_subject', $student->depart_subject ?? '') == $info->depart_subject ? 'selected' : '' }}>
-                                                {{ $info->depart_subject }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
                             <!-- Phone -->
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Phone</label>
@@ -101,50 +69,6 @@
                                 </div>
                             </div>
 
-                            <!-- Amount -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Total Fees</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="amount" name="amount" type="number"
-                                        value="{{ $student->amount }}">
-                                </div>
-                            </div>
-
-                            <!-- Paid -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Paid</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="paid" name="paid" type="number"
-                                        value="{{ $student->paid }}">
-                                </div>
-                            </div>
-
-                            <!-- Remaining Fees -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Remaining Fees</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="remaining_fees" name="remaining_fees" type="number"
-                                        value="{{ $student->remaining_fees }}">
-                                </div>
-                            </div>
-
-                            <!-- Entry Date -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Entry Date</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="entry_date" type="date"
-                                        value="{{ $student->entry_date }}">
-                                </div>
-                            </div>
-
-                            <!-- Paid Date -->
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Paid Date</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="paid_date" type="date"
-                                        value="{{ $student->paid_date }}">
-                                </div>
-                            </div>
 
                             <!-- National ID -->
                             <div class="row mb-3">
@@ -168,6 +92,15 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="col-sm-10">
+                                        <label class="col-form-label">Time (Am | PM)</label>
+                                        <input class="form-control" id="time" name="time" type="Time" value="{{ $student->time }}">
+                                    </div>
                                 </div>
                             </div>
 

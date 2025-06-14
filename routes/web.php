@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\backend\DepartmentController;
 use App\Http\Controllers\backend\piadController;
-
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +46,7 @@ Route::controller(TeacherController::class)->group(function () {
     Route::get('edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
     Route::get('delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     Route::post('teacher/update/{id}', 'UpdateTeacher')->name('update.teacher');
+    Route::get('view/teachers', 'ViewTeacher')->name('view.teachers');
 });
 
 
@@ -57,7 +58,9 @@ Route::controller(DepartmentController::class)->group(function () {
     Route::get('edit/depart/{id}', 'EditDepart')->name('edit.depart');
     Route::post('depart/update/{id}', 'UpdateDepart')->name('update.depart');
     Route::get('delete/depart/{id}', 'DeleteDepart')->name('delete.depart');
+    Route::get('/get-subjects/{department_id}', [App\Http\Controllers\SubjectController::class, 'getSubjectsByDepartment']);
 });
+
 
 
 

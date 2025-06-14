@@ -1,3 +1,4 @@
+
 <div class="vertical-menu">
 
     <div data-simplebar class="h-100">
@@ -39,23 +40,6 @@
                 <li class="menu-title">Pages</li>
 
 
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Teacher</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-
-                        <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
-                        <li><a href="{{ route('manage.teacher') }}">Manage Teacher</a></li>
-
-
-                    </ul>
-                </li>
-
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
@@ -66,15 +50,18 @@
                         <li><a href="{{ route('all.depart') }}">Manage Department</a></li>
                     </ul>
                 </li>
-                {{-- adding paid --}}
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
-                        <span>Paid</span>
+                        <span>Teacher</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.paid') }}">Add Paid</a></li>
-                        <li><a href="{{ route('manage.paid') }}">Manage Paid</a></li>
+
+                        <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
+                        <li><a href="{{ route('manage.teacher') }}">Manage Teacher</a></li>
+                     <li><a href="{{ route('view.teachers') }}">View All Teachers</a></li>
+                        
                     </ul>
                 </li>
 
@@ -88,6 +75,20 @@
                         <li><a href="{{ route('manage.student') }}">Manage Student</a></li>
                     </ul>
                 </li>
+                
+                {{-- adding paid --}}
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Paid</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('add.paid') }}">Add Paid</a></li>
+                        <li><a href="{{ route('manage.paid') }}">Manage Paid</a></li>
+                    </ul>
+                </li>
+
+               
 
 
 

@@ -113,6 +113,11 @@ class TeacherController extends Controller
         return redirect()->route('manage.teacher')->with('success', 'Teacher deleted successfully!');
     }
 
+       public function ViewTeacher()
+        {
+            $teachers = Teacher::with('department')->get();
+            return view('admin.teacher.View_teachers', compact('teachers'));
+        }
 
 
 }

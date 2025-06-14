@@ -45,37 +45,40 @@ class DepartmentController extends Controller
         }
 
     //end method
+        public function EditDepart($id) {
+            $depart = Department::with('subjects')->findOrFail($id);
+            return view('admin.department.edit_depart', compact('depart'));
+        }
 
-    // public function EditDepart($id) {
-    //     $depart = Department::with('subjects')->findOrFail($id);
-    //     return view('admin.department.edit_depart', compact('depart'));
-    // }
 
-    public function EditDepart($id) {
-    $depart = Department::with('subjects')->findOrFail($id);
-    dd($depart);  // See what data you get
-    return view('admin.department.edit_depart', compact('depart'));
-}
 
     //end method
 
     public function UpdateDepart(Request $request, $id) {
-        // department::findOrFail($id)->update([
-        //     'depart_name' => $request->depart_name,
-        //     'depart_subject' => $request->depart_subject,
-        // ]);
-        Department::findOrFail($id)->update([
-            'depart_name' => $request->depart_name,
+    // آپدیت نام دپارتمنت
+    Department::findOrFail($id)->update([
+        'depart_name' => $request->depart_name,
+    ]);
+
+    // حذف مضامین قدیمی
+    DepartmentSubject::where('department_id', $id)->delete();
+
+    // ذخیره مضامین جدید
+    foreach ($request->depart_subjects as $subject) {
+        DepartmentSubject::create([
+            'department_id' => $id,
+            'subject_name' => $subject
         ]);
-
-
-        $notification = array(
-            'message' => 'Department Updated Successfully',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('all.depart')->with($notification);
     }
+
+    $notification = array(
+        'message' => 'Department Updated Successfully',
+        'alert-type' => 'success'
+    );
+
+    return redirect()->route('all.depart')->with($notification);
+}
+
 
     //end method
 

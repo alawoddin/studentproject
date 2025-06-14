@@ -13,11 +13,15 @@
             <form action="{{ route('store.depart') }}" method="POST">
                 @csrf
 
+             
+
                 <!-- Department Name -->
                 <div class="row ">
                     <div class="col-md-6">
                         <label for="depart_name" class="form-label">Department Name</label>
                         <input type="text" name="depart_name" class="form-control" placeholder="Department name" required>
+
+
                     </div>
 
                     <div class="col-md-6">

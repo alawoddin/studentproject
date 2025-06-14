@@ -64,7 +64,10 @@ class piadController extends Controller
     public function EditPaid($id)
     {
         $paid = Paid::findOrFail($id);
-        return view('admin.paid.edit_paid', compact('paid'));
+        $depart = Department::all();
+        $teachers = Teacher::all();
+        $subjects = DepartmentSubject::where('department_id', $paid->department_id)->get();
+        return view('admin.paid.edit_paid', compact('paid' , 'depart', 'teachers', 'subjects'));
     }
 
     // به‌روزرسانی پرداخت

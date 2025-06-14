@@ -29,20 +29,43 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label">Department</label>
-                                    <input class="form-control" name="department" type="text"
-                                        value="{{ $paid->department }}">
+                                    <select name="department_id" class="form-select" id="department-dropdown">
+                                        <option value="">Select</option>
+                                        @foreach ($depart as $info)
+                                            <option value="{{ $info->id }}" {{ (isset($paid) && $paid->department_id == $info->id) ? 'selected' : '' }}>
+                                                {{ $info->depart_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Subject</label>
-                                    <input class="form-control" name="subject" type="text" value="{{ $paid->subject }}">
+                                    <select name="subject_id" class="form-select" id="subject-dropdown">
+                                        <option value="">Select Subject</option>
+                                        @foreach ($subjects as $subject)
+                                            <option value="{{ $subject->id }}" {{ $paid->subject_id == $subject->id ? 'selected' : '' }}>
+                                                {{ $subject->subject_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label">Teacher</label>
-                                    <input class="form-control" name="teacher" type="text" value="{{ $paid->teacher }}">
+                                    <select name="teacher_id" class="form-select">
+                                        <option value="">Select</option>
+                                        @foreach ($teachers as $info)
+                                            <option value="{{ $info->id }}" {{ $paid->teacher_id == $info->id ? 'selected' : '' }}>
+                                                {{ $info->first_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
                                 </div>
                             </div>
 

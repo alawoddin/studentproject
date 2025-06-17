@@ -9,10 +9,13 @@ use App\Http\Controllers\backend\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SubjectController;
+use App\Http\Controllers\Frontend\TeachersController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/' , [TeachersController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('admin.index');

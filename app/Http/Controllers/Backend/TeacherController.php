@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\department;
 use Illuminate\Http\Request;
-use App\Models\Teacher; // ✅ این خط بسیار مهم است
+use App\Models\Teacher; 
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 

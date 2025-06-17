@@ -14,7 +14,7 @@ class StudentController extends Controller
     {
         $students = Student::all();
         $teachers = Teacher::all();
-        $departments = Department::all();  // اگر لازم دارید می‌توانید نگه دارید، ولی اگر جدول در مایگریشن شما نیست حذفش کنید
+        $departments = Department::all();
 
         return view('admin.student.add_student', compact('students', 'teachers', 'departments'));
     }

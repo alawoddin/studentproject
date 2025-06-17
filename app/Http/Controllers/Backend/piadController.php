@@ -29,9 +29,9 @@ class piadController extends Controller
     {
         Paid::create([
             'student' => $request->student,
-            'department_id' => $request->department_id,  // ✅ corrected
-            'subject_id' => $request->subject_id,        // ✅ corrected
-            'teacher_id' => $request->teacher_id,        // ✅ corrected
+            'department_id' => $request->department_id,
+            'subject_id' => $request->subject_id,
+            'teacher_id' => $request->teacher_id,
             'total_fees' => $request->total_fees,
             'paid' => $request->paid,
             'remaining_Fees' => $request->remaining_Fees,

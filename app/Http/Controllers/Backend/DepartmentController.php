@@ -55,15 +55,15 @@ class DepartmentController extends Controller
     //end method
 
     public function UpdateDepart(Request $request, $id) {
-    // آپدیت نام دپارتمنت
+
     Department::findOrFail($id)->update([
         'depart_name' => $request->depart_name,
     ]);
 
-    // حذف مضامین قدیمی
+
     DepartmentSubject::where('department_id', $id)->delete();
 
-    // ذخیره مضامین جدید
+    
     foreach ($request->depart_subjects as $subject) {
         DepartmentSubject::create([
             'department_id' => $id,

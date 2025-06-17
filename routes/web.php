@@ -16,12 +16,19 @@ use App\Http\Controllers\Frontend\TeachersController;
 // });
 
 Route::get('/' , [TeachersController::class, 'index'])->name('index');
+Route::post('/dashboard' , [TeachersController::class, 'SearchTeacher'])->name('teacher.dashboard');
+
+// Route::get('/teacher/dashboard', function () {
+//     return view('frontend.dashboard');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 Route::controller(AdminController::class)->group(function () {
 

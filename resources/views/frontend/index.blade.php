@@ -62,7 +62,9 @@
                 <h2>Teacher Salary Management System (TSMS)</h2>
                 <p class="card-title-desc">Find your Student  With Paid</p>
 
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('teacher.dashboard') }}">
+
+                    @csrf
                     <div class="mb-3">
                         <label>Teacher Roll ID</label>
                         <div>

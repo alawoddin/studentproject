@@ -3,20 +3,32 @@
 
     <div data-simplebar class="h-100">
 
+  {{-- @php
+          $id = Auth::guard('teacher')->id();
+          $client = App\Models\Teacher::find($id);
+    {{-- @endphp --}}
 
+        @php
+        $teacher = App\Models\Teacher::first();
+    @endphp
 
+    @if($teacher)
         <!-- User details -->
         <div class="user-profile text-center mt-3">
-            <div class="">
+            <div>
                 <img src="{{ !empty($adminData->photo) ? asset('uploads/admin_profiles/' . $adminData->photo) : asset('uploads/no_image.png') }}"
                     alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">name </h4>
-                <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    email </span>
+                <h4 class="font-size-16 mb-1">{{ $teacher->name }} </h4>
+                <span class="text-muted">
+                    <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
+                    {{ $teacher->email }}
+                </span>
             </div>
         </div>
+    @endif
+
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">

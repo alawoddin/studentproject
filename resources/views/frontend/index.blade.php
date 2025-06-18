@@ -21,15 +21,22 @@
             </div>
         </div>
     </div>
+
     <!-- end page title -->
 
     {{-- @php
         $teacher = App\Models\Teacher::with('department')->get();
     @endphp --}}
 
+     @php
+    $teacher = App\Models\Teacher::first();
+    $depart = App\Models\Department::first();
+@endphp
+
+
     <div class="row">
         {{-- @foreach ($teacher as $item ) --}}
-
+        @if($teacher)
 
             <div class="col-xl-3 col-md-6">
             <div class="card">
@@ -38,13 +45,14 @@
                     <div class="d-flex">
 
                         <div class="flex-grow-1">
-                            {{-- <p class="text-truncate font-size-14 mb-2">{{ $item->first_name }}</p> --}}
-                            {{-- <h4 class="mb-2">{{ $item->last_name }}</h4> --}}
-                        {{--    <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>{{ $item->roll_id }}%</span>{{ $item->department->depart_name}}</p> --}}
+                            <p class="text-truncate font-size-14 mb-2">{{ $teacher->first_name }}</p>
+                            <h4 class="mb-2">{{ $teacher->last_name }}</h4>
+                           <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2">
+                            <i class="ri-arrow-right-up-line me-1 align-middle"></i>{{ $teacher->roll_id }}%</span>{{ $depart->depart_name}}</p>
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title bg-light text-primary rounded-3">
-                                {{-- <img src="{{ $item->photo }}" style="height: 50px" alt=""> --}}
+                                <img src="{{ $teacher->photo }}" style="height: 50px" alt="">
                             </span>
                         </div>
 
@@ -53,7 +61,7 @@
                 </div><!-- end cardbody -->
             </div><!-- end card -->
         </div>
-
+        @endif
         <!-- end col -->
     {{-- @endforeach --}}
 

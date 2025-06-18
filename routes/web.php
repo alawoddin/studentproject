@@ -22,8 +22,11 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
-Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
 
+Route::middleware('teacher')->group(function() {
+    Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
+
+});
 
 Route::get('/dashboard', function () {
     return view('admin.index');
@@ -80,6 +83,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__ . '/auth.php';
 

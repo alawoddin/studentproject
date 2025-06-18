@@ -32,35 +32,21 @@ class TeachersController extends Controller
                    return redirect()->back()->with($notification);
                  }
 
-                 $notification = [
-                    'message' => 'I am sorry. Please check your Roll ID and Department ID.',
-                    'alert-type' => 'error'
-               ];
-
                  $depart = Department::all();
-                return view('frontend.teacher_dashboard', compact('teacher', 'depart'))->with($notification);
+                return view('frontend.index', compact('teacher', 'depart'));
     }
     public function index()
     {
         $teacher = Teacher::all();
         $depart = Department::all();
-
-        $notification = [
-            'message' => 'I am sorry. Please check your Roll ID and Department ID.',
-            'alert-type' => 'error'
-       ];
-        return view('frontend.teacher_login' , compact('teacher' , 'depart'))->with($notification);
+        return view('frontend.teacher_login' , compact('teacher' , 'depart'));
     }
     //end method
 
     public function TeacherDashboard() {
 
-        $notification = [
-            'message' => 'I am sorry. Please check your Roll ID and Department ID.',
-            'alert-type' => 'error'
-       ];
 
-        return view('frontend.index')->with($notification);
+        return view('frontend.index');
     }
 
 

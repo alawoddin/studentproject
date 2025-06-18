@@ -25,16 +25,6 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
 
 
-// Route::post('/dashboard' , [TeachersController::class, 'SearchTeacher'])->name('teacher.dashboard');
-
-// Route::get('/teacher/dashboard', function () {
-//     return view('frontend.dashboard');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('admin.index');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');

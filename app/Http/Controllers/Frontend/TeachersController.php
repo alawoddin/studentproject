@@ -6,52 +6,50 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeachersController extends Controller
 {
+    public function teacherLogin(Request $request) {
+        // Validate the inputs
+        $data = $request->validate([
+            'roll_id' => 'required|numeric',
+            'department_id' => 'required|numeric',
+        ]);
 
-    public function TeacherLogin(Request $request) {
-        $request->validate([
-                   'roll_id' => 'required|numeric',
-                    'department_id' => 'required|numeric',
-             ]);
+        // Attempt to find the teacher with given roll_id and department_id
+        $teacher = Teacher::where('roll_id', $data['roll_id'])
+                          ->where('department_id', $data['department_id'])
+                          ->first();
 
-             $roll_id = $request->roll_id;
-             $department_id = $request->department_id;
+        // Check if the teacher was found
+        if (!$teacher) {
+            return redirect()->back()->with([
+                'message' => 'I am sorry. Please check your Roll ID and Department ID.',
+                'alert-type' => 'error',
+            ]);
+        }
 
-               $teacher = Teacher::where('roll_id', $roll_id)
-                     ->where('department_id', $department_id)
-                   ->first();
+        // Log in the teacher manually
+        // Auth::guard('teacher')->login($teacher);
 
-                if (!$teacher) {
-                     $notification = [
-                        'message' => 'I am sorry. Please check your Roll ID and Department ID.',
-                        'alert-type' => 'error'
-                   ];
 
-                   return redirect()->back()->with($notification);
-                 }
-
-                 $depart = Department::all();
-                return view('frontend.index', compact('teacher', 'depart'));
+        // Redirect to teacher's home/dashboard with data
+        return redirect()->route('teacher.index')->with([
+            'message' => 'You are successfully logged in.',
+            'alert-type' => 'success',
+        ]);
     }
+
     public function index()
     {
-        $teacher = Teacher::all();
+        $id = Auth::guard('teacher')->id();
+        $teacher = Teacher::find($id);
         $depart = Department::all();
-        return view('frontend.teacher_login' , compact('teacher' , 'depart'));
+        return view('frontend.teacher_login', compact('teacher', 'depart'));
     }
-    //end method
 
-    public function TeacherDashboard() {
-
-
+    public function teacherDashboard() {
         return view('frontend.index');
     }
-
-
-
-
 }
-
-

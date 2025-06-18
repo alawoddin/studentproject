@@ -5,18 +5,23 @@
 
   {{-- @php
           $id = Auth::guard('teacher')->id();
-          $client = App\Models\Teacher::find($id);
-    {{-- @endphp --}}
+          $teacher = App\Models\Teacher::find($id);
+     @endphp --}}
 
-        @php
+        {{-- @php
         $teacher = App\Models\Teacher::first();
-    @endphp
+    @endphp --}}
+
+    @php
+    $teacher = App\Models\Teacher::first();
+    $depart = App\Models\Department::first();
+@endphp
 
     @if($teacher)
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div>
-                <img src="{{ !empty($adminData->photo) ? asset('uploads/admin_profiles/' . $adminData->photo) : asset('uploads/no_image.png') }}"
+                <img src="{{ !empty($teacher->photo) ? asset('uploads/teacher/' . $teacher->photo) : asset('uploads/no_image.png') }}"
                     alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">

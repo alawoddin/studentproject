@@ -12,11 +12,20 @@ use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\TeachersController;
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('frontend.teacher_login');
 // });
 
 Route::get('/' , [TeachersController::class, 'index'])->name('index');
-Route::post('/dashboard' , [TeachersController::class, 'SearchTeacher'])->name('teacher.dashboard');
+
+
+Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
+
+
+// Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
+Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
+
+
+// Route::post('/dashboard' , [TeachersController::class, 'SearchTeacher'])->name('teacher.dashboard');
 
 // Route::get('/teacher/dashboard', function () {
 //     return view('frontend.dashboard');

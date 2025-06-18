@@ -1,128 +1,287 @@
-<!doctype html>
-<html lang="en">
+@extends('frontend.teacher_dashboard')
 
-    <head>
+@section('teacher')
 
-        <meta charset="utf-8" />
-        <title>TSMS | Teacher Salary Management System</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
-
-        <!-- Bootstrap Css -->
-        <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
-        <!-- jquery cdn  -->
-        <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    </head>
-
-    <style>
-        body {
-            background-image: url("{{ asset('uploads/bg1.jpg') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, .6);
-        }
-
-        .form {
-            width: 400px;
-            margin: 80px auto;
-
-        }
-
-        .form h2, p {
-            text-align: center;
-        }
-    </style>
-
-    <body data-topbar="dark">
-        <div class="overlay"></div>
-        <!-- Begin page -->
-        <div class="card form">
-            <div class="card-body">
-
-                <h2>Teacher Salary Management System (TSMS)</h2>
-                <p class="card-title-desc">Find your Student  With Paid</p>
-
-                <form method="POST" action="{{ route('teacher.dashboard') }}">
-
-                    @csrf
-                    <div class="mb-3">
-                        <label>Teacher Roll ID</label>
-                        <div>
-                            <input type="text" class="form-control" name="roll_id" required=""  placeholder="Enter Your Roll ID">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label>Teacher Department</label>
-                        <div>
-                            <select name="department_id" class="form-select" aria-label="Default select example">
-                                <option selected="">Select</option>
-                                @foreach ($depart as $item )
-                                <option value="{{ $item->id }}">{{ $item->depart_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
 
 
-                    <div class="mb-0" style="float: right">
-                        <div>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                                Login me
-                            </button>
-                        </div>
-                    </div>
-                </form>
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0">Dashboard</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Upcube</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
 
             </div>
         </div>
+    </div>
+    <!-- end page title -->
 
-        <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+    {{-- @php
+        $teacher = App\Models\Teacher::with('department')->get();
+    @endphp --}}
 
-         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script>
-            @if(Session::has('message'))
-            var type = "{{ Session::get('alert-type','info') }}"
-            switch(type){
-                case 'info':
-                toastr.info(" {{ Session::get('message') }} ");
-                break;
-
-                case 'success':
-                toastr.success(" {{ Session::get('message') }} ");
-                break;
-
-                case 'warning':
-                toastr.warning(" {{ Session::get('message') }} ");
-                break;
-
-                case 'error':
-                toastr.error(" {{ Session::get('message') }} ");
-                break;
-            }
-            @endif
-            </script>
+    <div class="row">
+        {{-- @foreach ($teacher as $item ) --}}
 
 
-    </body>
+            <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                 <a href="#">
+                    <div class="d-flex">
 
-</html>
+                        <div class="flex-grow-1">
+                            {{-- <p class="text-truncate font-size-14 mb-2">{{ $item->first_name }}</p> --}}
+                            {{-- <h4 class="mb-2">{{ $item->last_name }}</h4> --}}
+                        {{--    <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i class="ri-arrow-right-up-line me-1 align-middle"></i>{{ $item->roll_id }}%</span>{{ $item->department->depart_name}}</p> --}}
+                        </div>
+                        <div class="avatar-sm">
+                            <span class="avatar-title bg-light text-primary rounded-3">
+                                {{-- <img src="{{ $item->photo }}" style="height: 50px" alt=""> --}}
+                            </span>
+                        </div>
+
+                    </div>
+                    </a>
+                </div><!-- end cardbody -->
+            </div><!-- end card -->
+        </div>
+
+        <!-- end col -->
+    {{-- @endforeach --}}
+
+    </div><!-- end row -->
+
+
+
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dropdown float-end">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        </div>
+                    </div>
+
+                    <h4 class="card-title mb-4">Latest Transactions</h4>
+
+                    <div class="table-responsive">
+                        <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Status</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th style="width: 120px;">Salary</th>
+                                </tr>
+                            </thead><!-- end thead -->
+                            <tbody>
+                                <tr>
+                                    <td><h6 class="mb-0">Charles Casey</h6></td>
+                                    <td>Web Developer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>Active</div>
+                                    </td>
+                                    <td>
+                                        23
+                                    </td>
+                                    <td>
+                                        04 Apr, 2021
+                                    </td>
+                                    <td>$42,450</td>
+                                </tr>
+                                 <!-- end -->
+                                 <tr>
+                                    <td><h6 class="mb-0">Alex Adams</h6></td>
+                                    <td>Python Developer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-warning align-middle me-2"></i>Deactive</div>
+                                    </td>
+                                    <td>
+                                        28
+                                    </td>
+                                    <td>
+                                        01 Aug, 2021
+                                    </td>
+                                    <td>$25,060</td>
+                                </tr>
+                                 <!-- end -->
+                                 <tr>
+                                    <td><h6 class="mb-0">Prezy Kelsey</h6></td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>Active</div>
+                                    </td>
+                                    <td>
+                                        35
+                                    </td>
+                                    <td>
+                                        15 Jun, 2021
+                                    </td>
+                                    <td>$59,350</td>
+                                </tr>
+                                 <!-- end -->
+                                 <tr>
+                                    <td><h6 class="mb-0">Ruhi Fancher</h6></td>
+                                    <td>React Developer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>Active</div>
+                                    </td>
+                                    <td>
+                                        25
+                                    </td>
+                                    <td>
+                                        01 March, 2021
+                                    </td>
+                                    <td>$23,700</td>
+                                </tr>
+                                 <!-- end -->
+                                 <tr>
+                                    <td><h6 class="mb-0">Juliet Pineda</h6></td>
+                                    <td>Senior Web Designer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>Active</div>
+                                    </td>
+                                    <td>
+                                        38
+                                    </td>
+                                    <td>
+                                        01 Jan, 2021
+                                    </td>
+                                    <td>$69,185</td>
+                                </tr>
+                                 <!-- end -->
+                                 <tr>
+                                    <td><h6 class="mb-0">Den Simpson</h6></td>
+                                    <td>Web Designer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-warning align-middle me-2"></i>Deactive</div>
+                                    </td>
+                                    <td>
+                                        21
+                                    </td>
+                                    <td>
+                                        01 Sep, 2021
+                                    </td>
+                                    <td>$37,845</td>
+                                </tr>
+                                 <!-- end -->
+                                 <tr>
+                                    <td><h6 class="mb-0">Mahek Torres</h6></td>
+                                    <td>Senior Laravel Developer</td>
+                                    <td>
+                                        <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>Active</div>
+                                    </td>
+                                    <td>
+                                        32
+                                    </td>
+                                    <td>
+                                        20 May, 2021
+                                    </td>
+                                    <td>$55,100</td>
+                                </tr>
+                                 <!-- end -->
+                            </tbody><!-- end tbody -->
+                        </table> <!-- end table -->
+                    </div>
+                </div><!-- end card -->
+            </div><!-- end card -->
+        </div>
+        <!-- end col -->
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="float-end">
+                        <select class="form-select shadow-none form-select-sm">
+                            <option selected>Apr</option>
+                            <option value="1">Mar</option>
+                            <option value="2">Feb</option>
+                            <option value="3">Jan</option>
+                        </select>
+                    </div>
+                    <h4 class="card-title mb-4">Monthly Earnings</h4>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="text-center mt-4">
+                                <h5>3475</h5>
+                                <p class="mb-2 text-truncate">Market Place</p>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-4">
+                            <div class="text-center mt-4">
+                                <h5>458</h5>
+                                <p class="mb-2 text-truncate">Last Week</p>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-4">
+                            <div class="text-center mt-4">
+                                <h5>9062</h5>
+                                <p class="mb-2 text-truncate">Last Month</p>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                    <div class="mt-4">
+                        <div id="donut-chart" class="apex-charts"></div>
+                    </div>
+                </div>
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div>
+    <!-- end row -->
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type','info') }}"
+    switch(type){
+        case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+        break;
+
+        case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+        break;
+
+        case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+        break;
+
+        case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+        break;
+    }
+    @endif
+    </script>
+
+@endsection
+

@@ -7,7 +7,7 @@ use App\Models\DepartmentSubject;
 
 class SubjectController extends Controller
 {
-    public function getSubjectsByDepartment($department_id)
+    public function SubByDepart($department_id)
     {
         $subjects = DepartmentSubject::where('department_id', $department_id)->get();
 

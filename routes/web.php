@@ -23,7 +23,7 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
 
-Route::middleware('teacher')->group(function() {
+Route::middleware('auth:teacher')->group(function() {
     Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
 
 });

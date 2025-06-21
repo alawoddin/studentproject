@@ -53,7 +53,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
                         <li><a href="{{ route('manage.teacher') }}">Manage Teacher</a></li>
-                        <li><a href="{{ route('view.teachers') }}">View All Teachers</a></li>
+                        <li><a href="{{ route('view.teacher') }}">View All Teachers</a></li>
                     </ul>
                 </li>
 

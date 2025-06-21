@@ -21,6 +21,9 @@ class TeacherController extends Controller
 
     // show part
 
+
+
+
     public function ManageTeacher()
     {
         $teachers = Teacher::with('department')->get();
@@ -121,6 +124,7 @@ class TeacherController extends Controller
     public function ViewTeacher()
     {
         $teachers = Teacher::with('department')->get();
-        return view('admin.teacher.View_teachers', compact('teachers'));
+        return view('admin.teacher.view_teachers', compact('teachers'));
     }
+
 }

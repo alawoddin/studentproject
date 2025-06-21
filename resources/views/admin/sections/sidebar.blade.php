@@ -102,17 +102,7 @@
                         <li><a href="{{ route('report.summary') }}">All Report</a></li>
                         <li><a href="{{ route('report.filter') }}">Manage Report</a></li>
 
-                        {{-- adding staf --}}
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="ri-account-circle-line"></i>
-                                <span>Staf</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('add.staf') }}">Add staf</a></li>
-                                <li><a href="{{ route('manage.staf') }}">Manage staf</a></li>
-                            </ul>
-                        </li>
+
 
                         {{-- utility --}}
                         <li>
@@ -125,6 +115,18 @@
                                 <li><a href="pages-timeline.html">Timeline</a></li>
                             </ul>
                         </li>
+                    </ul>
+                </li>
+
+                {{-- adding staf --}}
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Staf</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('add.staf') }}">Add staf</a></li>
+                        <li><a href="{{ route('manage.staf') }}">Manage staf</a></li>
                     </ul>
                 </li>
 

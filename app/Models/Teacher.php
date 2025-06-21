@@ -20,4 +20,10 @@ class Teacher extends Authenticatable // ✅ Extend this, not Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    
 }
+
+
+
+

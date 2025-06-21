@@ -1,7 +1,3 @@
-
-
-
-
 <header id="page-topbar">
 
     <div class="navbar-header">
@@ -10,7 +6,7 @@
             <div class="navbar-brand-box ">
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('backend/assets/images/logo-sm.png') }}"  alt="logo-sm-light" height="22">
+                        <img src="{{ asset('backend/assets/images/logo-sm.png') }}" alt="logo-sm-light" height="22">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="logo-light" height="20">
@@ -46,7 +42,8 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search ...">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"><i class="ri-search-line"></i></button>
+                                    <button class="btn btn-primary" type="submit"><i
+                                            class="ri-search-line"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +62,8 @@
             </div>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
-                      data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn header-item noti-icon waves-effect"
+                    id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="ri-notification-3-line"></i>
                     <span class="noti-dot"></span>
                 </button>
@@ -154,22 +151,32 @@
             </div>
 
 
+            @php
+                $id = Auth::guard('teacher')->id();
+                $profile = App\Models\Teacher::find($id);
+
+            @endphp
+
 
             <div class="dropdown d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ !empty($adminData->photo) ?
-                    asset('uploads/admin_profiles/'.$adminData->photo) : asset('uploads/no_image.png') }}"
-                        alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1"> name </span>
+
+                    <img class="rounded-circle header-profile-user" src="{{ asset($profile->photo) }}"
+                        alt="">
+
+                    <span class="d-none d-xl-inline-block ms-1"> {{ $profile->first_name }} </span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item d-block" href="{{ route('admin.pasword.change') }}"><i class="ri-settings-2-line align-middle me-1"></i> change password</a>
+                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                            class="ri-user-line align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item d-block" href="{{ route('admin.pasword.change') }}"><i
+                            class="ri-settings-2-line align-middle me-1"></i> change password</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="{{ route('index') }}"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    <a class="dropdown-item text-danger" href="{{ route('index') }}"><i
+                            class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
 

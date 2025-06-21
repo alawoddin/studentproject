@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\TeachersController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\ReportController;
 
+use App\Http\Controllers\Backend\StafController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
@@ -26,7 +27,10 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
 
+
 Route::middleware('teacher')->group(function () {
+
+
     Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
 });
 
@@ -75,8 +79,10 @@ Route::controller(DepartmentController::class)->group(function () {
 });
 
 
-Route::get('/get-subjects/{id}', [SubjectController::class, 'getSubjectsByDepartment']);
-Route::get('/get-subjects/{department_id}', [SubjectController::class, 'getSubjectsByDepartment']);
+Route::controller(SubjectController::class)->group(function () {
+    Route::get('/get-subjects/{id}', 'SubByDepart');
+    Route::get('/get-subjects/{department_id}', 'SubByDepart');
+});
 
 
 
@@ -86,22 +92,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
 require __DIR__ . '/auth.php';
 
-// route paid
-
 // ----------------------------
+
 Route::controller(piadController::class)->group(function () {
     Route::get('add/paid', 'AddPaid')->name('add.paid');
     Route::post('store/paid', 'Storepiad')->name('store.paid');
     Route::get('manage/paid', 'ManagePaid')->name('manage.paid');
     Route::get('edit/paid/{id}', 'EditPaid')->name('edit.paid');
-    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid'); // ✅ مسیر آپدیت
+    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid');
     Route::get('delete/paid/{id}', 'DeletePaid')->name('delete.paid');
 });
-
 
 
 // -------------------------------- expense
@@ -126,4 +128,17 @@ Route::controller(ReportController::class)->group(function () {
     Route::post('report/filter', 'FilterReport')->name('report.filter');
 });
 
-//----------------------------------- report
+
+
+
+// ----------------------------
+
+Route::controller(StafController::class)->group(function () {
+    Route::get('/add/staf', 'AddStaf')->name('add.staf');
+    Route::post('/store/staf', 'StoreStaf')->name('store.staf');
+    Route::get('/manage/staf', 'ManageStaf')->name('manage.staf');
+    Route::get('/edit/staf/{id}', 'EditStaf')->name('edit.staf');
+    Route::post('/update/staf/{id}', 'UpdateStaf')->name('update.staf');
+    Route::get('/delete/staf/{id}', 'DeleteStaf')->name('delete.staf');
+});
+// ----------------------------

@@ -1,33 +1,29 @@
-
 <div class="vertical-menu">
 
     <div data-simplebar class="h-100">
 
-  {{-- @php
-          $id = Auth::guard('teacher')->id();
-          $client = App\Models\Teacher::find($id);
-    {{-- @endphp --}}
+
 
         @php
-        $teacher = App\Models\Teacher::first();
-    @endphp
+            $id = Auth::guard('teacher')->id();
+            $profile = App\Models\Teacher::find($id);
+        @endphp
 
-    @if($teacher)
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div>
-                <img src="{{ !empty($adminData->photo) ? asset('uploads/admin_profiles/' . $adminData->photo) : asset('uploads/no_image.png') }}"
-                    alt="" class="avatar-md rounded-circle">
+
+
+                <img class="rounded-circle header-profile-user" src="{{ asset($profile->photo) }}" alt="">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">{{ $teacher->name }} </h4>
+                <h4 class="font-size-16 mb-1">{{ $profile->name }} </h4>
                 <span class="text-muted">
                     <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    {{ $teacher->email }}
+                    {{ $profile->email }}
                 </span>
             </div>
         </div>
-    @endif
 
 
         <!--- Sidemenu -->
@@ -70,7 +66,7 @@
 
                         <li><a href="#">Add Teacher</a></li>
                         <li><a href="#">Manage Teacher</a></li>
-                     <li><a href="#">View All Teachers</a></li>
+                        <li><a href="#">View All Teachers</a></li>
 
                     </ul>
                 </li>

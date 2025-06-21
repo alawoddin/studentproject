@@ -5,37 +5,40 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\department;
 use Illuminate\Http\Request;
-use App\Models\Teacher; 
+use App\Models\Teacher;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
 class TeacherController extends Controller
 {
     // add part
-    public function AddTeacher() {
+    public function AddTeacher()
+    {
         $depart = department::all();
 
-        return view('admin.teacher.add_teacher' , compact('depart'));
+        return view('admin.teacher.add_teacher', compact('depart'));
     }
 
     // show part
 
-    public function ManageTeacher() {
+    public function ManageTeacher()
+    {
         $teachers = Teacher::with('department')->get();
         // $depart = department::all();
         return view('admin.teacher.manage_teacher', compact('teachers'));
     }
     // store part
 
-    public function StoreTeacher(Request $request){
+    public function StoreTeacher(Request $request)
+    {
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
             $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $img = $manager->read($image);
-            $img->resize(300,300)->save(public_path('uploads/teacher/'.$name_gen));
-            $save_url = 'uploads/teacher/'.$name_gen;
+            $img->resize(300, 300)->save(public_path('uploads/teacher/' . $name_gen));
+            $save_url = 'uploads/teacher/' . $name_gen;
 
             Teacher::create([
                 'first_name' => $request->first_name,
@@ -62,16 +65,17 @@ class TeacherController extends Controller
 
     // Edit part
 
-    public function EditTeacher($id) {
+    public function EditTeacher($id)
+    {
         $teacher = Teacher::findOrFail($id);
         $departments = Department::all();
-         // Capitalized model name and clearer variable name
+        // Capitalized model name and clearer variable name
         return view('admin.teacher.edit_teacher', compact('teacher', 'departments'));
     }
 
 
 
-     // update part
+    // update part
 
     public function UpdateTeacher(Request $request, $id)
     {
@@ -86,10 +90,10 @@ class TeacherController extends Controller
         if ($request->file('photo')) {
             $image = $request->file('photo');
             $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $img = $manager->read($image);
-            $img->resize(300,300)->save(public_path('uploads/teacher/'.$name_gen));
-            $save_url = 'uploads/teacher/'.$name_gen;
+            $img->resize(300, 300)->save(public_path('uploads/teacher/' . $name_gen));
+            $save_url = 'uploads/teacher/' . $name_gen;
 
             // $teacher = Teacher::findOrFail($id);
 
@@ -106,18 +110,17 @@ class TeacherController extends Controller
 
     // Delete part
 
-    public function DeleteTeacher($id) {
+    public function DeleteTeacher($id)
+    {
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
 
         return redirect()->route('manage.teacher')->with('success', 'Teacher deleted successfully!');
     }
 
-       public function ViewTeacher()
-        {
-            $teachers = Teacher::with('department')->get();
-            return view('admin.teacher.View_teachers', compact('teachers'));
-        }
-
-
+    public function ViewTeacher()
+    {
+        $teachers = Teacher::with('department')->get();
+        return view('admin.teacher.View_teachers', compact('teachers'));
+    }
 }

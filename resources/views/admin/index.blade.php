@@ -34,7 +34,7 @@
             <div class="col-xl-3 col-md-6">
             <div class="card">
                 <div class="card-body">
-                 <a href="{{ route('view.teachers') }}">
+                    <a href="{{ route('view.teacher')}}">
                     <div class="d-flex">
 
                         <div class="flex-grow-1">

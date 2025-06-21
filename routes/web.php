@@ -10,13 +10,16 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\TeachersController;
+use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\ReportController;
+
 use App\Http\Controllers\Backend\StafController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
 // });
 
-Route::get('/' , [TeachersController::class, 'index'])->name('index');
+Route::get('/', [TeachersController::class, 'index'])->name('index');
 
 
 Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
@@ -24,9 +27,11 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
 
-Route::middleware('auth:teacher')->group(function() {
-    Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
 
+Route::middleware('teacher')->group(function () {
+
+
+    Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -59,7 +64,7 @@ Route::controller(TeacherController::class)->group(function () {
     Route::get('edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
     Route::get('delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     Route::post('teacher/update/{id}', 'UpdateTeacher')->name('update.teacher');
-    Route::get('view/teachers', 'ViewTeacher')->name('view.teachers');
+    Route::get('view/teachers', 'ViewTeacher')->name('view.teacher');
 });
 
 
@@ -76,7 +81,7 @@ Route::controller(DepartmentController::class)->group(function () {
 
 Route::controller(SubjectController::class)->group(function () {
     Route::get('/get-subjects/{id}', 'SubByDepart');
-    Route::get('/get-subjects/{department_id}','SubByDepart');
+    Route::get('/get-subjects/{department_id}', 'SubByDepart');
 });
 
 
@@ -96,13 +101,38 @@ Route::controller(piadController::class)->group(function () {
     Route::post('store/paid', 'Storepiad')->name('store.paid');
     Route::get('manage/paid', 'ManagePaid')->name('manage.paid');
     Route::get('edit/paid/{id}', 'EditPaid')->name('edit.paid');
-    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid'); 
+    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid');
     Route::get('delete/paid/{id}', 'DeletePaid')->name('delete.paid');
 });
 
 
-// route staf 
+// -------------------------------- expense
+
+Route::controller(ExpenseController::class)->group(function () {
+    Route::get('add/expense', 'AddExpense')->name('add.expense');
+    Route::post('store/expense', 'StoreExpense')->name('store.expense');
+    Route::get('manage/expense', 'ManageExpense')->name('manage.expense');
+    Route::get('edit/expense/{id}', 'EditExpense')->name('edit.expense');
+    Route::post('update/expense/{id}', 'UpdateExpense')->name('update.expense');
+    Route::get('delete/expense/{id}', 'DeleteExpense')->name('delete.expense');
+});
+// -------------------------------- expense
+
+
+
+
+//----------------------------------- report
+
+Route::controller(ReportController::class)->group(function () {
+    Route::get('report/summary_report', 'SummaryReport')->name('report.summary');
+    Route::post('report/filter', 'FilterReport')->name('report.filter');
+});
+
+
+
+
 // ----------------------------
+
 Route::controller(StafController::class)->group(function () {
     Route::get('/add/staf', 'AddStaf')->name('add.staf');
     Route::post('/store/staf', 'StoreStaf')->name('store.staf');
@@ -111,5 +141,4 @@ Route::controller(StafController::class)->group(function () {
     Route::post('/update/staf/{id}', 'UpdateStaf')->name('update.staf');
     Route::get('/delete/staf/{id}', 'DeleteStaf')->name('delete.staf');
 });
-
-
+// ----------------------------

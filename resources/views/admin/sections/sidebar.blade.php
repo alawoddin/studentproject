@@ -1,6 +1,4 @@
-
 <div class="vertical-menu">
-
     <div data-simplebar class="h-100">
 
         @php
@@ -28,17 +26,13 @@
 
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <i class="ri-dashboard-line"></i>
+                        <span class="badge rounded-pill bg-success float-end">3</span>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
-
-
-
-
                 <li class="menu-title">Pages</li>
-
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -57,11 +51,9 @@
                         <span>Teacher</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-
                         <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
                         <li><a href="{{ route('manage.teacher') }}">Manage Teacher</a></li>
-                     <li><a href="{{ route('view.teachers') }}">View All Teachers</a></li>
-                        
+                        <li><a href="{{ route('view.teacher') }}">View All Teachers</a></li>
                     </ul>
                 </li>
 
@@ -75,7 +67,7 @@
                         <li><a href="{{ route('manage.student') }}">Manage Student</a></li>
                     </ul>
                 </li>
-                
+
                 {{-- adding paid --}}
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -88,33 +80,55 @@
                     </ul>
                 </li>
 
-               
-            {{-- adding staf --}}
+                {{-- adding expense --}}
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
-                        <span>staf</span>
+                        <span>Expense</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('add.expense') }}">Add Expense</a></li>
+                        <li><a href="{{ route('manage.expense') }}">Manage Expense</a></li>
+                    </ul>
+                </li>
+
+                {{-- adding report --}}
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Report</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('report.summary') }}">All Report</a></li>
+                        <li><a href="{{ route('report.filter') }}">Manage Report</a></li>
+
+
+
+                        {{-- utility --}}
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-profile-line"></i>
+                                <span>Utility</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html">Starter Page</a></li>
+                                <li><a href="pages-timeline.html">Timeline</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- adding staf --}}
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Staf</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('add.staf') }}">Add staf</a></li>
                         <li><a href="{{ route('manage.staf') }}">Manage staf</a></li>
                     </ul>
                 </li>
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>Utility</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Starter Page</a></li>
-                        <li><a href="pages-timeline.html">Timeline</a></li>
-
-                    </ul>
-                </li>
-
-
 
             </ul>
         </div>

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('national_id')->unique();
             $table->string('roll_id')->unique();
             $table->timestamps();
-
         });
     }
 

@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class TeachersController extends Controller
 {
-    public function teacherLogin(Request $request) {
+    public function teacherLogin(Request $request)
+    {
 
         $request->validate([
             'roll_id' => 'required|numeric',
@@ -19,8 +20,8 @@ class TeachersController extends Controller
 
         // $teacher = Teacher::where('roll_id', $request->roll_id)->first();
         $teacher = Teacher::where('roll_id', $request->roll_id)
-        ->where('department_id', $request->department_id)
-        ->first();
+            ->where('department_id', $request->department_id)
+            ->first();
 
         if ($teacher) {
             Auth::guard('teacher')->login($teacher);
@@ -31,10 +32,7 @@ class TeachersController extends Controller
             );
 
             return redirect()->route('teacher.dashboard')->with($notification);
-        }
-
-
-        else {
+        } else {
 
             $notification = array(
                 'message' => 'your roll_id is invalid',
@@ -53,11 +51,11 @@ class TeachersController extends Controller
         return view('frontend.teacher_login', compact('teacher', 'depart'));
     }
 
-    public function teacherDashboard() {
+    public function teacherDashboard()
+    {
 
-
-         $teacher = Teacher::all();
+        $teacher = Teacher::all();
         $depart = Department::all();
-        return view('frontend.index' , compact('teacher', 'depart'));
+        return view('frontend.index', compact('teacher', 'depart'));
     }
 }

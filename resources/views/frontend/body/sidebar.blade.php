@@ -13,26 +13,25 @@
     @endphp --}}
 
     @php
-    $teacher = App\Models\Teacher::first();
-    $depart = App\Models\Department::first();
+    $id = Auth::guard('teacher')->id();
+    $profile = App\Models\Teacher::find($id);
 @endphp
 
-    @if($teacher)
-        <!-- User details -->
-        <div class="user-profile text-center mt-3">
-            <div>
-                <img src="{{ !empty($teacher->photo) ? asset('uploads/teacher/' . $teacher->photo) : asset('uploads/no_image.png') }}"
-                    alt="" class="avatar-md rounded-circle">
-            </div>
-            <div class="mt-3">
-                <h4 class="font-size-16 mb-1">{{ $teacher->name }} </h4>
-                <span class="text-muted">
-                    <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    {{ $teacher->email }}
-                </span>
-            </div>
-        </div>
-    @endif
+<!-- User details -->
+<div class="user-profile text-center mt-3">
+    <div>
+
+
+        <img class="rounded-circle header-profile-user" src="{{ asset($profile->photo) }}" alt="">
+    </div>
+    <div class="mt-3">
+        <h4 class="font-size-16 mb-1">{{ $profile->name }} </h4>
+        <span class="text-muted">
+            <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
+            {{ $profile->email }}
+        </span>
+    </div>
+</div>
 
 
         <!--- Sidemenu -->
@@ -42,7 +41,7 @@
                 <li class="menu-title">Menu</li>
 
                 <li>
-                    <a href="{{ route('index') }}" class="waves-effect">
+                    <a href="{{ route('teacher.dashboard') }}" class="waves-effect">
                         <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
                         <span>Dashboard</span>
                     </a>

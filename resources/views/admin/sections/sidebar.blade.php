@@ -60,8 +60,8 @@
 
                         <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
                         <li><a href="{{ route('manage.teacher') }}">Manage Teacher</a></li>
-                     <li><a href="{{ route('view.teachers') }}">View All Teachers</a></li>
-                        
+                     {{-- <li><a href="{{ route('view.teachers') }}">View All Teachers</a></li> --}}
+
                     </ul>
                 </li>
 
@@ -75,7 +75,7 @@
                         <li><a href="{{ route('manage.student') }}">Manage Student</a></li>
                     </ul>
                 </li>
-                
+
                 {{-- adding paid --}}
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -88,7 +88,7 @@
                     </ul>
                 </li>
 
-               
+
 
 
 

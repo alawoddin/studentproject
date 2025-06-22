@@ -4,8 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\department;
+use App\Models\Paid;
 use Illuminate\Http\Request;
-use App\Models\Teacher; 
+use App\Models\Teacher;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -113,11 +114,14 @@ class TeacherController extends Controller
         return redirect()->route('manage.teacher')->with('success', 'Teacher deleted successfully!');
     }
 
-       public function ViewTeacher()
-        {
-            $teachers = Teacher::with('department')->get();
-            return view('admin.teacher.View_teachers', compact('teachers'));
-        }
+    public function ViewTeacher($id)
+    {
+        // $teachers = Teacher::with('department')->find($id);
+        $teacher = Teacher::with('department')->findOrFail($id);
+        $paid = Paid::where('teacher_id', $id)->get();
+        return view('admin.teacher.view_teachers', compact('teacher' ,  'paid'));
+    }
+
 
 
 }

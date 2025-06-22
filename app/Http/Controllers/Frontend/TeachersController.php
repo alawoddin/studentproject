@@ -11,34 +11,38 @@ use Illuminate\Support\Facades\Auth;
 class TeachersController extends Controller
 {
     public function teacherLogin(Request $request) {
-        // Validate the inputs
-        $data = $request->validate([
+
+        $request->validate([
             'roll_id' => 'required|numeric',
             'department_id' => 'required|numeric',
         ]);
 
-        // Attempt to find the teacher with given roll_id and department_id
-        $teacher = Teacher::where('roll_id', $data['roll_id'])
-                          ->where('department_id', $data['department_id'])
-                          ->first();
+        // $teacher = Teacher::where('roll_id', $request->roll_id)->first();
+        $teacher = Teacher::where('roll_id', $request->roll_id)
+        ->where('department_id', $request->department_id)
+        ->first();
 
-        // Check if the teacher was found
-        if (!$teacher) {
-            return redirect()->back()->with([
-                'message' => 'I am sorry. Please check your Roll ID and Department ID.',
-                'alert-type' => 'error',
-            ]);
+        if ($teacher) {
+            Auth::guard('teacher')->login($teacher);
+
+            $notification = array(
+                'message' => 'your login successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('teacher.dashboard')->with($notification);
         }
 
-        // Log in the teacher manually
-        // Auth::guard('teacher')->login($teacher);
 
+        else {
 
-        // Redirect to teacher's home/dashboard with data
-        return redirect()->route('teacher.index')->with([
-            'message' => 'You are successfully logged in.',
-            'alert-type' => 'success',
-        ]);
+            $notification = array(
+                'message' => 'your roll_id is invalid',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
     }
 
     public function index()
@@ -50,6 +54,10 @@ class TeachersController extends Controller
     }
 
     public function teacherDashboard() {
-        return view('frontend.index');
+
+
+         $teacher = Teacher::all();
+        $depart = Department::all();
+        return view('frontend.index' , compact('teacher', 'depart'));
     }
 }

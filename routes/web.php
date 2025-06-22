@@ -58,7 +58,7 @@ Route::controller(TeacherController::class)->group(function () {
     Route::get('edit/teacher/{id}', 'EditTeacher')->name('edit.teacher');
     Route::get('delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     Route::post('teacher/update/{id}', 'UpdateTeacher')->name('update.teacher');
-    Route::get('view/teachers', 'ViewTeacher')->name('view.teachers');
+    Route::get('view/teachers/{id}', 'ViewTeacher')->name('view.teachers');
 });
 
 

@@ -10,12 +10,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\TeachersController;
+use App\Http\Controllers\Backend\ExpenseController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
 // });
 
-Route::get('/' , [TeachersController::class, 'index'])->name('index');
+Route::get('/', [TeachersController::class, 'index'])->name('index');
 
 
 Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
@@ -23,10 +24,9 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
 
-Route::middleware('teacher')->group(function() {
+Route::middleware('teacher')->group(function () {
     Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
-    Route::get('teacher/view/{id}', [TeachersController::class , 'TeacherView'])->name('teacher.view');
-
+    Route::get('teacher/view/{id}', [TeachersController::class, 'TeacherView'])->name('teacher.view');
 });
 
 Route::get('/dashboard', function () {
@@ -100,3 +100,16 @@ Route::controller(piadController::class)->group(function () {
     Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid'); // ✅ مسیر آپدیت
     Route::get('delete/paid/{id}', 'DeletePaid')->name('delete.paid');
 });
+
+
+// -------------------------------- expense
+
+Route::controller(ExpenseController::class)->group(function () {
+    Route::get('add/expense', 'AddExpense')->name('add.expense');
+    Route::post('store/expense', 'StoreExpense')->name('store.expense');
+    Route::get('manage/expense', 'ManageExpense')->name('manage.expense');
+    Route::get('edit/expense/{id}', 'EditExpense')->name('edit.expense');
+    Route::post('update/expense/{id}', 'UpdateExpense')->name('update.expense');
+    Route::get('delete/expense/{id}', 'DeleteExpense')->name('delete.expense');
+});
+// -------------------------------- expense

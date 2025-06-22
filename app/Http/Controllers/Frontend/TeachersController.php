@@ -59,4 +59,11 @@ class TeachersController extends Controller
         $depart = Department::all();
         return view('frontend.index', compact('teacher', 'depart'));
     }
+
+    public function TeacherView($id)
+    {
+        $teacher = Teacher::with('department')->findOrFail($id);
+        $paid = Paid::where('teacher_id', $id)->get();
+        return view('frontend.teacher_view', compact('teacher',  'paid'));
+    }
 }

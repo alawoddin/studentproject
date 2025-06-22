@@ -45,7 +45,7 @@
                     </div>
                     <div class="avatar-sm">
                         <span class="avatar-title bg-light text-primary rounded-3">
-                            <img src="{{ $item->photo }}" style="height: 50px" alt="">
+                            <img src="{{ asset($item->photo) }}" style="height: 50px" alt="">
                         </span>
                     </div>
 

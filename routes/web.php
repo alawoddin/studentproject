@@ -25,6 +25,7 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 Route::middleware('teacher')->group(function() {
     Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
+    Route::get('teacher/view/{id}', [TeachersController::class , 'TeacherView'])->name('teacher.view');
 
 });
 

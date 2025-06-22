@@ -28,7 +28,7 @@
         $teacher = App\Models\Teacher::with('department')->get();
     @endphp --}}
 
-    @php
+    {{-- @php
     $teacher = App\Models\Teacher::first();
     $depart = App\Models\Department::first();
 @endphp
@@ -61,7 +61,7 @@
             </div><!-- end card -->
         </div>
     @endif
-</div>
+</div> --}}
 
         <!-- end col -->
     {{-- @endforeach --}}

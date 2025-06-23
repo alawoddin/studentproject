@@ -18,6 +18,11 @@ class Student extends Model
     {
         return $this->belongsTo(Teacher::class);
     }
+
+    public function paid()
+    {
+        return $this->belongsTo(Paid::class);
+    }
 }
 
 

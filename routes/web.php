@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\TeachersController;
 use App\Http\Controllers\Backend\StafController;
 use App\Http\Controllers\Backend\ExpenseController;
+use App\Http\Controllers\Backend\ReportController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
@@ -129,3 +130,16 @@ Route::controller(StafController::class)->group(function () {
 });
 
 // -------------------------------- Staf
+
+
+// -------------------------------- Report
+
+
+
+Route::controller(ReportController::class)->group(function(){
+    Route::get('/admin/all/reports', 'AdminAllReports')->name('admin.all.reports');
+    Route::post('/admin/search/bydate', 'AdminSearchByDate')->name('admin.search.bydate');
+    Route::post('/admin/search/bymonth', 'AdminSearchByMonth')->name('admin.search.bymonth');
+    Route::post('/admin/search/byyear', 'AdminSearchByYear')->name('admin.search.byyear');
+    Route::get('/all/invoice/{id}', 'AllInvoice')->name('all.invoice');
+});

@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Paid;
 use App\Models\Department;
 use App\Models\DepartmentSubject;
+use App\Models\Student;
 use App\Models\Teacher;
+use Carbon\Carbon;
 
 class piadController extends Controller
 {
@@ -18,8 +20,9 @@ class piadController extends Controller
         $depart = Department::all();
         $firstDepartId = Department::first()->id ?? null;
         $teachers = Teacher::all();
+        $student = Student::all();
         $subjects = DepartmentSubject::where('department_id', $firstDepartId)->get();
-        return view('admin.paid.add_paid', compact('depart', 'subjects' , 'teachers'));
+        return view('admin.paid.add_paid', compact('depart', 'subjects' , 'teachers' , 'student'));
     }
 
 
@@ -28,7 +31,7 @@ class piadController extends Controller
     public function Storepiad(Request $request)
     {
         Paid::create([
-            'student' => $request->student,
+            'student_id' => $request->student_id,
             'department_id' => $request->department_id,
             'subject_id' => $request->subject_id,
             'teacher_id' => $request->teacher_id,
@@ -37,6 +40,9 @@ class piadController extends Controller
             'remaining_Fees' => $request->remaining_Fees,
             'entry_date' => $request->entry_date,
             'paid_date' => $request->paid_date,
+            'order_date'   => Carbon::now()->format('Y-m-d'),
+            'order_month'  => Carbon::now()->format('F'),   // Example: May
+            'order_year'   => Carbon::now()->format('Y'),
         ]);
 
         $notification = [
@@ -54,10 +60,11 @@ class piadController extends Controller
         // $paid = Paid::all();
         // $depart = Department::all();
         // $teachers = Teacher::all();
-        $paid = Paid::with('department' , 'teacher' , 'subject')->get();
+        $paid = Paid::with('department' , 'teacher' , 'subject' , 'student')->get();
         $depart = Department::all();
         $teachers = Teacher::all();
-        return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers'));
+        $student = Student::all();
+        return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers' , 'student'));
     }
 
     // نمایش فرم ویرایش
@@ -66,8 +73,9 @@ class piadController extends Controller
         $paid = Paid::findOrFail($id);
         $depart = Department::all();
         $teachers = Teacher::all();
+        $student = Student::all();
         $subjects = DepartmentSubject::where('department_id', $paid->department_id)->get();
-        return view('admin.paid.edit_paid', compact('paid' , 'depart', 'teachers', 'subjects'));
+        return view('admin.paid.edit_paid', compact('paid' , 'depart', 'teachers', 'subjects' , 'student'));
     }
 
     // به‌روزرسانی پرداخت

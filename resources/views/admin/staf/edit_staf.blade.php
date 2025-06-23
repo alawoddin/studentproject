@@ -60,7 +60,7 @@
                                 </div>
                             </div>
 
-                           
+
 
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Email</label>
@@ -104,13 +104,7 @@
                                 </div>
                             </div>
 
-                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Roll ID</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="roll_id" type="text"
-                                        value="{{ $staf->roll_id }}" placeholder="Roll ID">
-                                </div>
-                            </div>
+                           
 
                              <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Salary</label>

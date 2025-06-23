@@ -1,6 +1,9 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
     <div class="container-fluid">
 
         <!-- Page Title -->
@@ -23,8 +26,15 @@
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label class="form-label">Student</label>
-                                    <input class="form-control" name="student" type="text" value="{{ $paid->student }}">
+                                    <label for="student-dropdown" class="form-label">Select Student</label>
+                                    <select name="student_id" id="student-dropdown" class="form-select" required>
+                                        @foreach ($student as $info)
+                                            <option value="{{ $info->id }}">
+                                                {{ $info->student_name && ($info->name ? 'selected' : '') }}
+                                                {{ $info->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="col-md-6">
@@ -32,7 +42,8 @@
                                     <select name="department_id" class="form-select" id="department-dropdown">
                                         <option value="">Select</option>
                                         @foreach ($depart as $info)
-                                            <option value="{{ $info->id }}" {{ (isset($paid) && $paid->department_id == $info->id) ? 'selected' : '' }}>
+                                            <option value="{{ $info->id }}"
+                                                {{ isset($paid) && $paid->department_id == $info->id ? 'selected' : '' }}>
                                                 {{ $info->depart_name }}
                                             </option>
                                         @endforeach
@@ -47,7 +58,8 @@
                                     <select name="subject_id" class="form-select" id="subject-dropdown">
                                         <option value="">Select Subject</option>
                                         @foreach ($subjects as $subject)
-                                            <option value="{{ $subject->id }}" {{ $paid->subject_id == $subject->id ? 'selected' : '' }}>
+                                            <option value="{{ $subject->id }}"
+                                                {{ $paid->subject_id == $subject->id ? 'selected' : '' }}>
                                                 {{ $subject->subject_name }}
                                             </option>
                                         @endforeach
@@ -60,7 +72,8 @@
                                     <select name="teacher_id" class="form-select">
                                         <option value="">Select</option>
                                         @foreach ($teachers as $info)
-                                            <option value="{{ $info->id }}" {{ $paid->teacher_id == $info->id ? 'selected' : '' }}>
+                                            <option value="{{ $info->id }}"
+                                                {{ $paid->teacher_id == $info->id ? 'selected' : '' }}>
                                                 {{ $info->first_name }}
                                             </option>
                                         @endforeach
@@ -96,17 +109,6 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">Paid Date</label>
-<<<<<<< HEAD
-                                    <input class="form-control" name="paid_date" type="date" value="{{ $paid->paid_date }}">
-=======
-                                    <input class="form-control" name="paid_date" type="date"
-                                        value="{{ $paid->paid_date }}">
->>>>>>> 212c3460aa592b313d01367d59cd5ad85b40b244
-                                </div>
-                            </div>
 
                             <button type="submit" class="btn btn-success">Update Paid</button>
 
@@ -117,5 +119,27 @@
         </div>
 
     </div>
+
+
+
+    <script>
+        function calculateRemaining() {
+            let total = parseFloat($('#total_fees').val()) || 0;
+            let paid = parseFloat($('#paid').val()) || 0;
+            let remaining = total - paid;
+            $('#remaining_fees').val(remaining >= 0 ? remaining : 0);
+        }
+
+
+        $(document).ready(function () {
+            // Recalculate on input changes
+            $('#amount, #paid').on('input', calculateRemaining);
+
+            // Initialize on page load
+            calculateRemaining();
+        });
+    </script>
+
+
 
 @endsection

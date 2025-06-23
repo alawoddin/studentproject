@@ -8,16 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Staf extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'father_name',
-        'gender',
-        'phone',
-        'email',
-        'national_id',
-        'roll_id',
-        'salary',
-        'photo',
-    ];
+
+    protected $guarded = [];
 }

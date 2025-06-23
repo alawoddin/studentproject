@@ -37,7 +37,7 @@
                     @foreach ($paid as $key => $paids)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $paids->student }}</td>
+                            <td>{{ $paids->student->name }}</td>
                             <td>{{ $paids->department->depart_name }}</td>
                             <td>{{ $paids->subject->subject_name }}</td>
                             {{-- <td>

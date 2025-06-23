@@ -41,7 +41,6 @@
                         <th>Phone</th>
                         <th>Gender</th>
                         <th>National ID</th>
-                        <th>Roll ID</th>
                         <th>Salary</th>
                         <th>Staf image </th>
                         <th class="all">Action</th>
@@ -59,7 +58,6 @@
                             <td>{{ $staf->phone }}</td>
                             <td>{{ $staf->gender }}</td>
                             <td>{{ $staf->national_id }}</td>
-                            <td>{{ $staf->roll_id }}</td>
                             <td>{{ $staf->salary }}</td>
                             <td>
                                 <img class="header-profile-user"

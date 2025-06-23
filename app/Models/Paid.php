@@ -18,8 +18,15 @@ class Paid extends Model
     return $this->belongsTo(Teacher::class, 'teacher_id');
 }
 
+public function student()
+{
+    return $this->belongsTo(Student::class , 'student_id');
+}
+
 public function subject()
 {
     return $this->belongsTo(DepartmentSubject::class, 'subject_id');
 }
+
+
 }

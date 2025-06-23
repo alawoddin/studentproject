@@ -58,8 +58,8 @@
                                 <tr>
                                     <td>{{ $key+1 }}</td>
                                     <td><h6 class="mb-0">{{ $item->department->depart_name }}</h6></td>
-                                    <td>{{ $item->subject_id }}</td>
-                                    <td>{{ $item->student }}</td>
+                                    <td>{{ $item->subject->subject_name }}</td>
+                                    <td>{{ $item->student->name }}</td>
                                     <td>{{ $item->total_fees }}</td>
                                     <td>{{ $item->paid }}</td>
                                     <td>{{ $item->remaining_Fees }}</td>

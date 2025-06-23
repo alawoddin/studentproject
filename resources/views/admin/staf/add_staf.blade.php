@@ -104,14 +104,8 @@
                             </div>
                             <!-- end row -->
 
-                            
-                            <div class="row mb-3">
-                                <label for="example-text-input" class="col-sm-2 col-form-label">Roll id</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="roll_id" type="text" placeholder="Roll id">
-                                </div>
-                            </div>
-                            <!-- end row -->
+
+                           
 
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Salary</label>

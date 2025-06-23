@@ -57,6 +57,6 @@ public function AdminSearchByYear(Request $request){
 
      // No need to do: $student = Student::find($id);
 
-     return view ('admin.reports.all_invoice');
+     return view ('admin.reports.all_invoice' , compact('Paid', 'student'));
  }
 }

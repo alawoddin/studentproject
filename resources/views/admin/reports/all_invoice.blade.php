@@ -59,16 +59,20 @@
     </style>
 </head>
 
+{{-- @php
+    $paids = App\Models\Paid::all();
+@endphp --}}
+
 <body class="bg-gray-100 p-4 flex justify-center">
 
     <div class="print-container max-w-4xl w-full bg-white rounded-lg shadow-md p-6 sm:p-10">
         <!-- Header -->
         <div class="bg-blue-600 rounded-t-lg px-6 py-5 relative overflow-visible">
             <h1 class="text-white text-3xl font-extrabold">Student Fee Receipt</h1>
-            <p class="text-blue-200 mt-1 select-none">Academic Year 2023-2024</p>
+            <p class="text-blue-200 mt-1 select-none">Academic Year {{ $Paid->order_year }}</p>
             <div
                 class="absolute top-5 right-5 flex items-center space-x-2 id-badge rounded-full px-3 py-1 text-sm min-w-[115px] justify-center">
-                <span>ID: STU-2023-001</span>
+                <span>ID: STU-{{ $Paid->order_year }} - {{ $Paid->id }}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="grad-cap h-6 w-6 text-white" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -83,17 +87,17 @@
             <!-- Student Information -->
             <div>
                 <h2 class="font-semibold text-lg mb-3">Student Information</h2>
-                <p><span class="font-semibold">Name:</span> John Smith</p>
-                <p><span class="font-semibold">Department:</span> Computer Science</p>
-                <p><span class="font-semibold">Receipt Date:</span> May 15, 2023</p>
+                <p><span class="font-semibold">Name:</span> {{ $Paid->student->name }}</p>
+                <p><span class="font-semibold">Department:</span> {{ $Paid->department->depart_name }}</p>
+                <p><span class="font-semibold">Receipt Date:</span> {{ $Paid->order_month }} {{ $Paid->order_year }}</p>
             </div>
             <!-- Institution Details -->
             <div>
-                <h2 class="font-semibold text-lg mb-3">Institution Details</h2>
-                <p><span class="font-semibold">University Name</span></p>
-                <p>123 Education Street</p>
-                <p>Knowledge City, ED 12345</p>
-                <p>Phone: (123) 456-7890</p>
+                <h2 class="font-semibold text-lg mb-3">TAWANA Details</h2>
+                <p><span class="font-semibold">Teacher Name</span></p>
+                <p>{{ $Paid->teacher->first_name }}</p>
+                <p>Fees: {{ $Paid->total_fees }}</p>
+                <p>Phone: {{ $Paid->student->phone_number }}</p>
             </div>
         </div>
 
@@ -105,26 +109,22 @@
                     <thead class="bg-gray-100 border-b border-gray-300">
                         <tr>
                             <th class="p-3 font-semibold w-1/2">Subject</th>
-                            <th class="p-3 font-semibold w-1/3">Teacher</th>
-                            <th class="p-3 font-semibold w-1/6 text-right pr-6">Fee Amount</th>
+                            <th class="p-3 font-semibold w-1/2">Teacher</th>
+                            <th class="p-3 font-semibold w-1/3">Fee Amount</th>
+                            <th class="p-3 font-semibold w-1/3">paid</th>
+                            <th class="p-3 font-semibold w-1/3">remaining_Fees</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="border-b border-gray-200 even:bg-gray-50">
-                            <td class="p-3">Advanced Programming</td>
-                            <td class="p-3">Dr. Jane Wilson</td>
-                            <td class="p-3 text-right pr-6">$1,200.00</td>
+                            <td class="p-3">{{ $Paid->subject->subject_name }}</td>
+                            <td class="p-3">{{ $Paid->teacher->first_name }}</td>
+                            <td class="p-3">{{ $Paid->total_fees }}</td>
+                            <td class="p-3">{{ $Paid->paid }}</td>
+                            <td class="p-3 ">{{ $Paid->remaining_Fees }}</td>
                         </tr>
-                        <tr class="border-b border-gray-200 even:bg-gray-50">
-                            <td class="p-3">Database Systems</td>
-                            <td class="p-3">Prof. Robert Johnson</td>
-                            <td class="p-3 text-right pr-6">$950.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-200 even:bg-gray-50">
-                            <td class="p-3">Web Development</td>
-                            <td class="p-3">Ms. Sarah Parker</td>
-                            <td class="p-3 text-right pr-6">$850.00</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -137,9 +137,9 @@
                 <div class="paid-stamp select-none">PAID</div>
             </div>
             <div class="text-right space-y-1 w-full max-w-xs">
-                <p>Total Fee: <span class="font-semibold text-blue-700">$3,000.00</span></p>
-                <p>Paid Amount: <span class="font-semibold text-green-600">$2,000.00</span></p>
-                <p>Remaining Balance: <span class="font-semibold text-red-600">$1,000.00</span></p>
+                <p>Total Fee: <span class="font-semibold text-blue-700">{{ $Paid->total_fees }}</span></p>
+                <p>Paid Amount: <span class="font-semibold text-green-600">{{ $Paid->paid }}</span></p>
+                <p>Remaining Balance: <span class="font-semibold text-red-600">{{ $Paid->remaining_Fees }}</span></p>
             </div>
         </div>
 

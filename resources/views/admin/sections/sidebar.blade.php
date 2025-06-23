@@ -86,6 +86,22 @@
                         <li><a href="{{ route('manage.paid') }}">Manage Paid</a></li>
                     </ul>
                 </li>
+
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Staff</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+
+                        <li><a href="{{ route('add.staf') }}">Add Staff</a></li>
+                        <li><a href="{{ route('manage.staf') }}">Manage Staff</a></li>
+
+                    </ul>
+                </li>
+
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>

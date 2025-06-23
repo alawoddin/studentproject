@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\TeachersController;
+use App\Http\Controllers\Backend\StafController;
 use App\Http\Controllers\Backend\ExpenseController;
 
 // Route::get('/', function () {
@@ -113,3 +114,18 @@ Route::controller(ExpenseController::class)->group(function () {
     Route::get('delete/expense/{id}', 'DeleteExpense')->name('delete.expense');
 });
 // -------------------------------- expense
+
+
+// -------------------------------- Staf
+
+
+Route::controller(StafController::class)->group(function () {
+    Route::get('add/staf', 'AddStaf')->name('add.staf');
+    Route::post('store/staf', 'StoreStaf')->name('store.staf');
+    Route::get('manage/staf', 'ManageStaf')->name('manage.staf');
+    Route::get('edit/staf/{id}', 'EditStaf')->name('edit.staf');
+    Route::get('delete/staf/{id}', 'DeleteStaf')->name('delete.staf');
+    Route::post('staf/update/{id}', 'UpdateStaf')->name('update.staf');
+});
+
+// -------------------------------- Staf

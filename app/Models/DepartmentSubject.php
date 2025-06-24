@@ -14,8 +14,8 @@ class DepartmentSubject extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function paid()
-    {
-        return $this->belongsTo(Paid::class);
-    }
+    // public function paid()
+    // {
+    //     return $this->belongsTo(Paid::class);
+    // }
 }

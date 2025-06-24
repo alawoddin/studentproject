@@ -140,6 +140,12 @@ $paids = App\Models\Paid::all();
                 <p>Total Fee: <span class="font-semibold text-blue-700">{{ $Paid->total_fees }}</span></p>
                 <p>Paid Amount: <span class="font-semibold text-green-600">{{ $Paid->paid }}</span></p>
                 <p>Remaining Balance: <span class="font-semibold text-red-600">{{ $Paid->remaining_Fees }}</span></p>
+
+                {{-- @if ($remaining_Fees > 0)
+                <p>Remaining Balance: <span class="font-semibold text-red-600">{{ $Paid->remaining_Fees }}</span></p>
+                @elseif($remaining_Fees < 0)
+                <p>Remaining Balance: <span class="font-semibold ">{{ $Paid->remaining_Fees }}</span></p>
+                @endif --}}
             </div>
         </div>
 

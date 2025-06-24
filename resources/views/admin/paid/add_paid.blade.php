@@ -34,7 +34,7 @@
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">Student</label>
                                     <div class="col-sm-10">
-                                        <select name="student_id" class="form-select" id="department-dropdown">
+                                        <select name="student_id" class="form-select" >
                                             <option value="">Select</option>
                                             @foreach ($student as $info)
                                                 <option value="{{ $info->id }}">{{ $info->name }}</option>

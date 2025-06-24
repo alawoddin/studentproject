@@ -60,7 +60,7 @@
 </head>
 
 {{-- @php
-    $paids = App\Models\Paid::all();
+$paids = App\Models\Paid::all();
 @endphp --}}
 
 <body class="bg-gray-100 p-4 flex justify-center">

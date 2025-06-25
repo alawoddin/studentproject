@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('photo');
             $table->string('national_id')->unique();
             $table->string('roll_id')->unique();
+            $table->integer('status')->default(1);
             $table->timestamps();
 
         });

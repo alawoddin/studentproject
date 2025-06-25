@@ -118,7 +118,8 @@ class TeacherController extends Controller
     {
         // $teachers = Teacher::with('department')->find($id);
         $teacher = Teacher::with('department')->findOrFail($id);
-        $paid = Paid::where('teacher_id', $id)->get();
+        $paid = Paid::where('teacher_id', $id)->where('status', 'paid')
+        ->get();
         return view('admin.teacher.view_teachers', compact('teacher' ,  'paid'));
     }
 

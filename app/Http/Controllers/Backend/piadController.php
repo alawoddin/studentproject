@@ -10,6 +10,7 @@ use App\Models\DepartmentSubject;
 use App\Models\Student;
 use App\Models\Teacher;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class piadController extends Controller
 {
@@ -110,4 +111,35 @@ class piadController extends Controller
 
         return redirect()->route('manage.paid')->with($notification);
     }
+
+    public function DeactivatePaid($id)
+    {
+        $record = DB::table('paids')->select('status')->where('id', $id)->first();
+
+        if (!$record) {
+            return redirect()->back()->with([
+                'message' => 'Paid record not found',
+                'alert-type' => 'error'
+            ]);
+        }
+
+        if ($record->status === 'no_paid') {
+            DB::table('paids')->where('id', $id)->update(['status' => 'paid']);
+
+            $notification = [
+                'message' => 'Paid deactivated successfully',
+                'alert-type' => 'info'
+            ];
+        } else {
+            DB::table('paids')->where('id', $id)->update(['status' => 'no_paid']);
+
+            $notification = [
+                'message' => 'Paid activated successfully',
+                'alert-type' => 'info'
+            ];
+        }
+
+        return redirect()->back()->with($notification);
+    }
+
 }

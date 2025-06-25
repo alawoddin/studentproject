@@ -99,8 +99,9 @@ Route::controller(piadController::class)->group(function () {
     Route::post('store/paid', 'Storepiad')->name('store.paid');
     Route::get('manage/paid', 'ManagePaid')->name('manage.paid');
     Route::get('edit/paid/{id}', 'EditPaid')->name('edit.paid');
-    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid'); // ✅ مسیر آپدیت
+    Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid');
     Route::get('delete/paid/{id}', 'DeletePaid')->name('delete.paid');
+    Route::get('deactivate/paid/{id}' ,  'DeactivatePaid')->name('deactivate.paid');
 });
 
 

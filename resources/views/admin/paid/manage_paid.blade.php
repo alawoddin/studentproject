@@ -29,6 +29,7 @@
                         <th>remaining_Fees</th>
                         <th>entry_date</th>
                         <th>paid_date</th>
+                        <th>Status</th>
                         <th class="all">Action</th>
                     </tr>
                 </thead>
@@ -52,11 +53,33 @@
                             <td>{{ $paids->remaining_Fees }}</td>
                             <td>{{ $paids->entry_date }}</td>
                             <td>{{ $paids->paid_date }}</td>
+                            <td>
+                                @if($paids->status === 'paid')
+                                    <span class="badge bg-success">paid</span>
+                                @else
+                                    <span class="badge bg-danger">no_paid</span>
+                                @endif
+                            </td>
 
                             <td style="text-align:center; font-size: 20px;">
-                                <a href="{{ route('edit.paid', $paids->id) }}"><i class="fas fa-edit btn btn-primary"></i></a>
-                                <a href="{{ route('delete.paid', $paids->id) }}" id="delete"><i class="fas fa-trash-alt btn btn-danger"></i></a>
+                                <a href="{{ route('edit.paid', $paids->id) }}">
+                                    <i class="fas fa-edit btn btn-primary"></i>
+                                </a>
+                                <a href="{{ route('delete.paid', $paids->id) }}" id="delete">
+                                    <i class="fas fa-trash-alt btn btn-danger"></i>
+                                </a>
+
+                                @if($paids->status === 'paid')
+                                    <a href="{{ route('deactivate.paid', $paids->id) }}">
+                                        <i class="fas fa-check btn btn-primary waves-effect waves-light"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('deactivate.paid', $paids->id) }}">
+                                        <i class="fas fa-times btn btn-primary waves-effect waves-light"></i>
+                                    </a>
+                                @endif
                             </td>
+
 
 
                         </tr>

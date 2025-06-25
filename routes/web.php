@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\TeachersController;
 use App\Http\Controllers\Backend\StafController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\salaryController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
@@ -143,4 +144,14 @@ Route::controller(ReportController::class)->group(function(){
     Route::post('/admin/search/bymonth', 'AdminSearchByMonth')->name('admin.search.bymonth');
     Route::post('/admin/search/byyear', 'AdminSearchByYear')->name('admin.search.byyear');
     Route::get('/all/invoice/{id}', 'AllInvoice')->name('all.invoice');
+});
+
+Route::controller(salaryController::class)->group(function() {
+    Route::get('all/salary' , 'AllSalary')->name('all.salary');
+    Route::get('add/salary', 'AddSalary')->name('add.salary');
+    Route::post('store/salary', 'StoreSalary')->name('store.salary');
+    Route::get('edit/salary/{id}', 'EditSalary')->name('edit.salary');
+    Route::post('salary/update/{id}', 'UpdateSalary')->name('update.salary');
+    Route::get('delete/salary/{id}', 'DeleteSalary')->name('delete.salary');
+
 });

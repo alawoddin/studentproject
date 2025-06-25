@@ -22,5 +22,10 @@ class Teacher extends Authenticatable
         return $this->belongsTo(Department::class);
     }
 
+    public function salary()
+    {
+        return $this->belongsTo(salary::class);
+    }
+
 
 }

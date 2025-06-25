@@ -87,6 +87,18 @@
                     </ul>
                 </li>
 
+                 {{-- adding salary --}}
+                 <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Salary</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('add.salary') }}">Add salary</a></li>
+                        <li><a href="{{ route('all.salary') }}">all salary</a></li>
+                    </ul>
+                </li>
+
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

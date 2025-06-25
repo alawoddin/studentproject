@@ -25,5 +25,10 @@ class Department extends Model
         return $this->hasMany(Paid::class, 'department_id');
     }
 
+    public function salary()
+    {
+        return $this->hasMany(salary::class, 'department_id');
+    }
+
 
 }

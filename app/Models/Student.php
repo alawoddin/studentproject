@@ -23,6 +23,11 @@ class Student extends Model
     {
         return $this->belongsTo(Paid::class);
     }
+
+    public function salary()
+    {
+        return $this->belongsTo(salary::class);
+    }
 }
 
 

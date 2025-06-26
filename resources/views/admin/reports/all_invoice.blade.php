@@ -108,15 +108,17 @@
             </tbody>
         </table>
         <!-- Footer -->
+        <!-- Footer -->
         <div class="footer">
+            <p>
+                <i class="bi bi-building text-success"></i>
+                Tawanatechnology.com
+            </p>
             <p>
                 <i class="bi bi-telephone-fill text-success"></i>
                 +93(0)788077685
             </p>
-            <p>
-                <i class="bi bi-building text-success"></i>
-                ECDI Expert Cyber Defence Intelligence
-            </p>
+
             <p>
                 <i class="bi bi-geo-alt-fill text-success"></i>
                 Charahe Polsorkh, Amir Center, Manzel 3rd.

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('photo');
+            $table->string('percentage');
             $table->string('national_id')->unique();
             $table->string('roll_id')->unique();
             $table->integer('status')->default(1);

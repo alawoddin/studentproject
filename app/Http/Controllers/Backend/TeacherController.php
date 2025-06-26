@@ -48,6 +48,7 @@ class TeacherController extends Controller
                 'phone' => $request->phone,
                 'gender' => $request->gender,
                 'national_id' => $request->national_id,
+                'percentage' => $request->percentage,
                 'photo' => $save_url,
             ]);
         }

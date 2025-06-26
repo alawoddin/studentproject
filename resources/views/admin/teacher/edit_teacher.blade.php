@@ -151,6 +151,15 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">teacher percentage </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="percentage" type="number"
+                                        placeholder="percentage" value="{{ $teacher->percentage }}">
+                                </div>
+                            </div>
+                            <!-- end row -->
+
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Update
                                 Teacher</button>
                         </form>

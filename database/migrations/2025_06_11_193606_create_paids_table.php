@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('paid');
             $table->integer('remaining_Fees');
             $table->enum('status', ['no_paid' , 'paid'])->default('no_paid');
-
             $table->date('entry_date')->nullable();
             $table->date('paid_date')->nullable();
             $table->string('method')->nullable();

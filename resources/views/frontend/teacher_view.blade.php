@@ -48,10 +48,12 @@
                             @php
                             $studentsCount = $paid->count(); // student is already passed from the controller
 
-                            $total_fees = $paid->sum('total_fees'); // sum of all total_fees
-                            $count = $total_fees * 35 / 100; // 35% of total
+                            $paids = $paid->sum('paid');
+                            $percentage = $teacher->percentage;
+                            $count = $paids * $percentage / 100;
 
                         @endphp
+                        
                             <tbody>
                                 @foreach ($paid as $key =>  $item )
                                      <!--start-->

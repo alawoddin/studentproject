@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('teacher_id')->references('id')->on('teacher')->onDelete('cascade');
             $table->unsignedBigInteger('department_id')->references('id')->on('teacher')->onDelete('cascade');
             $table->integer('salary');
-            $table->string('subject');
+            $table->string('subject_id');
             $table->string('order_month')->nullable();
             $table->string('order_year')->nullable();
             $table->timestamps();

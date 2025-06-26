@@ -34,7 +34,7 @@ class salaryController extends Controller
             'department_id' => $request->department_id,
             'teacher_id' => $request->teacher_id,
             'salary' => $request->salary,
-            'subject' => $request->subject,
+            'subject_id' => $request->subject_id,
             'order_month'  => Carbon::now()->format('F'),   // Example: May
             'order_year'   => Carbon::now()->format('Y'),
         ]);
@@ -49,14 +49,15 @@ class salaryController extends Controller
     }
 
     //end method
-
+    
     public function EditSalary($id) {
         $salary = salary::findOrFail($id);
         $teachers = Teacher::all();
         $depart = Department::all();
-        $subjects = DepartmentSubject::where('department_id')->get();
+        $subjects = DepartmentSubject::where('department_id', $salary->department_id)->get(); // اصلاح این خط
         return view('admin.salary.edit_salary', compact('salary', 'depart', 'teachers', 'subjects'));
     }
+
 
     //end method
 

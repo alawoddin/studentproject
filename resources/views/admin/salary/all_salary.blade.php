@@ -34,8 +34,13 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $item->department->depart_name }}</td>
-                            {{-- <td>{{ $item->subject->subject_name }}</td> --}}
-                            <td>{{ $item->subject }}</td>
+                            <td>{{ $item->subject->subject_name }}</td>
+                            {{-- <td>
+                                @foreach ($item->subjects as $subject)
+                                    <span class="badge bg-success">{{ $subject->subject_name }}</span>
+                                @endforeach
+                            </td> --}}
+
                             <td>{{ $item->teacher->first_name }}</td>
                             <td>{{ $item->salary }}</td>
                             <td>{{ $item->order_month }}</td>

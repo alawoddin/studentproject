@@ -43,7 +43,19 @@
                                     </div>
                                 </div>
 
+                               <div class="col-md-6">
+                                    <label class="col-sm-4 col-form-label">Subject</label>
+                                    <div class="col-sm-10">
+                                        <select name="subject_id" class="form-select" id="subject-dropdown">
+                                            <option value="">Select Subject</option>
+                                            @foreach ($subjects as $subject)
+                                                <option value="{{ $subject->id }}">{{ $subject->subject_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
+{{--
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">subject</label>
                                     <div class="col-sm-10">
@@ -57,8 +69,8 @@
                                                 <option value="{{ $subject->id }}">{{ $subject->subject_name }}</option>
                                             @endforeach
                                         </select>
-                                    </div> --}}
-                                </div>
+                                    </div> 
+</div>--}}
 
                             </div>
 
@@ -96,5 +108,36 @@
         </div>
 
     </div>
+
+
+
+    
+<script>
+    $(document).ready(function () {
+        $('#department-dropdown').on('change', function () {
+            var depart_id = this.value;
+            $('#subject-dropdown').html('<option value="">Loading...</option>');
+
+            if (depart_id) {
+                $.ajax({
+                    url: "/get-subjects/" + depart_id,
+                    type: "GET",
+                    success: function (res) {
+                        $('#subject-dropdown').html('<option value="">Select Subject</option>');
+                        $.each(res, function (key, value) {
+                            $('#subject-dropdown').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    },
+                    error: function () {
+                        $('#subject-dropdown').html('<option value="">Error loading subjects</option>');
+                    }
+                });
+            } else {
+                $('#subject-dropdown').html('<option value="">Select Subject</option>');
+            }
+        });
+    });
+</script>
+
 
 @endsection

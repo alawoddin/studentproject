@@ -63,6 +63,7 @@ Route::controller(TeacherController::class)->group(function () {
     Route::get('delete/teacher/{id}', 'DeleteTeacher')->name('delete.teacher');
     Route::post('teacher/update/{id}', 'UpdateTeacher')->name('update.teacher');
     Route::get('view/teachers/{id}', 'ViewTeacher')->name('view.teachers');
+    Route::get('teacher/index/{id}', 'TeacherIndex')->name('teacher.index');
 });
 
 

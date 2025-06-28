@@ -14,6 +14,11 @@ class DepartmentSubject extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function teacher()
+    {
+        return $this->hasMany(teacher::class);
+    }
+
     // public function paid()
     // {
     //     return $this->belongsTo(Paid::class);

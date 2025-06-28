@@ -4,7 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\department;
+use App\Models\DepartmentSubject;
 use App\Models\Paid;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -117,14 +119,30 @@ class TeacherController extends Controller
 
     public function ViewTeacher($id)
     {
-        // $teachers = Teacher::with('department')->find($id);
         $teacher = Teacher::with('department')->findOrFail($id);
-        $paid = Paid::where('teacher_id', $id)->where('status', 'paid')
-        ->get();
-        return view('admin.teacher.view_teachers', compact('teacher' ,  'paid'));
+        // $teachers = Teacher::withCount('students')->findOrFail($id);
+        $studentCount = Student::where('teacher_id', $id)->count();
+        // $subject = Teacher::with( 'subjects')->findOrFail($id);
+        // $teachers = Teacher::with('subjects')->findOrFail($id);
+
+        $paid = Paid::where('teacher_id', $id)
+            ->where('status', 'paid')
+            ->get();
+
+        return view('admin.teacher.view_teachers', compact('teacher', 'studentCount', 'paid'));
     }
 
 
+    //end method
+    public function TeacherIndex($id) {
+        $teachers = Teacher::with('department')->get();
+        $teacher = Teacher::with('department', 'subjects')->findOrFail($id);
+        $paid = Paid::where('teacher_id', $id)
+        ->where('status', 'paid')
+        ->get();
+
+        return view('admin.teacher.index', compact('teachers' , 'teacher' , 'paid'));
+    }
 
 
 

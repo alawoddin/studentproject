@@ -53,7 +53,7 @@
                             $count = $paids * $percentage / 100;
 
                         @endphp
-                        
+
                             <tbody>
                                 @foreach ($paid as $key =>  $item )
                                      <!--start-->

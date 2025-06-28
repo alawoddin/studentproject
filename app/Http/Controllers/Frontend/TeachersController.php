@@ -63,8 +63,11 @@ class TeachersController extends Controller
     public function TeacherView($id)
     {
         $teacher = Teacher::with('department')->findOrFail($id);
-        $paid = Paid::where('teacher_id', $id)->where('status', 'paid') 
+        $paid = Paid::where('teacher_id', $id)->where('status', 'paid')
         ->get();
         return view('frontend.teacher_view', compact('teacher',  'paid'));
     }
+
+    //end mehod
 }
+

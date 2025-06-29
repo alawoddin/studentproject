@@ -73,8 +73,11 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdI-PfLqNRTO4RykwkjHmAk6tLlY8Q3RZlJA&s"
                 alt="Logo" class="logo" />
 
+
+
+
             <div class="bill_number" style="color: green; font-weight: bold">
-                Bill NO# <span> 723</span>
+                Bill NO# <span> {{ $Paid->id }}</span>
             </div>
         </div>
 
@@ -83,27 +86,27 @@
             <tbody>
                 <tr>
                     <td class="fw-bold">Register Date</td>
-                    <td>2025-05-18</td>
+                    <td>{{ $Paid->paid_date }}</td>
                     <td class="fw-bold">First Name</td>
-                    <td>Ahmad Seyar</td>
+                    <td>{{ $Paid->student->name }}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold">Subject</td>
-                    <td>Full stack</td>
+                    <td>{{ $Paid->subject->subject_name }}</td>
                     <td class="fw-bold">Father Name</td>
-                    <td>Ahmad Zia</td>
+                    <td>{{ $Paid->student->father_name }}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold">Amount</td>
-                    <td>1800</td>
+                    <td>{{ $Paid->total_fees }}</td>
                     <td class="fw-bold">Paid Fee</td>
-                    <td>1800</td>
+                    <td>{{ $Paid->paid }}</td>
                 </tr>
                 <tr>
                     <td class="fw-bold">Remain Fee</td>
-                    <td>0</td>
+                    <td>{{ $Paid->remaining_Fees }}</td>
                     <td class="fw-bold">Time</td>
-                    <td>04:00 PM</td>
+                    <td>{{ $Paid->student->time }}</td>
                 </tr>
             </tbody>
         </table>

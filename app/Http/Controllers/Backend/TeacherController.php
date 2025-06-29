@@ -137,12 +137,15 @@ class TeacherController extends Controller
     public function TeacherIndex($id) {
         $teachers = Teacher::with('department')->get();
         $teacher = Teacher::with('department', 'subjects')->findOrFail($id);
-        $paid = Paid::where('teacher_id', $id)
-        ->where('status', 'paid')
-        ->get();
 
-        return view('admin.teacher.index', compact('teachers' , 'teacher' , 'paid'));
+        $paids = Paid::with(['student', 'subject', 'department'])
+            ->where('teacher_id', $id)
+            ->where('status', 'paid')
+            ->get();
+
+        return view('admin.teacher.index', compact('teachers', 'teacher', 'paids'));
     }
+
 
 
 

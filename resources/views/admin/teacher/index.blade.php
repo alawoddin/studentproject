@@ -53,35 +53,31 @@
                                 </thead><!-- end thead -->
 
                                 @php
-                                    $studentsCount = $paid->count(); // student is already passed from the controller
+                                $studentsCount = $paids->count();
+                                $totalPaid = $paids->sum('paid');
+                                $percentage = $teacher->percentage;
+                                $commission = $totalPaid * $percentage / 100;
+                            @endphp
 
-                                    $paids = $paid->sum('paid');
-                                    $percentage = $teacher->percentage;
-                                    $count = $paids * $percentage / 100;
+                            <tbody>
+                                @foreach ($paids as $key => $item)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $item->department->depart_name  }}</td>
+                                        <td>{{ $item->subject->subject_name }}</td>
+                                        <td>{{ $item->student->name  }}</td>
+                                        <td>{{ $item->total_fees }}</td>
+                                        <td>{{ $item->paid }}</td>
+                                        <td>{{ $item->remaining_fees }}</td>
 
-                                @endphp
-                                <tbody>
-                                    @foreach ($paid as $key => $item)
-                                        <!--start-->
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>
-                                                <h6 class="mb-0">{{ $item->department->depart_name }}</h6>
+                                        @if ($loop->first)
+                                            <td rowspan="{{ $paids->count() }}" class="text-center font-bold bg-blue-50">
+                                                {{ $commission }} AFG
                                             </td>
-                                            <td>{{ $item->subject->subject_name }}</td>
-                                            <td>{{ $item->student->name }}</td>
-                                            <td>{{ $item->total_fees }}</td>
-                                            <td>{{ $item->paid }}</td>
-                                            <td>{{ $item->remaining_Fees }}</td>
-                                            {{-- <td rowspan="100" class="text-center">{{ $count . 'AFG' }}
-                                            <td> --}}
-
-                                                @if ($loop->first)
-                                                    <td rowspan="{{ $paid->count() }}" class="text-center">{{ $count . ' AFG' }}</td>
-                                                @endif
-                                        </tr>
-                                        <!-- end -->
-                                    @endforeach
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </tbody>
 
 
 

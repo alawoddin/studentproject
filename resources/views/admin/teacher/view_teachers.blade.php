@@ -74,7 +74,7 @@
             $groupedPaids = $paids->groupBy(function($item) {
                 return $item->subject->subject_name ?? 'No Subject';
             });
-  
+
         @endphp
 --}}
 
@@ -83,7 +83,7 @@
 
             $paids = Paid::with(['student', 'subject'])
                 ->where('teacher_id', $teacher->id)
-                ->where('status', 'paid') 
+                ->where('status', 'paid')
                 ->get();
 
             $groupedPaids = $paids->groupBy(function($item) {
@@ -124,124 +124,9 @@
 
 
 
-        
+
 
     </div>
-<<<<<<< HEAD
-=======
-
-
-
-    {{-- <!-- Class 2 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">
-                    css class
-                </h3>
-                <p class="text-gray-500 text-sm mb-4">Sun & Tue 12:00-14:00</p>
-            </div>
-            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">
-                New
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>18 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div> --}}
-
-    <!-- Class 3 -->
-    {{-- <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>Boostrap 5 </h3>
-                <p class="text-gray-500 text-sm mb-4">Mon & Thu 10:00-12:00</p>
-            </div>
-            <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">
-                Combined
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>12 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div>
-    <!-- Class 4 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">
-                    javascript class
-                </h3>
-                <p class="text-gray-500 text-sm mb-4">Sun & Tue 12:00-14:00</p>
-            </div>
-            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">
-                New
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>18 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div>
-    <!-- Class 5 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">React </h3>
-                <p class="text-gray-500 text-sm mb-4">Mon & Thu 10:00-12:00</p>
-            </div>
-            <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">
-                Combined
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>12 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div>
-    <!-- Class 6 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">Github class</h3>
-                <p class="text-gray-500 text-sm mb-4">Sat & Wed 13:30-15:30</p>
-            </div>
-            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">
-                Active
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>24 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div> --}}
->>>>>>> 9edd5baeb7b9a95f6659b0f1d48a570f5eddda17
 
 @php
      $paids = Paid::with('student')->first()->limit(5)->get();

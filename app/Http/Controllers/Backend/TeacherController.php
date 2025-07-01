@@ -145,8 +145,6 @@ class TeacherController extends Controller
 
     //     return view('admin.teacher.index', compact('teachers', 'teacher', 'paids'));
     // }
-
-        
         public function TeacherIndex($id, Request $request)
         {
             $subjectId = $request->query('subject_id');  
@@ -165,6 +163,4 @@ class TeacherController extends Controller
 
             return view('admin.teacher.index', compact('teacher', 'paids', 'subjectId'));
         }
-
-
 }

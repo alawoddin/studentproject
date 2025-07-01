@@ -69,5 +69,24 @@ class TeachersController extends Controller
     }
 
     //end mehod
+
+    public function TeacherIndex($id, Request $request)
+    {
+        $subjectId = $request->query('subject_id');
+
+        $teacher = Teacher::findOrFail($id);
+
+        $paidsQuery = Paid::with(['student', 'subject', 'department'])
+            ->where('teacher_id', $id)
+            ->where('status', 'paid');
+
+        if ($subjectId) {
+            $paidsQuery->where('subject_id', $subjectId);
+        }
+
+        $paids = $paidsQuery->get();
+
+        return view('frontend.teacher_index', compact('teacher', 'paids', 'subjectId'));
+    }
 }
 

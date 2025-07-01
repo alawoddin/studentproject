@@ -48,7 +48,6 @@
                             {{ $teacher->first_name }}
                         </h1>
                         <p class="text-gray-600">{{ $teacher->roll_id }}</p>
-                        <span>{{ $teacher->department->depart_name }}</span>
 
                     </div>
                 </div>
@@ -58,7 +57,7 @@
                 <div class="bg-blue-50 text-blue-800 px-4 py-2 rounded-lg">
                     <p class="flex items-center">
                         <i class="fas fa-chalkboard-teacher mr-2"></i>
-                        <span>{{ $studentCount }}</span>
+                        <span>{{ $teacher->department->depart_name }}</span>
                     </p>
                 </div>
             </div>
@@ -103,7 +102,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h3 class="text-lg font-medium text-gray-700">{{ $subjectName }}</h3>
-                                <p class="text-gray-500 text-sm mb-4">Schedule: {{ $paidGroup->first()->student?->time ?? 'N/A' }}</p>
+                                <p class="text-gray-500 text-sm mb-4">Time: {{ $paidGroup->first()->student?->time  }}</p>
                             </div>
                             <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">
                                 Active
@@ -129,7 +128,10 @@
     </div>
 
 @php
-     $paids = Paid::with('student')->first()->limit(5)->get();
+    //  $paids = Paid::with('student')->first()->limit(5)->get();
+    $paids = Paid::with('student')->limit(5)->get();
+    //  $paid = Paid::all();
+    $paid = Paid::orderBy('order_month', 'desc')->first();
 @endphp
 
     <!-- Students Table -->
@@ -138,7 +140,7 @@
             <h2 class="text-xl font-semibold text-gray-800">
                 Advanced Web Development Students
             </h2>
-            <p class="text-gray-600 mt-1 text-sm">Spring 2024 - Group A</p>
+            <p class="text-gray-600 mt-1 text-sm">{{ $paid->order_month }} {{ $paid->order_year }} - {{ $teacher->department->depart_name }}</p>
         </div>
 
 

@@ -35,7 +35,7 @@
                 <div class="mb-3">
                     <strong>Filter by Subject:</strong>
                     @php
-                      
+
                         $subjectIds = $paids->pluck('subject.id')->unique();
                     @endphp
                     @foreach ($subjectIds as $subjectId)

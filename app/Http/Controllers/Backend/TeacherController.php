@@ -134,19 +134,37 @@ class TeacherController extends Controller
 
 
     //end method
-    public function TeacherIndex($id) {
-        $teachers = Teacher::with('department')->get();
-        $teacher = Teacher::with('department', 'subjects')->findOrFail($id);
+    // public function TeacherIndex($id) {
+    //     $teachers = Teacher::with('department')->get();
+    //     $teacher = Teacher::with('department', 'subjects')->findOrFail($id);
 
-        $paids = Paid::with(['student', 'subject', 'department'])
-            ->where('teacher_id', $id)
-            ->where('status', 'paid')
-            ->get();
+    //     $paids = Paid::with(['student', 'subject', 'department'])
+    //         ->where('teacher_id', $id)
+    //         ->where('status', 'paid')
+    //         ->get();
 
-        return view('admin.teacher.index', compact('teachers', 'teacher', 'paids'));
-    }
+    //     return view('admin.teacher.index', compact('teachers', 'teacher', 'paids'));
+    // }
 
+        
+        public function TeacherIndex($id, Request $request)
+        {
+            $subjectId = $request->query('subject_id');  
 
+            $teacher = Teacher::findOrFail($id);
+
+            $paidsQuery = Paid::with(['student', 'subject', 'department'])
+                ->where('teacher_id', $id)
+                ->where('status', 'paid');
+
+            if ($subjectId) {
+                $paidsQuery->where('subject_id', $subjectId);  
+            }
+
+            $paids = $paidsQuery->get();
+
+            return view('admin.teacher.index', compact('teacher', 'paids', 'subjectId'));
+        }
 
 
 }

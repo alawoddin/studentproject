@@ -64,50 +64,72 @@
             </div>
         </header>
 
-@php
-    use App\Models\Paid;
+ {{--       @php
+            use App\Models\Paid;
 
-    // Get all Paid records with student and subject
-    $paids = Paid::with(['student', 'subject'])->get();
+            // Get all Paid records with student and subject
+            $paids = Paid::with(['student', 'subject'])->get();
 
-    // Group by subject name
-    $groupedPaids = $paids->groupBy(function($item) {
-        return $item->subject->subject_name ?? 'No Subject';
-    });
-@endphp
+            // Group by subject name
+            $groupedPaids = $paids->groupBy(function($item) {
+                return $item->subject->subject_name ?? 'No Subject';
+            });
+  
+        @endphp
+--}}
 
-<!-- Class Cards -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    @foreach ($groupedPaids as $subjectName => $paidGroup)
-        <a href="{{ route('teacher.index' , $teacher->id) }}" class="block">
-            <div class="card bg-white rounded-xl p-6 h-full">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-lg font-medium text-gray-700">
-                            {{ $subjectName }}
-                        </h3>
-                        <p class="text-gray-500 text-sm mb-4">Schedule: {{ $paidGroup->first()->student->time ?? 'N/A' }}</p>
+        @php
+            use App\Models\Paid;
+
+            $paids = Paid::with(['student', 'subject'])
+                ->where('teacher_id', $teacher->id)
+                ->where('status', 'paid') 
+                ->get();
+
+            $groupedPaids = $paids->groupBy(function($item) {
+                return $item->subject->subject_name ?? 'No Subject';
+            });
+        @endphp
+
+        <!-- Class Cards -->
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            @foreach ($groupedPaids as $subjectName => $paidGroup)
+                @php
+                    $subjectIdCard = $paidGroup->first()->subject->id ?? null;
+                @endphp
+
+                <a href="{{ route('teacher.index', ['id' => $teacher->id, 'subject_id' => $subjectIdCard]) }}" class="block">
+                    <div class="card bg-white rounded-xl p-6 h-full">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-700">{{ $subjectName }}</h3>
+                                <p class="text-gray-500 text-sm mb-4">Schedule: {{ $paidGroup->first()->student?->time ?? 'N/A' }}</p>
+                            </div>
+                            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">
+                                Active
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-users mr-1"></i>
+                                <span>{{ $paidGroup->unique('student_id')->count() }}</span>
+                            </div>
+                            <button class="text-blue-600 hover:text-blue-800 text-sm">View Details</button>
+                        </div>
                     </div>
-                    <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">
-                        Active
-                    </div>
-                </div>
-                <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                    <div class="flex items-center text-yellow-500">
-                        <i class="fas fa-users mr-1"></i>
-                        <span>{{ $paidGroup->unique('student_id')->count() }}</span>
-                    </div>
-                    <button class="text-blue-600 hover:text-blue-800 text-sm">
-                        View Details
-                    </button>
-                </div>
-            </div>
-        </a>
-    @endforeach
-</div>
+                </a>
+            @endforeach
+        </div>
 
+
+
+
+        
 
     </div>
+
+
+
     {{-- <!-- Class 2 -->
     <div class="card bg-white rounded-xl p-6">
         <div class="flex justify-between items-start">

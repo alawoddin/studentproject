@@ -108,116 +108,10 @@
 
 
     </div>
-    {{-- <!-- Class 2 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">
-                    css class
-                </h3>
-                <p class="text-gray-500 text-sm mb-4">Sun & Tue 12:00-14:00</p>
-            </div>
-            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">
-                New
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>18 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div> --}}
 
-    <!-- Class 3 -->
-    {{-- <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>Boostrap 5 </h3>
-                <p class="text-gray-500 text-sm mb-4">Mon & Thu 10:00-12:00</p>
-            </div>
-            <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">
-                Combined
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>12 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div>
-    <!-- Class 4 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">
-                    javascript class
-                </h3>
-                <p class="text-gray-500 text-sm mb-4">Sun & Tue 12:00-14:00</p>
-            </div>
-            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">
-                New
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>18 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div>
-    <!-- Class 5 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">React </h3>
-                <p class="text-gray-500 text-sm mb-4">Mon & Thu 10:00-12:00</p>
-            </div>
-            <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs">
-                Combined
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>12 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div>
-    <!-- Class 6 -->
-    <div class="card bg-white rounded-xl p-6">
-        <div class="flex justify-between items-start">
-            <div>
-                <h3 class="text-lg font-medium text-gray-700">Github class</h3>
-                <p class="text-gray-500 text-sm mb-4">Sat & Wed 13:30-15:30</p>
-            </div>
-            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">
-                Active
-            </div>
-        </div>
-        <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-            <div class="flex items-center text-yellow-500">
-                <i class="fas fa-users mr-1"></i>
-                <span>24 Students</span>
-            </div>
-            <button class="text-blue-600 hover:text-blue-800 text-sm">
-                View Details
-            </button>
-        </div>
-    </div> --}}
-
+@php
+     $paids = Paid::with('student')->first()->limit(5)->get();
+@endphp
 
     <!-- Students Table -->
     <div class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
@@ -227,6 +121,8 @@
             </h2>
             <p class="text-gray-600 mt-1 text-sm">Spring 2024 - Group A</p>
         </div>
+
+
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -238,148 +134,64 @@
                             Student Name
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Student ID
+                            Student last_name
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Sessions
+                            eamil
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Status
+                            time
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Actions
+                            phone
                         </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($paids as $key => $item )
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            1
+                            {{ $key + 1 }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                                <img src="https://randomuser.me/api/portraits/women/12.jpg" alt=""
-                                    class="student-avatar rounded-full mr-3" />
+
                                 <div>
                                     <div class="text-sm font-medium text-gray-900">
-                                        Fatemeh Ahmadi
+
                                     </div>
                                     <div class="text-sm text-gray-500">
-                                        f.ahmadi@example.com
+                                        {{ $item->student->name }}
                                     </div>
                                 </div>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            9823511
+                            {{ $item->student->lastname }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            10/12
+                            {{ $item->student->email }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span
                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                Active
+                                {{ $item->student->time }}
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
-                            <a href="#" class="text-blue-600 hover:text-blue-900 mr-2">View</a>
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Message</a>
+                            <p>{{ $item->student->phone_number }}</p>
                         </td>
                     </tr>
                     <!-- More rows... -->
+        @endforeach
+
                 </tbody>
             </table>
         </div>
-        <!-- Table Footer -->
-        <div class="bg-gray-50 px-6 py-3 flex items-center justify-between border-t border-gray-200">
-            <div class="flex-1 flex justify-between sm:hidden">
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    Previous
-                </a>
-                <a href="#"
-                    class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    Next
-                </a>
-            </div>
-            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                <div>
-                    <p class="text-sm text-gray-700">
-                        Showing
-                        <span class="font-medium">1</span>
-                        to
-                        <span class="font-medium">10</span>
-                        of
-                        <span class="font-medium">24</span>
-                        students
-                    </p>
-                </div>
-                <div>
-                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                        <a href="#"
-                            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                            <span class="sr-only">Previous</span>
-                            <i class="fas fa-chevron-left"></i>
-                        </a>
-                        <!-- Pages -->
-                        <a href="#" aria-current="page"
-                            class="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            1
-                        </a>
-                        <a href="#"
-                            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            2
-                        </a>
-                        <a href="#"
-                            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            3
-                        </a>
-                        <a href="#"
-                            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                            <span class="sr-only">Next</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                    </nav>
-                </div>
-            </div>
-        </div>
+
     </div>
 
-    <!-- Charts -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-medium text-gray-800">
-                    Class Average Grades
-                </h3>
-                <select
-                    class="border border-gray-300 rounded-md px-3 py-1 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option>Spring 2024</option>
-                    <option>Fall 2023</option>
-                </select>
-            </div>
-            <div class="h-64">
-                <canvas id="gradesChart"></canvas>
-            </div>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-medium text-gray-800">Weekly Attendance</h3>
-                <div class="flex">
-                    <button class="px-3 py-1 bg-blue-50 text-blue-600 text-sm rounded-md mr-2">
-                        Week
-                    </button>
-                    <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 text-sm rounded-md">
-                        Month
-                    </button>
-                </div>
-            </div>
-            <div class="h-64">
-                <canvas id="attendanceChart"></canvas>
-            </div>
-        </div>
-    </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

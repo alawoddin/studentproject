@@ -50,8 +50,8 @@ $profile = App\Models\Teacher::find($id);
                             <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-primary rounded-3">
                                     <img class="header-profile-user"
-                            src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('uploads/no_image.png') }}"
-                            alt="Header Avatar">
+                                        src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('uploads/no_image.png') }}"
+                                        alt="Header Avatar">
                                 </span>
                             </div>
                         </div>

@@ -7,6 +7,8 @@ use App\Models\Department;
 use App\Models\Paid;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Models\Student;
+
 use Illuminate\Support\Facades\Auth;
 
 class TeachersController extends Controller
@@ -52,22 +54,56 @@ class TeachersController extends Controller
         return view('frontend.teacher_login', compact('teacher', 'depart'));
     }
 
-    public function teacherDashboard()
-    {
+    
+        public function teacherDashboard()
+        {
+            $id = Auth::guard('teacher')->id();
+            $teacher = Teacher::with('department')->findOrFail($id);
 
-        $teacher = Teacher::all();
-        $depart = Department::all();
-        return view('frontend.index', compact('teacher', 'depart'));
-    }
+        
+            $studentCount = Paid::where('teacher_id', $id)
+                                ->where('status', 'paid')
+                                ->distinct('student_id')
+                                ->count('student_id');
 
-    public function TeacherView($id)
-    {
-        $teacher = Teacher::with('department')->findOrFail($id);
-        $paid = Paid::where('teacher_id', $id)->where('status', 'paid')
-        ->get();
-        return view('frontend.teacher_view', compact('teacher',  'paid'));
-    }
+            return view('frontend.index', compact('teacher', 'studentCount'));
+        }
+
+
+
+        public function TeacherView($id)
+        {
+            $teacher = Teacher::with('department')->findOrFail($id);
+
+            $paid = Paid::where('teacher_id', $id)
+                ->where('status', 'paid')
+                ->get();
+
+            $studentCount = $paid->unique('student_id')->count(); 
+
+            return view('frontend.teacher_view', compact('teacher', 'paid', 'studentCount'));
+        }
+
+
+
+
+    // public function teacherDashboard()
+    // {
+
+    //     $teacher = Teacher::all();
+    //     $depart = Department::all();
+    //     return view('frontend.index', compact('teacher', 'depart'));
+    // }
+
+    // public function TeacherView($id)
+    // {
+    //     $teacher = Teacher::with('department')->findOrFail($id);
+    //     $paid = Paid::where('teacher_id', $id)->where('status', 'paid')
+    //     ->get();
+    //     return view('frontend.teacher_view', compact('teacher',  'paid'));
+    // }
 
     //end mehod
+
 }
 

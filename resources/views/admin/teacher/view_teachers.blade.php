@@ -64,20 +64,6 @@
             </div>
         </header>
 
- {{--       @php
-            use App\Models\Paid;
-
-            // Get all Paid records with student and subject
-            $paids = Paid::with(['student', 'subject'])->get();
-
-            // Group by subject name
-            $groupedPaids = $paids->groupBy(function($item) {
-                return $item->subject->subject_name ?? 'No Subject';
-            });
-
-        @endphp
---}}
-
         @php
             use App\Models\Paid;
 

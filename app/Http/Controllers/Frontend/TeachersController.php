@@ -102,7 +102,7 @@ class TeachersController extends Controller
     //     ->get();
     //     return view('frontend.teacher_view', compact('teacher',  'paid'));
     // }
-
+    
     //end mehod
 
 }

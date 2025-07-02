@@ -82,7 +82,7 @@
                                     <td>{{ $item->student->name }}</td>
                                     <td>{{ $item->total_fees }}</td>
                                     <td>{{ $item->paid }}</td>
-                                    <td>{{ $item->remaining_fees }}</td>
+                                    <td>{{ $item->remaining_Fees }}</td>
 
                                     @if ($loop->first)
                                         <td rowspan="{{ $paids->count() }}" class="text-center font-bold bg-blue-50">

@@ -55,6 +55,7 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('edit/student/{id}', 'EditStudent')->name('edit.student');
     Route::post('update/student/{id}', 'UpdateStudent')->name('update.student');
     Route::get('delete/student/{id}', 'DeleteStudent')->name('delete.student');
+    Route::get('/print/invoice/{id}', 'PrintInvoice')->name('print.invoice');
 });
 
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
+use App\Models\Paid;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Teacher;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentController extends Controller
 {
@@ -93,5 +95,18 @@ class StudentController extends Controller
         Student::findOrFail($id)->delete();
 
         return redirect()->route('manage.student')->with('success', 'Student deleted successfully');
+    }
+
+    public function PrintInvoice($id) {
+        $Paid = Paid::with('student' , 'subject' , 'department')->findOrFail($id);
+        $student = $Paid->student;
+
+        $pdf = Pdf::loadView('admin.student.print_invoice', compact('student', 'Paid'))
+            ->setPaper('a6' , 'landscape')
+            ->setOption([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+        return $pdf->download('paid.pdf');
     }
 }

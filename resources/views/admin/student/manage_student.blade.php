@@ -38,6 +38,8 @@
                     <td style="text-align:center; font-size: 20px;">
                         <a href="{{ route('edit.student', $student->id) }}"><i class="fas fa-edit btn btn-primary"></i></a>
                         <a href="{{ route('delete.student', $student->id) }}" id="delete"><i class="fas fa-trash-alt btn btn-danger"></i></a>
+                        <a href="{{ route('print.invoice',$student->id) }}" >
+                            <i class="fas fa-print btn btn-primary"></i></a>
                     </td>
                 </tr>
                 @endforeach

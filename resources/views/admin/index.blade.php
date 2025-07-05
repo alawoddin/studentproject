@@ -135,6 +135,12 @@
                 </div><!-- end card -->
             </div>
             <!-- end col -->
+
+            @php
+                $count = App\Models\Student::count();
+                $totalPaid = App\Models\Paid::sum('total_fees');
+                $teacher = App\Models\Teacher::count();
+            @endphp
             <div class="col-xl-4">
                 <div class="card">
                     <div class="card-body">
@@ -146,27 +152,27 @@
                                 <option value="3">Jan</option>
                             </select>
                         </div>
-                        <h4 class="card-title mb-4">Monthly Earnings</h4>
+                        <h4 class="card-title mb-4">total student</h4>
 
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-center mt-4">
-                                    <h5>3475</h5>
-                                    <p class="mb-2 text-truncate">Market Place</p>
+                                    <h5>{{ $count }}</h5>
+                                    <p class="mb-2 text-truncate">Entry Student</p>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-4">
                                 <div class="text-center mt-4">
-                                    <h5>458</h5>
-                                    <p class="mb-2 text-truncate">Last Week</p>
+                                    <h5>{{ $totalPaid }}</h5>
+                                    <p class="mb-2 text-truncate">Total Paid</p>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-4">
                                 <div class="text-center mt-4">
-                                    <h5>9062</h5>
-                                    <p class="mb-2 text-truncate">Last Month</p>
+                                    <h5>{{ $teacher }}</h5>
+                                    <p class="mb-2 text-truncate">Total teacher</p>
                                 </div>
                             </div>
                             <!-- end col -->

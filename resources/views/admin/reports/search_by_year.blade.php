@@ -93,6 +93,14 @@
     <div class="report-section">
         <div class="section-title"><i class="fas fa-briefcase"></i> All Student Info</div>
         <table id="datatable" class="table table-bordered table-striped">
+        {{-- <h3 class="text-danger">Search By year: {{ $years }}</h3> --}}
+
+        @if($orderYear->count() > 0)
+    <h3 class="text-danger">Search By year: {{ $years }}</h3>
+@else
+    <h5 class="text-warning">No records found for year: {{ $years }}</h5>
+@endif
+
             <thead>
                 <tr>
                     <th>Sl</th>

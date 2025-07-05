@@ -63,6 +63,7 @@
                                 <th>Total Fees</th>
                                 <th>Paid</th>
                                 <th>Remaining Fees</th>
+                                <th>Paid status </th>
                                 <th>Total of Salary</th>
                             </tr>
                         </thead>
@@ -83,7 +84,13 @@
                                     <td>{{ $item->total_fees }}</td>
                                     <td>{{ $item->paid }}</td>
                                     <td>{{ $item->remaining_Fees }}</td>
-
+                                      <td>
+                                @if ($teacher->status == 1)
+                                    <span class="badge bg-success">Paid</span>
+                                @else
+                                    <span class="badge bg-danger">Unpaid</span>
+                                @endif
+                            </td>
                                     @if ($loop->first)
                                         <td rowspan="{{ $paids->count() }}" class="text-center font-bold bg-blue-50">
                                             {{ $commission }} AFG

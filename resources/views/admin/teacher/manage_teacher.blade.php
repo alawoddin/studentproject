@@ -44,6 +44,7 @@
                         <th>Department</th>
                         <th>National ID</th>
                         <th>Teacher image </th>
+                        {{-- <th>Paid status </th> --}}
                         <th class="all">Action</th>
                     </tr>
                 </thead>
@@ -67,6 +68,13 @@
                                     alt="Header Avatar">
 
                             </td>
+                            {{-- <td>
+                                @if ($teacher->status == 1)
+                                    <span class="badge bg-success">Paid</span>
+                                @else
+                                    <span class="badge bg-danger">Unpaid</span>
+                                @endif
+                            </td> --}}
                             <td style="text-align:center; font-size: 20px;" class="all">
                                 <a href="{{ route('edit.teacher', $teacher->id) }}"><i
                                         class="fas fa-edit btn btn-primary waves-effect waves-light"></i></a>

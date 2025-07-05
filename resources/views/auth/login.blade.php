@@ -4,7 +4,7 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Login | Upcube - Admin & Dashboard Template</title>
+        <title>Admin  Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -29,7 +29,7 @@
 
                         <div class="text-center mt-4">
                             <div class="mb-3">
-                        <h1 class="text-muted text-center font-size-18"><b>(SRMS)</b></h1>
+                        <h1 class="text-muted text-center font-size-18"><b>(TAWANA)</b></h1>
 
                             </div>
                         </div>

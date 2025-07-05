@@ -102,7 +102,7 @@ class StudentController extends Controller
         $student = $Paid->student;
 
         $pdf = Pdf::loadView('admin.student.print_invoice', compact('student', 'Paid'))
-            ->setPaper('a6' , 'landscape')
+            ->setPaper('a4' , 'landscape')
             ->setOption([
                 'tempDir' => public_path(),
                 'chroot' => public_path(),

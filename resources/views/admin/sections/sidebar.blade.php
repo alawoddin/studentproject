@@ -41,7 +41,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-building-line"></i>
                         <span>Department</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -52,7 +52,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-user-line"></i>
                         <span>Teacher</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -66,7 +66,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-group-line"></i>
                         <span>Students</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -78,7 +78,7 @@
                 {{-- adding paid --}}
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-wallet-line"></i>
                         <span>Paid</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -90,7 +90,7 @@
                  {{-- adding salary --}}
                  <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-money-dollar-circle-line"></i>
                         <span>Salary</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -102,7 +102,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-group-line"></i>
                         <span>Staff</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -116,7 +116,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-wallet-3-line"></i>
                         <span>Expense</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -133,6 +133,18 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.all.reports') }}">All Reports</a></li>
 
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-loader-2-line"></i>
+                        <span>Waiting</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('add.pending') }}">Add Pending</a></li>
+                        {{-- {{-- <li><a href="{{ route('manage.expense') }}">Done</a></li> --}}
+                        <li><a href="{{ route('all.pending') }}">All Pending</a></li>
                     </ul>
                 </li>
 

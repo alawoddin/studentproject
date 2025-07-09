@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\backend\DepartmentController;
+use App\Http\Controllers\Backend\PendingController;
 use App\Http\Controllers\backend\piadController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\backend\TeacherController;
@@ -159,4 +160,12 @@ Route::controller(salaryController::class)->group(function() {
     Route::post('salary/update/{id}', 'UpdateSalary')->name('update.salary');
     Route::get('delete/salary/{id}', 'DeleteSalary')->name('delete.salary');
 
+});
+
+Route::controller(PendingController::class)->group(function() {
+    Route::get('all/pending' , 'AllPending')->name('all.pending');
+    Route::get('/add/pending' , 'AddPending')->name('add.pending');
+    Route::post('store/pending', 'StorePending')->name('store.pending');
+    Route::get('/pending/student/{id}' ,  'StudentPending')->name('student.pending');
+    // Route::get('wait/student' , 'WaitStudent')->name('wait.student');
 });

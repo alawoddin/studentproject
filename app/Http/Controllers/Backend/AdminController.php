@@ -7,9 +7,30 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function AdminDashbord(){
+                $monthlyExpenses = DB::table('expenses')
+                ->selectRaw('MONTH(date) as month, SUM(amount) as total')
+                ->groupBy('month')
+                ->orderBy('month')
+                ->get();
+
+                $months = [];
+                $totals = [];
+
+                for ($i = 1; $i <= 12; $i++) {
+                    $monthName = date('M', mktime(0, 0, 0, $i, 10));
+                    $months[] = $monthName;
+                    
+                    $match = $monthlyExpenses->firstWhere('month', $i);
+                    $totals[] = $match ? (int)$match->total : 0;
+                }
+
+        return view('admin.index',compact('months', 'totals'));
+    }
     public function AdminLogout(Request $request) {
         Auth::guard('web')->logout();
         $notification = array(

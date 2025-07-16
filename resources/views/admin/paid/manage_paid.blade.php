@@ -21,13 +21,13 @@
                     <tr>
                         <th>#</th>
                         <th>student</th>
-                        <th>Department</th>
+                        {{-- <th>Department</th> --}}
                         <th>subject</th>
                         <th>teacher</th>
                         <th>total_fees</th>
                         <th>paid</th>
                         <th>remaining_Fees</th>
-                        <th>entry_date</th>
+                        {{-- <th>entry_date</th> --}}
                         <th>paid_date</th>
                         {{-- <th>Status</th> --}}
                         <th>print</th>
@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $paids->student->name }}</td>
-                            <td>{{ $paids->department->depart_name }}</td>
+                            {{-- <td>{{ $paids->department->depart_name }}</td> --}}
                             <td>{{ $paids->subject->subject_name ??'null' }}</td>
                             {{-- <td>
                                 @foreach ($paids->subjects as $subject)
@@ -52,7 +52,7 @@
                             <td>{{ $paids->total_fees }}</td>
                             <td>{{ $paids->paid }}</td>
                             <td>{{ $paids->remaining_Fees }}</td>
-                            <td>{{ $paids->entry_date }}</td>
+                            {{-- <td>{{ $paids->entry_date }}</td> --}}
                             <td>{{ $paids->paid_date }}</td>
                             {{-- <td>
                                 @if($paids->status === 'paid')

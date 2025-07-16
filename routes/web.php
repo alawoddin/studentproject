@@ -37,11 +37,14 @@ Route::middleware('teacher')->group(function () {
 
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(AdminController::class)->group(function () {
+
+    Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])->name('dashboard');
+
 
     Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');

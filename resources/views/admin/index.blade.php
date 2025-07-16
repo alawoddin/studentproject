@@ -7,6 +7,10 @@
                 $teacher = App\Models\Teacher::count();
                 $pending = App\Models\Pending::count();
                 $expence = App\Models\Expense::sum('amount');
+                $dates = $dates = App\Models\Expense::select('date')->distinct()->pluck('date');
+
+                  
+
             @endphp
 <div class="row">
                             <div class="col-xl-3 col-md-3">
@@ -57,7 +61,7 @@
                                             </div>
                                             <div class="avatar-sm">
                                                 <span class="avatar-title bg-light text-primary rounded-3">
-                                                    <i class="mdi mdi-coin font-size-24"></i>
+                                                    <i class="mdi mdi-cash font-size-24"></i>
 
                                                 </span>
                                             </div>
@@ -97,6 +101,19 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
+
+                         <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <h4 class="card-title mb-4">Expenses Revenue (Monthly)</h4>
+                                </div>
+                                <div class="card-body py-0 px-2">
+                                    <div id="mixed_chart" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         {{-- <div class="float-end">
                             <select class="form-select shadow-none form-select-sm">
                                 <option selected>Apr</option>
@@ -135,6 +152,11 @@
                         <div class="mt-4">
                             <div id="donut-chart" class="apex-charts"></div>
                         </div>
+
+                      
+
+                        </div>
+                        <!-- end row -->
                     </div>
                 </div><!-- end card -->
             </div><!-- end col -->
@@ -144,4 +166,79 @@
         <!-- end row -->
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var months = @json($months);
+        var expenses = @json($totals);
+
+        var options = {
+            chart: {
+                height: 350,
+                type: 'line',
+                stacked: false,
+                toolbar: { show: false }
+            },
+            stroke: {
+                width: [0, 4],
+                curve: 'smooth'
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '50%',
+                    borderRadius: 4
+                }
+            },
+            colors: ['#3bafda', '#1abc9c'],
+            series: [
+                {
+                    name: 'Expenses (Bar)',
+                    type: 'column',
+                    data: expenses
+                },
+                {
+                    name: 'Expenses Trend (Line)',
+                    type: 'line',
+                    data: expenses
+                }
+            ],
+            xaxis: {
+                categories: months
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: [1]
+            },
+            yaxis: {
+                title: {
+                    text: 'Amount'
+                },
+                labels: {
+                    formatter: function (value) {
+                        return '$' + value.toLocaleString();
+                    }
+                }
+            },
+            title: {
+                text: 'Monthly Expenses',
+                align: 'left'
+            },
+            tooltip: {
+                shared: true,
+                intersect: false,
+                y: {
+                    formatter: function (val) {
+                        return "$" + val.toLocaleString();
+                    }
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#mixed_chart"), options);
+        chart.render();
+    });
+</script>
+
+</script>
 @endsection

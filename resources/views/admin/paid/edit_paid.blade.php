@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Update Student Payment Info</h4>
-                        <form action="{{ route('update.paid', $paid->id) }}" method="POST">
+                        <form action="{{ route('store.paid') }}" method="POST">
 
                             @csrf
                             <div class="row mb-3">
@@ -29,10 +29,11 @@
                                     <label for="student-dropdown" class="form-label">Select Student</label>
                                     <select name="student_id" id="student-dropdown" class="form-select" required>
                                         @foreach ($student as $info)
-                                            <option value="{{ $info->id }}">
-                                                {{ $info->student_name && ($info->name ? 'selected' : '') }}
-                                                {{ $info->name }}
-                                            </option>
+                                            <option value="{{ $info->id }}" 
+                                            {{ isset($paid) && $paid->student_id == $info->id ? 'selected' : '' }}>
+                                            {{ $info->name }}
+                                        </option>
+
                                         @endforeach
                                     </select>
                                 </div>
@@ -107,6 +108,17 @@
                                     <input class="form-control" name="entry_date" type="date"
                                         value="{{ $paid->entry_date }}">
                                 </div>
+                                {{-- row 4 --}}
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="col-sm-6 col-form-label">Paid_date</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="paid_date" value="{{ $paid->paid_date }}" type="date"
+                                            placeholder="paid_date">
+                                    </div>
+                                </div>
+
+                            </div>
                             </div>
 
 

@@ -119,6 +119,42 @@
                         </tbody>
                     </table>
                 </div>
+                <div>
+                    <form action="{{ route('store.expense') }}" method="POST">
+                            @csrf
+
+                            {{-- === Expense Info === --}}
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Title</label>
+                                    <input class="form-control" value="{{ $teacher->first_name }}" name="title" type="text" placeholder="Expense Title"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Amount</label>
+                                    <input class="form-control" value="{{ $commission }}" name="amount" type="number" step="0.01"
+                                        placeholder="Amount in AF" required>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Date</label>
+                                    <input class="form-control" name="date" type="date" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Note (Optional)</label>
+                                    <textarea name="note" class="form-control" rows="1" placeholder="Note..."></textarea>
+                                </div>
+                            </div>
+
+                            {{-- === Submit Button === --}}
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Add Expense</button>
+
+                        </form>
+                </div>
             </div>
         </div>
     </div>

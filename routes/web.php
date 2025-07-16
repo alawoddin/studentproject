@@ -6,7 +6,7 @@ use App\Http\Controllers\backend\DepartmentController;
 use App\Http\Controllers\Backend\PendingController;
 use App\Http\Controllers\backend\piadController;
 use App\Http\Controllers\Backend\StudentController;
-use App\Http\Controllers\backend\TeacherController;
+use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SubjectController;

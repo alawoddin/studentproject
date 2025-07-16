@@ -11,26 +11,43 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function AdminDashbord(){
-                $monthlyExpenses = DB::table('expenses')
+            public function AdminDashbord()
+        {
+            // Expenses sum by month
+            $monthlyExpenses = DB::table('expenses')
                 ->selectRaw('MONTH(date) as month, SUM(amount) as total')
                 ->groupBy('month')
                 ->orderBy('month')
                 ->get();
 
-                $months = [];
-                $totals = [];
+            $months = [];
+            $totals = [];
 
-                for ($i = 1; $i <= 12; $i++) {
-                    $monthName = date('M', mktime(0, 0, 0, $i, 10));
-                    $months[] = $monthName;
-                    
-                    $match = $monthlyExpenses->firstWhere('month', $i);
-                    $totals[] = $match ? (int)$match->total : 0;
-                }
+            for ($i = 1; $i <= 12; $i++) {
+                $monthName = date('M', mktime(0, 0, 0, $i, 10));
+                $months[] = $monthName;
 
-        return view('admin.index',compact('months', 'totals'));
-    }
+                $match = $monthlyExpenses->firstWhere('month', $i);
+                $totals[] = $match ? (int)$match->total : 0;
+            }
+
+            // Paid sum by month
+            $monthlyPaid = DB::table('paids')
+                ->selectRaw('MONTH(paid_date) as month, SUM(paid) as total')
+                ->groupBy('month')
+                ->orderBy('month')
+                ->get();
+
+            $paidTotals = [];
+            for ($i = 1; $i <= 12; $i++) {
+                $match = $monthlyPaid->firstWhere('month', $i);
+                $paidTotals[] = $match ? (int)$match->total : 0;
+            }
+
+            return view('admin.index', compact('months', 'totals', 'paidTotals'));
+        }
+        
+
     public function AdminLogout(Request $request) {
         Auth::guard('web')->logout();
         $notification = array(

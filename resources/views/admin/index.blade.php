@@ -113,6 +113,20 @@
                             </div>
                         </div>
 
+                       <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <h4 class="card-title mb-4">Monthly Expenses & Paid Summary</h4>
+                                </div>
+                                <div class="card-body py-0 px-2">
+                                    <div id="mixed_chart" class="apex-charts" dir="ltr"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+
 
                         {{-- <div class="float-end">
                             <select class="form-select shadow-none form-select-sm">
@@ -167,6 +181,87 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var months = @json($months);
+        var expenses = @json($totals);
+        var paid = @json($paidTotals);
+
+        var options = {
+            chart: {
+                height: 380,
+                type: 'line',
+                stacked: false,
+                toolbar: { show: false }
+            },
+            stroke: {
+                width: [0, 0, 4],
+                curve: 'smooth'
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '40%',
+                    borderRadius: 5
+                }
+            },
+            colors: ['#3bafda', '#1abc9c', '#f1556c'], // Blue, Green, Red
+            series: [
+                {
+                    name: 'Expenses',
+                    type: 'column',
+                    data: expenses
+                },
+                {
+                    name: 'Paid',
+                    type: 'column',
+                    data: paid
+                },
+                {
+                    name: 'Paid Trend',
+                    type: 'line',
+                    data: paid
+                }
+            ],
+            xaxis: {
+                categories: months
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: [2] // Only show labels on the line
+            },
+            yaxis: {
+                title: {
+                    text: 'Amount'
+                },
+                labels: {
+                    formatter: function (value) {
+                        return '$' + value.toLocaleString();
+                    }
+                }
+            },
+            title: {
+                text: 'Monthly Expenses vs Paid',
+                align: 'left'
+            },
+            tooltip: {
+                shared: true,
+                intersect: false,
+                y: {
+                    formatter: function (val) {
+                        return "$" + val.toLocaleString();
+                    }
+                }
+            },
+            legend: {
+                position: 'top'
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#mixed_chart"), options);
+        chart.render();
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -240,5 +335,9 @@
     });
 </script>
 
-</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 @endsection

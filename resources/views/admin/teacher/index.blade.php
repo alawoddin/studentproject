@@ -21,7 +21,7 @@
  <!-- Main Content -->
 <div class="row">
     <!-- Table Section -->
-    <div class="col-xl-8">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title mb-4">
@@ -62,8 +62,10 @@
                                 <th>Students</th>
                                 <th>Total Fees</th>
                                 <th>Paid</th>
-                                <th>Remaining Fees</th>
+                                {{-- <th>Remaining Fees</th> --}}
+                                <th>Date</th>
                                 <th>Paid status </th>
+                                <th class="all">Action</th>
                                 <th>Total of Salary</th>
                             </tr>
                         </thead>
@@ -79,18 +81,34 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->department->depart_name }}</td>
-                                    <td>{{ $item->subject->subject_name }}</td>
+                                    <td>{{ $item->subject->subject_name ??'null' }}</td>
                                     <td>{{ $item->student->name }}</td>
                                     <td>{{ $item->total_fees }}</td>
                                     <td>{{ $item->paid }}</td>
-                                    <td>{{ $item->remaining_Fees }}</td>
+                                    {{-- <td>{{ $item->remaining_Fees }}</td> --}}
+                                    <td>{{ $item->paid_date }}</td>
+
                                       <td>
-                                @if ($teacher->status == 1)
-                                    <span class="badge bg-success">Paid</span>
-                                @else
-                                    <span class="badge bg-danger">Unpaid</span>
-                                @endif
-                            </td>
+                                        @if ($teacher->status == 1)
+                                            <span class="badge bg-success">Paid</span>
+                                        @else
+                                            <span class="badge bg-danger">Unpaid</span>
+                                        @endif
+                                      </td>
+
+                                       <td style="text-align:center; font-size: 20px;">
+
+                                            @if($item->status === 'paid')
+                                                <a href="{{ route('deactivate.paid', $item->id) }}">
+                                                    <i class="fas fa-check btn btn-primary waves-effect waves-light"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('deactivate.paid', $item->id) }}">
+                                                    <i class="fas fa-times btn btn-primary waves-effect waves-light"></i>
+                                                </a>
+                                            @endif
+                                        </td>
+
                                     @if ($loop->first)
                                         <td rowspan="{{ $paids->count() }}" class="text-center font-bold bg-blue-50">
                                             {{ $commission }} AFG
@@ -105,28 +123,23 @@
         </div>
     </div>
 
-    <!-- Teacher Card -->
+    {{-- <!-- Teacher Card -->
     <div class="col-xl-4">
         <div class="card">
             <div class="card-body">
-                <div class="mt-4 text-center">
-                    <img class="header-profile-user"
-                         src="{{ !empty($teacher->photo) ? asset($teacher->photo) : asset('uploads/no_image.png') }}"
-                         alt="Header Avatar">
-                </div>
+                
                 <div class="row">
                     <div class="col-12">
                         <div class="text-center mt-4">
-                            <h5>{{ $teacher->first_name }}</h5>
-                            <p class="mb-2 text-center">{{ $teacher->department->depart_name }}</p>
-                            <p class="mb-2 text-center">{{ $teacher->email }}</p>
-                            <p class="mb-2">{{ $teacher->phone }}</p>
+                            <form action="">
+                                <input type="text" value="{{$commission}}">
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 

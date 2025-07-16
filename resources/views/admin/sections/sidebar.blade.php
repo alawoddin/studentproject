@@ -9,7 +9,7 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="{{ !empty($adminData->photo) ? asset('uploads/admin_profiles/' . $adminData->photo) : asset('uploads/no_image.png') }}"
+                <img src="https://tawanatechnology.com/frontend/images/logo5.png"
                     alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
@@ -27,7 +27,7 @@
 
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"></span>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -45,24 +45,35 @@
                         <span>Department</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.depart') }}">Add Department</a></li>
+                        {{-- <li><a href="{{ route('add.depart') }}">Add Department</a></li> --}}
                         <li><a href="{{ route('all.depart') }}">Manage Department</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-user-line"></i>
+                      <i class="ri-user-line"></i>
                         <span>Teacher</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                        <li><a href="{{ route('add.teacher') }}">Add Teacher</a></li>
-                        <li><a href="{{ route('manage.teacher') }}">Manage Teacher</a></li>
-                        {{-- <li><a href="{{ route('view.teachers') }}">View All Teachers</a></li> --}}
-
-                    </ul>
+                <li>
+                    <a href="{{ route('manage.teacher') }}" >
+                        <i class="ri-user-line"></i>
+                        <span>Teacher</span>
+                    </a>
+                    
                 </li>
+                 {{-- Teacher Show Salary --}}
+                <li>
+                    <a href="{{ route('teachershow.salary') }}" >
+                        <i class="ri-wallet-line"></i>
+                        <span>Teacher Salary</span>
+                    </a>
+                </li>
+                </ul>
+            </li>
+
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -70,22 +81,36 @@
                         <span>Students</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.student') }}">Add Student</a></li>
-                        <li><a href="{{ route('manage.student') }}">Manage Student</a></li>
-                    </ul>
+
+                <li>
+                    <a href="{{ route('manage.student') }}" >
+                        <i class="ri-group-line"></i>
+                        <span>Students</span>
+                    </a>
                 </li>
+
+               
 
                 {{-- adding paid --}}
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <a href="{{ route('manage.paid') }}" >
                         <i class="ri-wallet-line"></i>
                         <span>Paid</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.paid') }}">Add Paid</a></li>
-                        <li><a href="{{ route('manage.paid') }}">Manage Paid</a></li>
-                    </ul>
+                    
                 </li>
+
+                </ul>
+            </li>
+
+                
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-settings-3-line"></i>
+                        <span>Settings</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
 
                  {{-- adding salary --}}
                  <li>
@@ -162,7 +187,8 @@
 
                     </ul>
                 </li>
-
+                </ul>
+            </li>
 
 
             </ul>

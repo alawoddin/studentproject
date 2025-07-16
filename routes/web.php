@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\StafController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\salaryController;
+use App\Http\Controllers\Backend\teacherShowSalaryController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
@@ -167,5 +168,13 @@ Route::controller(PendingController::class)->group(function() {
     Route::get('/add/pending' , 'AddPending')->name('add.pending');
     Route::post('store/pending', 'StorePending')->name('store.pending');
     Route::get('/pending/student/{id}' ,  'StudentPending')->name('student.pending');
+    // Route::get('wait/student' , 'WaitStudent')->name('wait.student');
+});
+
+Route::controller(teacherShowSalaryController::class)->group(function() {
+    Route::get('teachershowsalary' , 'TeacherShowSalary')->name('teachershow.salary');
+    // Route::get('/add/pending' , 'AddPending')->name('add.pending');
+    // Route::post('store/pending', 'StorePending')->name('store.pending');
+    // Route::get('/pending/student/{id}' ,  'StudentPending')->name('student.pending');
     // Route::get('wait/student' , 'WaitStudent')->name('wait.student');
 });

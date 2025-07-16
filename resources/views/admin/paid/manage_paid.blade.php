@@ -29,7 +29,8 @@
                         <th>remaining_Fees</th>
                         <th>entry_date</th>
                         <th>paid_date</th>
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
+                        <th>print</th>
                         <th class="all">Action</th>
                     </tr>
                 </thead>
@@ -40,7 +41,7 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $paids->student->name }}</td>
                             <td>{{ $paids->department->depart_name }}</td>
-                            <td>{{ $paids->subject->subject_name }}</td>
+                            <td>{{ $paids->subject->subject_name ??'null' }}</td>
                             {{-- <td>
                                 @foreach ($paids->subjects as $subject)
                                     <span class="badge bg-success">{{ $subject->subject_name }}</span>
@@ -53,13 +54,16 @@
                             <td>{{ $paids->remaining_Fees }}</td>
                             <td>{{ $paids->entry_date }}</td>
                             <td>{{ $paids->paid_date }}</td>
-                            <td>
+                            {{-- <td>
                                 @if($paids->status === 'paid')
                                     <span class="badge bg-success">paid</span>
                                 @else
                                     <span class="badge bg-danger">no_paid</span>
                                 @endif
-                            </td>
+                            </td> --}}
+                            <td>
+                                <a href="{{ route('print.invoice',$paids->id) }}" ><i class="fas fa-print btn btn-primary"></i></a>
+                    </td>
 
                             <td style="text-align:center; font-size: 20px;">
                                 <a href="{{ route('edit.paid', $paids->id) }}">
@@ -69,7 +73,7 @@
                                     <i class="fas fa-trash-alt btn btn-danger"></i>
                                 </a>
 
-                                @if($paids->status === 'paid')
+                                {{-- @if($paids->status === 'paid')
                                     <a href="{{ route('deactivate.paid', $paids->id) }}">
                                         <i class="fas fa-check btn btn-primary waves-effect waves-light"></i>
                                     </a>
@@ -77,7 +81,7 @@
                                     <a href="{{ route('deactivate.paid', $paids->id) }}">
                                         <i class="fas fa-times btn btn-primary waves-effect waves-light"></i>
                                     </a>
-                                @endif
+                                @endif --}}
                             </td>
 
 

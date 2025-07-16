@@ -98,15 +98,22 @@ class StudentController extends Controller
     }
 
     public function PrintInvoice($id) {
-        $Paid = Paid::with('student' , 'subject' , 'department')->findOrFail($id);
-        $student = $Paid->student;
 
-        $pdf = Pdf::loadView('admin.student.print_invoice', compact('student', 'Paid'))
-            ->setPaper('a4' , 'landscape')
-            ->setOption([
-                'tempDir' => public_path(),
-                'chroot' => public_path(),
-            ]);
-        return $pdf->download('paid.pdf');
+        // Get the invoice/payment details
+    $Paid = Paid::with(['student', 'teacher', 'subject'])->findOrFail($id);
+
+    // Pass data to a dedicated print view
+    return view('admin.student.print_invoice', compact('Paid'));
+
+        // $Paid = Paid::with('student' , 'subject' , 'department')->findOrFail($id);
+        // $student = $Paid->student;
+
+        // $pdf = Pdf::loadView('admin.student.print_invoice', compact('student', 'Paid'))
+        //     ->setPaper('a4' , 'landscape')
+        //     ->setOption([
+        //         'tempDir' => public_path(),
+        //         'chroot' => public_path(),
+        //     ]);
+        // return $pdf->download('paid.pdf');
     }
 }

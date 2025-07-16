@@ -39,10 +39,17 @@
                                 <input class="form-control" name="depart_name" value="{{ $depart->depart_name }}" type="text" placeholder="Department name">
                             </div>
                         </div>
+                        
 
                         <!-- Department name -->
                        <div class="col-md-6">
-                            <label class="col-sm-6 col-form-label">Department Subjects</label>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label class="form-label mb-0" style="margin-top:-8px">Department Subjects</label>
+                            <button type="button" class="btn btn-outline-primary btn-sm mb-2" id="add-subject"  style="margin-top:-8px">
+                                + Add Subject
+                            </button>
+                        </div>
+
                             <div class="col-sm-10" id="subject-container">
                                 @foreach ($depart->subjects as $subject)
                                     <div class="input-group mb-2">
@@ -67,5 +74,20 @@
 
 </div>
 
+
+<script>
+    $('#add-subject').on('click', function () {
+        $('#subject-container').append(`
+            <div class="input-group mb-2">
+                <input type="text" name="depart_subjects[]" class="form-control" placeholder="Department subject" required>
+                <button type="button" class="btn btn-danger remove-subject">Remove</button>
+            </div>
+        `);
+    });
+
+    $(document).on('click', '.remove-subject', function () {
+        $(this).closest('.input-group').remove();
+    });
+</script>
 
 @endsection

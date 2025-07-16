@@ -6,9 +6,10 @@
                 $totalPaid = App\Models\Paid::sum('total_fees');
                 $teacher = App\Models\Teacher::count();
                 $pending = App\Models\Pending::count();
+                $expence = App\Models\Expense::sum('amount');
             @endphp
 <div class="row">
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-3 col-md-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -83,6 +84,8 @@
                                 </div><!-- end card -->
                             </div><!-- end col -->
                         </div><!-- end row -->
+                        
+                           
 
     <div class="container-fluid">
 
@@ -102,27 +105,27 @@
                                 <option value="3">Jan</option>
                             </select>
                         </div> --}}
-                        <h4 class="card-title mb-4">total student</h4>
+                        <h4 class="card-title mb-4">سرمایه</h4>
 
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-center mt-4">
-                                    <h5>{{ $count }}</h5>
-                                    <p class="mb-2 text-truncate">Entry Student</p>
+                                    <h5>{{$totalPaid}}</h5>
+                                    <p class="mb-2 text-truncate">اید</p>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-4">
                                 <div class="text-center mt-4">
-                                    <h5>{{ $totalPaid }}</h5>
-                                    <p class="mb-2 text-truncate">Total Paid</p>
+                                    <h5>{{$expence}}</h5>
+                                    <p class="mb-2 text-truncate">مصرف</p>
                                 </div>
                             </div>
                             <!-- end col -->
                             <div class="col-4">
                                 <div class="text-center mt-4">
-                                    <h5>{{ $teacher }}</h5>
-                                    <p class="mb-2 text-truncate">Total teacher</p>
+                                    <h5><?php echo $totalPaid-$expence ?>    </h5>
+                                    <p class="mb-2 text-truncate">دخل</p>
                                 </div>
                             </div>
                             <!-- end col -->

@@ -241,7 +241,7 @@
                 },
                 labels: {
                     formatter: function (value) {
-                        return '$' + value.toLocaleString();
+                        return 'AFG' + value.toLocaleString();
                     }
                 }
             },
@@ -254,7 +254,7 @@
                 intersect: false,
                 y: {
                     formatter: function (val) {
-                        return "$" + val.toLocaleString();
+                        return "AFG" + val.toLocaleString();
                     }
                 }
             },
@@ -316,7 +316,7 @@
                 },
                 labels: {
                     formatter: function (value) {
-                        return '$' + value.toLocaleString();
+                        return 'AFG' + value.toLocaleString();
                     }
                 }
             },
@@ -329,7 +329,7 @@
                 intersect: false,
                 y: {
                     formatter: function (val) {
-                        return "$" + val.toLocaleString();
+                        return "AFG" + val.toLocaleString();
                     }
                 }
             }

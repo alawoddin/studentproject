@@ -12,6 +12,9 @@ use App\Models\Teacher;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
+// use Intervention\Image\Drivers\Gd\Driver;
+// use Intervention\Image\ImageManager;
+
 class TeacherController extends Controller
 {
     // add part

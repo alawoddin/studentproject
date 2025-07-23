@@ -16,6 +16,8 @@ use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\salaryController;
 use App\Http\Controllers\Backend\teacherShowSalaryController;
+use App\Http\Controllers\AttendanceController;
+
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
@@ -112,7 +114,7 @@ Route::controller(piadController::class)->group(function () {
     Route::get('edit/paid/{id}', 'EditPaid')->name('edit.paid');
     Route::post('update/paid/{id}', 'UpdatePaid')->name('update.paid');
     Route::get('delete/paid/{id}', 'DeletePaid')->name('delete.paid');
-    Route::get('deactivate/paid/{id}' ,  'DeactivatePaid')->name('deactivate.paid');
+    Route::get('deactivate/paid/{id}',  'DeactivatePaid')->name('deactivate.paid');
 });
 
 
@@ -148,7 +150,7 @@ Route::controller(StafController::class)->group(function () {
 
 
 
-Route::controller(ReportController::class)->group(function(){
+Route::controller(ReportController::class)->group(function () {
     Route::get('/admin/all/reports', 'AdminAllReports')->name('admin.all.reports');
     Route::post('/admin/search/bydate', 'AdminSearchByDate')->name('admin.search.bydate');
     Route::post('/admin/search/bymonth', 'AdminSearchByMonth')->name('admin.search.bymonth');
@@ -156,28 +158,36 @@ Route::controller(ReportController::class)->group(function(){
     Route::get('/all/invoice/{id}', 'AllInvoice')->name('all.invoice');
 });
 
-Route::controller(salaryController::class)->group(function() {
-    Route::get('all/salary' , 'AllSalary')->name('all.salary');
+Route::controller(salaryController::class)->group(function () {
+    Route::get('all/salary', 'AllSalary')->name('all.salary');
     Route::get('add/salary', 'AddSalary')->name('add.salary');
     Route::post('store/salary', 'StoreSalary')->name('store.salary');
     Route::get('edit/salary/{id}', 'EditSalary')->name('edit.salary');
     Route::post('salary/update/{id}', 'UpdateSalary')->name('update.salary');
     Route::get('delete/salary/{id}', 'DeleteSalary')->name('delete.salary');
-
 });
 
-Route::controller(PendingController::class)->group(function() {
-    Route::get('all/pending' , 'AllPending')->name('all.pending');
-    Route::get('/add/pending' , 'AddPending')->name('add.pending');
+Route::controller(PendingController::class)->group(function () {
+    Route::get('all/pending', 'AllPending')->name('all.pending');
+    Route::get('/add/pending', 'AddPending')->name('add.pending');
     Route::post('store/pending', 'StorePending')->name('store.pending');
-    Route::get('/pending/student/{id}' ,  'StudentPending')->name('student.pending');
+    Route::get('/pending/student/{id}',  'StudentPending')->name('student.pending');
     // Route::get('wait/student' , 'WaitStudent')->name('wait.student');
 });
 
-Route::controller(teacherShowSalaryController::class)->group(function() {
-    Route::get('teachershowsalary' , 'TeacherShowSalary')->name('teachershow.salary');
+Route::controller(teacherShowSalaryController::class)->group(function () {
+    Route::get('teachershowsalary', 'TeacherShowSalary')->name('teachershow.salary');
     // Route::get('/add/pending' , 'AddPending')->name('add.pending');
     // Route::post('store/pending', 'StorePending')->name('store.pending');
     // Route::get('/pending/student/{id}' ,  'StudentPending')->name('student.pending');
     // Route::get('wait/student' , 'WaitStudent')->name('wait.student');
+});
+
+
+// attendance
+
+Route::controller(AttendanceController::class)->group(function () {
+    Route::get('all/attendance', 'AllAttendance')->name('all.attendance');
+    Route::get('/add/attendance', 'AddAttendance')->name('add.attendance');
+    Route::post('store/attendance', 'StoreAttendance')->name('store.attendance');
 });

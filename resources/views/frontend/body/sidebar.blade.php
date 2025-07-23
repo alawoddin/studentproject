@@ -1,37 +1,36 @@
-
 <div class="vertical-menu">
 
     <div data-simplebar class="h-100">
 
-  {{-- @php
-          $id = Auth::guard('teacher')->id();
-          $teacher = App\Models\Teacher::find($id);
-     @endphp --}}
+        {{-- @php
+        $id = Auth::guard('teacher')->id();
+        $teacher = App\Models\Teacher::find($id);
+        @endphp --}}
 
         {{-- @php
         $teacher = App\Models\Teacher::first();
-    @endphp --}}
+        @endphp --}}
 
-    @php
-    $id = Auth::guard('teacher')->id();
-    $profile = App\Models\Teacher::find($id);
-@endphp
+        @php
+            $id = Auth::guard('teacher')->id();
+            $profile = App\Models\Teacher::find($id);
+        @endphp
 
-<!-- User details -->
-<div class="user-profile text-center mt-3">
-    <div>
+        <!-- User details -->
+        <div class="user-profile text-center mt-3">
+            <div>
 
 
-        <img class="rounded-circle header-profile-user" src="{{ asset($profile->photo) }}" alt="">
-    </div>
-    <div class="mt-3">
-        <h4 class="font-size-16 mb-1">{{ $profile->name }} </h4>
-        <span class="text-muted">
-            <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-            {{ $profile->email }}
-        </span>
-    </div>
-</div>
+                <img class="rounded-circle header-profile-user" src="{{ asset($profile->photo) }}" alt="">
+            </div>
+            <div class="mt-3">
+                <h4 class="font-size-16 mb-1">{{ $profile->name }} </h4>
+                <span class="text-muted">
+                    <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
+                    {{ $profile->email }}
+                </span>
+            </div>
+        </div>
 
 
         <!--- Sidemenu -->
@@ -57,11 +56,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
-                        <span>Department</span>
+                        <span>Attendance</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Add Department</a></li>
-                        <li><a href="#">Manage Department</a></li>
+                        {{-- <li><a href="#">Add Department</a></li> --}}
+                        <li><a href="{{route('all.attendance')}}">Manage Department</a></li>
                     </ul>
                 </li>
 
@@ -74,7 +73,7 @@
 
                         <li><a href="#">Add Teacher</a></li>
                         <li><a href="#">Manage Teacher</a></li>
-                     <li><a href="#">View All Teachers</a></li>
+                        <li><a href="#">View All Teachers</a></li>
 
                     </ul>
                 </li>
@@ -101,9 +100,6 @@
                         <li><a href="#">Manage Paid</a></li>
                     </ul>
                 </li>
-
-
-
 
 
                 <li>

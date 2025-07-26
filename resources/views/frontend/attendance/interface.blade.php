@@ -1,3 +1,8 @@
+
+@extends('frontend.teacher_dashboard')
+
+@section('teacher')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +10,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Student Attendance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             padding: 20px;
@@ -129,8 +133,10 @@
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+
+ 
+
+    {{-- <script>
         document.getElementById('attendanceForm').addEventListener('submit', function (event) {
             event.preventDefault();
             const formData = new FormData(this);
@@ -138,10 +144,51 @@
             for (let [key, value] of formData.entries()) {
                 attendance[key] = value;
             }
-            console.log('Attendance data submitted:', attendance);
-            alert('Attendance has been submitted! Check console for data.');
+            Swal.fire({
+                title: 'Success!',
+                text: 'Attendance has been submitted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
         });
-    </script>
+    </script> --}}
+    <script>
+    document.getElementById('attendanceForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const attendance = {};
+
+        // Loop through form data
+        for (let [key, value] of formData.entries()) {
+            attendance[key] = value;
+        }
+
+        // Handle unchecked checkboxes explicitly
+        const checkboxes = this.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                attendance[checkbox.name] = 'unchecked';
+            } else {
+                attendance[checkbox.name] = 'checked';
+            }
+        });
+
+        // Show success message
+        Swal.fire({
+            title: 'Success!',
+            text: 'Attendance has been submitted successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        console.log(attendance); // Optional: for debugging
+    });
+</script>
+
+
 </body>
 
 </html>
+
+@endsection

@@ -11,7 +11,7 @@ class AttendanceController extends Controller
     public function AllAttendance()
     {
         $atten = Student::all();
-        return view('frontend.attendance.attendance', compact('atten'));
+        return view('frontend.attendance.interface', compact('atten'));
     }
 
     public function AddAttendance()

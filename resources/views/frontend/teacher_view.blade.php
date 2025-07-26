@@ -39,6 +39,7 @@
         <header class="bg-white rounded-xl shadow-sm p-6 mb-8">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="flex items-center mb-4 md:mb-0">
+                    
                     <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
                         <!-- <i class="fas fa-user-tie text-blue-600 text-3xl"></i> -->
                         <img class="header-profile-user"
@@ -86,7 +87,7 @@
                     $subjectIdCard = $paidGroup->first()->subject->id ?? null;
                 @endphp
 
-                <a href="#" class="block">
+                <a href="{{route('all.attendance')}}" class="block">
                     <div class="card bg-white rounded-xl p-6 h-full">
                         <div class="flex justify-between items-start">
                             <div>

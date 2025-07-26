@@ -85,9 +85,9 @@
                 <table class="table table-bordered table-hover align-middle">
                     <thead class="table-light text-center">
                         <tr>
-                            <th>Student Name</th>
-                            <th>Class</th>
                             <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Time</th>
                             <th>2025-07-01</th>
                             <th>2025-07-02</th>
                             <th>2025-07-03</th>
@@ -106,12 +106,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-start">Ahmad</td>
-                            <td class="text-start">Physics</td>
-                            <td>1</td>
-                            <td><input type="checkbox" name="present_1_2025-07-01" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-02" /></td>
+                            @foreach ($atten as $key => $student)
+                                <tr>
+
+                                <td>{{ $student->id ?? 'No ID' }}</td>
+                                <td class="text-start">{{ $student->name ?? 'No Name' }}</td>
+                                <td class="text-start">{{ $student->time ?? 'No Time' }}</td>
+                                <td><input type="checkbox" name="present_1_2025-07-01" /></td>
+                                  <td><input type="checkbox" name="present_1_2025-07-02" /></td>
                             <td><input type="checkbox" name="present_1_2025-07-03" /></td>
                             <td><input type="checkbox" name="present_1_2025-07-04" /></td>
                             <td><input type="checkbox" name="present_1_2025-07-05" /></td>
@@ -125,8 +127,9 @@
                             <td><input type="checkbox" name="present_1_2025-07-13" /></td>
                             <td><input type="checkbox" name="present_1_2025-07-14" /></td>
                             <td><input type="checkbox" name="present_1_2025-07-15" /></td>
-                        </tr>
-                        <!-- Additional student rows can be added here -->
+                                </tr>
+                            @endforeach
+                        
                     </tbody>
                 </table>
             </div>

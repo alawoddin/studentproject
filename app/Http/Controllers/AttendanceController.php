@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\Paid;
 use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
-    public function AllAttendance()
-    {
-        $atten = Student::all();
-        return view('frontend.attendance.interface', compact('atten'));
-    }
+public function AllAttendance()
+{
+    // Get the ID of the logged-in teacher
+    $teacherId = Auth::guard('teacher')->id();
+
+    // Fetch all students where the teacher_id matches the logged-in teacher's ID
+    $atten = Student::where('teacher_id', $teacherId)->get();
+
+    // Return the view with the students data
+    return view('frontend.attendance.interface', compact('atten'));
+}
 
     public function AddAttendance()
     {

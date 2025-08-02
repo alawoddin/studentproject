@@ -37,4 +37,11 @@ class AttendanceController extends Controller
 
         return redirect()->route('add.attendance')->with('success', 'حاضری موفقانه ثبت شد!');
     }
+
+
+    public function AddAttendance()
+    {
+        $students = Student::all();
+        return view('frontend.attendance.add', compact('students'));
+    }
 }

@@ -183,7 +183,6 @@ Route::controller(teacherShowSalaryController::class)->group(function () {
     // Route::get('wait/student' , 'WaitStudent')->name('wait.student');
 });
 
-
 // attendance
 
 Route::controller(AttendanceController::class)->group(function () {

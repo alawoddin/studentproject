@@ -9,8 +9,8 @@
         <!-- User details -->
         <div class="user-profile text-center mt-3">
             <div class="">
-                <img src="https://tawanatechnology.com/frontend/images/logo5.png"
-                    alt="" class="avatar-md rounded-circle">
+                <img src="https://tawanatechnology.com/frontend/images/logo5.png" alt=""
+                    class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
                 <h4 class="font-size-16 mb-1">{{ $adminData->name }}</h4>
@@ -24,7 +24,6 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
-
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
                         <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"></span>
@@ -52,27 +51,27 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                      <i class="ri-user-line"></i>
+                        <i class="ri-user-line"></i>
                         <span>Teacher</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                <li>
-                    <a href="{{ route('manage.teacher') }}" >
-                        <i class="ri-user-line"></i>
-                        <span>Teacher</span>
-                    </a>
-                    
+                        <li>
+                            <a href="{{ route('manage.teacher') }}">
+                                <i class="ri-user-line"></i>
+                                <span>Teacher</span>
+                            </a>
+
+                        </li>
+                        {{-- Teacher Show Salary --}}
+                        <li>
+                            <a href="{{ route('teachershow.salary') }}">
+                                <i class="ri-wallet-line"></i>
+                                <span>Teacher Salary</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                 {{-- Teacher Show Salary --}}
-                <li>
-                    <a href="{{ route('teachershow.salary') }}" >
-                        <i class="ri-wallet-line"></i>
-                        <span>Teacher Salary</span>
-                    </a>
-                </li>
-                </ul>
-            </li>
 
 
                 <li>
@@ -82,28 +81,28 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                <li>
-                    <a href="{{ route('manage.student') }}" >
-                        <i class="ri-group-line"></i>
-                        <span>Students</span>
-                    </a>
+                        <li>
+                            <a href="{{ route('manage.student') }}">
+                                <i class="ri-group-line"></i>
+                                <span>Students</span>
+                            </a>
+                        </li>
+
+
+
+                        {{-- adding paid --}}
+                        <li>
+                            <a href="{{ route('manage.paid') }}">
+                                <i class="ri-wallet-line"></i>
+                                <span>Paid</span>
+                            </a>
+
+                        </li>
+
+                    </ul>
                 </li>
 
-               
 
-                {{-- adding paid --}}
-                <li>
-                    <a href="{{ route('manage.paid') }}" >
-                        <i class="ri-wallet-line"></i>
-                        <span>Paid</span>
-                    </a>
-                    
-                </li>
-
-                </ul>
-            </li>
-
-                
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -112,83 +111,83 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                 {{-- adding salary --}}
-                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-money-dollar-circle-line"></i>
-                        <span>Salary</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.salary') }}">Add salary</a></li>
-                        <li><a href="{{ route('all.salary') }}">all salary</a></li>
+                        {{-- adding salary --}}
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-money-dollar-circle-line"></i>
+                                <span>Salary</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('add.salary') }}">Add salary</a></li>
+                                <li><a href="{{ route('all.salary') }}">all salary</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-group-line"></i>
+                                <span>Staff</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+
+                                <li><a href="{{ route('add.staf') }}">Add Staff</a></li>
+                                <li><a href="{{ route('manage.staf') }}">Manage Staff</a></li>
+
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-wallet-3-line"></i>
+                                <span>Expense</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('add.expense') }}">Add Expense</a></li>
+                                <li><a href="{{ route('manage.expense') }}">Manage Expense</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-file-chart-line"></i>
+                                <span>Manage Reports</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('admin.all.reports') }}">All Reports</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-loader-2-line"></i>
+                                <span>Waiting</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('add.pending') }}">Add Pending</a></li>
+                                {{-- {{-- <li><a href="{{ route('manage.expense') }}">Done</a></li> --}}
+                                <li><a href="{{ route('all.pending') }}">All Pending</a></li>
+                            </ul>
+                        </li>
+
+
+
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="ri-profile-line"></i>
+                                <span>Utility</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html">Starter Page</a></li>
+                                <li><a href="pages-timeline.html">Timeline</a></li>
+
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-group-line"></i>
-                        <span>Staff</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-
-                        <li><a href="{{ route('add.staf') }}">Add Staff</a></li>
-                        <li><a href="{{ route('manage.staf') }}">Manage Staff</a></li>
-
-                    </ul>
-                </li>
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-wallet-3-line"></i>
-                        <span>Expense</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.expense') }}">Add Expense</a></li>
-                        <li><a href="{{ route('manage.expense') }}">Manage Expense</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-file-chart-line"></i>
-                        <span>Manage Reports</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.all.reports') }}">All Reports</a></li>
-
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-loader-2-line"></i>
-                        <span>Waiting</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('add.pending') }}">Add Pending</a></li>
-                        {{-- {{-- <li><a href="{{ route('manage.expense') }}">Done</a></li> --}}
-                        <li><a href="{{ route('all.pending') }}">All Pending</a></li>
-                    </ul>
-                </li>
-
-
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>Utility</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Starter Page</a></li>
-                        <li><a href="pages-timeline.html">Timeline</a></li>
-
-                    </ul>
-                </li>
-                </ul>
-            </li>
 
 
             </ul>

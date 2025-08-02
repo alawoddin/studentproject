@@ -59,8 +59,8 @@
                         <span>Attendance</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        {{-- <li><a href="#">Add Department</a></li> --}}
-                        <li><a href="{{route('all.attendance')}}">Manage Department</a></li>
+                        {{-- <li><a href="{{route('all.attendance')}}">Attendance sheet</a></li> --}}
+                        <li><a href="{{route('all.attendance')}}">Manage Attendance</a></li>
                     </ul>
                 </li>
 

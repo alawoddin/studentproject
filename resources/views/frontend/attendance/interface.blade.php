@@ -4,142 +4,172 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Student Attendance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Live Attendance Count</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         body {
             padding: 20px;
-            background: #e9ecef;
+            height: 100vh;
+            background: url("https://png.pngtree.com/background/20210709/original/pngtree-sign-in-check-in-attendance-wall-annual-meeting-background-picture-image_937018.jpg");
+            background-size: cover;
+            background-position: center;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .table-wrapper {
             overflow-x: auto;
-            border: 1px solid #dee2e6;
-            border-radius: .25rem;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.95);
             padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(3px);
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        th:first-child,
+        td:first-child,
+        th:nth-child(2),
+        td:nth-child(2) {
+            text-align: left;
+        }
+
+        .count-box {
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        .present {
+            color: green;
+        }
+
+        .absent {
+            color: red;
         }
 
         table {
             min-width: 1200px;
         }
 
-        th,
-        td {
-            white-space: nowrap;
-            vertical-align: middle;
-            text-align: center;
-        }
-
-        th:first-child,
-        td:first-child {
-            text-align: left;
-            min-width: 140px;
-        }
-
-        th:nth-child(2),
-        td:nth-child(2) {
-            min-width: 120px;
-            text-align: left;
-        }
-
-        th:nth-child(3),
-        td:nth-child(3) {
-            min-width: 80px;
-        }
-
-        button {
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            color: #343a40;
-        }
-
-        .btn-success {
+        .submit-btn {
+            margin-top: 20px;
             background-color: #28a745;
-            border-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
         }
 
-        .btn-success:hover {
+        .submit-btn:hover {
             background-color: #218838;
-            border-color: #1e7e34;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 
 <body>
-
     <div class="container">
-        <h2 class="mb-4 text-center">Student Attendance</h2>
+        <h2 class="text-center mb-4">Student Attendance</h2>
 
-        <form id="attendanceForm">
-            <button type="submit" class="btn btn-success mb-3">Submit Attendance</button>
+        <div class="table-wrapper">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Class</th>
+                        <th>ID</th>
+                        <th>2025-07-01</th>
+                        <th>2025-07-02</th>
+                        <th>2025-07-03</th>
+                        <th>2025-07-04</th>
+                        <th>2025-07-05</th>
+                        <th>2025-07-06</th>
+                        <th>2025-07-07</th>
+                        <th>2025-07-08</th>
+                        <th>2025-07-09</th>
+                        <th>2025-07-10</th>
+                        <th>2025-07-11</th>
+                        <th>2025-07-12</th>
+                        <th>2025-07-13</th>
+                        <th>2025-07-14</th>
+                        <th>2025-07-15</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-start">Ahmad</td>
+                        <td class="text-start">Physics</td>
+                        <td>1</td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <div class="count-box">
+                                <span class="present">Present: <span class="present-count">0</span></span><br />
+                                <span class="absent">Absent: <span class="absent-count">18</span></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="table-wrapper">
-                <table class="table table-bordered table-hover align-middle">
-                    <thead class="table-light text-center">
-                        <tr>
-                            <th>Student Name</th>
-                            <th>Class</th>
-                            <th>ID</th>
-                            <th>2025-07-01</th>
-                            <th>2025-07-02</th>
-                            <th>2025-07-03</th>
-                            <th>2025-07-04</th>
-                            <th>2025-07-05</th>
-                            <th>2025-07-06</th>
-                            <th>2025-07-07</th>
-                            <th>2025-07-08</th>
-                            <th>2025-07-09</th>
-                            <th>2025-07-10</th>
-                            <th>2025-07-11</th>
-                            <th>2025-07-12</th>
-                            <th>2025-07-13</th>
-                            <th>2025-07-14</th>
-                            <th>2025-07-15</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-start">Ahmad</td>
-                            <td class="text-start">Physics</td>
-                            <td>1</td>
-                            <td><input type="checkbox" name="present_1_2025-07-01" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-02" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-03" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-04" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-05" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-06" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-07" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-08" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-09" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-10" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-11" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-12" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-13" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-14" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-15" /></td>
-                        </tr>
-                        <!-- Additional student rows can be added here -->
-                    </tbody>
-                </table>
-            </div>
-        </form>
+        <button class="submit-btn" onclick="submitAttendance()">
+            Submit Attendance
+        </button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('attendanceForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const attendance = {};
-            for (let [key, value] of formData.entries()) {
-                attendance[key] = value;
-            }
-            console.log('Attendance data submitted:', attendance);
-            alert('Attendance has been submitted! Check console for data.');
+        function updateCounts(row) {
+            const checkboxes = row.querySelectorAll("input[type='checkbox']");
+            const presentCount = Array.from(checkboxes).filter(
+                (cb) => cb.checked
+            ).length;
+            const totalDays = checkboxes.length;
+            const absentCount = totalDays - presentCount;
+
+            row.querySelector(".present-count").innerText = presentCount;
+            row.querySelector(".absent-count").innerText = absentCount;
+        }
+
+        function submitAttendance() {
+            alert("Attendance submitted successfully!");
+            // Optionally send data to server here
+        }
+
+        const studentRows = document.querySelectorAll("tbody tr");
+        studentRows.forEach((row) => {
+            const checkboxes = row.querySelectorAll("input[type='checkbox']");
+            checkboxes.forEach((cb) => {
+                cb.addEventListener("change", () => updateCounts(row));
+            });
+            updateCounts(row); // Initial calculation
         });
     </script>
 </body>

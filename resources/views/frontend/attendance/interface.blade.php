@@ -1,11 +1,20 @@
+
+@extends('frontend.teacher_dashboard')
+
+@section('teacher')
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+<<<<<<< HEAD
     <title>Live Attendance Count</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+=======
+    <title>Student Attendance</title>
+>>>>>>> 8387b81a1e75648c3487114a51eb30c755fd2feb
     <style>
         body {
             padding: 20px;
@@ -140,6 +149,7 @@
             </table>
         </div>
 
+<<<<<<< HEAD
         <button class="submit-btn" onclick="submitAttendance()">
             Submit Attendance
         </button>
@@ -170,8 +180,122 @@
                 cb.addEventListener("change", () => updateCounts(row));
             });
             updateCounts(row); // Initial calculation
+=======
+            <div class="table-wrapper">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Time</th>
+                            <th>2025-07-01</th>
+                            <th>2025-07-02</th>
+                            <th>2025-07-03</th>
+                            <th>2025-07-04</th>
+                            <th>2025-07-05</th>
+                            <th>2025-07-06</th>
+                            <th>2025-07-07</th>
+                            <th>2025-07-08</th>
+                            <th>2025-07-09</th>
+                            <th>2025-07-10</th>
+                            <th>2025-07-11</th>
+                            <th>2025-07-12</th>
+                            <th>2025-07-13</th>
+                            <th>2025-07-14</th>
+                            <th>2025-07-15</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach ($atten as $key => $student)
+                                <tr>
+
+                                <td>{{ $student->id ?? 'No ID' }}</td>
+                                <td class="text-start">{{ $student->name ?? 'No Name' }}</td>
+                                <td class="text-start">{{ $student->time ?? 'No Time' }}</td>
+                                <td><input type="checkbox" name="present_1_2025-07-01" /></td>
+                                  <td><input type="checkbox" name="present_1_2025-07-02" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-03" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-04" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-05" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-06" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-07" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-08" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-09" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-10" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-11" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-12" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-13" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-14" /></td>
+                            <td><input type="checkbox" name="present_1_2025-07-15" /></td>
+                                </tr>
+                            @endforeach
+                        
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+
+
+ 
+
+    {{-- <script>
+        document.getElementById('attendanceForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const attendance = {};
+            for (let [key, value] of formData.entries()) {
+                attendance[key] = value;
+            }
+            Swal.fire({
+                title: 'Success!',
+                text: 'Attendance has been submitted successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+>>>>>>> 8387b81a1e75648c3487114a51eb30c755fd2feb
         });
-    </script>
+    </script> --}}
+    <script>
+    document.getElementById('attendanceForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const attendance = {};
+
+        // Loop through form data
+        for (let [key, value] of formData.entries()) {
+            attendance[key] = value;
+        }
+
+        // Handle unchecked checkboxes explicitly
+        const checkboxes = this.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                attendance[checkbox.name] = 'unchecked';
+            } else {
+                attendance[checkbox.name] = 'checked';
+            }
+        });
+
+        // Show success message
+        Swal.fire({
+            title: 'Success!',
+            text: 'Attendance has been submitted successfully.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        console.log(attendance); // Optional: for debugging
+    });
+</script>
+
+
 </body>
 
 </html>
+<<<<<<< HEAD
+=======
+
+@endsection
+>>>>>>> 8387b81a1e75648c3487114a51eb30c755fd2feb

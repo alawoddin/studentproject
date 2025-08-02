@@ -23,11 +23,7 @@ public function AllAttendance()
     return view('frontend.attendance.interface', compact('atten'));
 }
 
-    public function AddAttendance()
-    {
-        $students = Student::all();
-        return view('frontend.attendance.add', compact('students'));
-    }
+    // Removed duplicate AddAttendance method
 
     public function StoreAttendance(Request $request)
     {
@@ -48,9 +44,4 @@ public function AllAttendance()
     }
 
 
-    public function AddAttendance()
-    {
-        $students = Student::all();
-        return view('frontend.attendance.add', compact('students'));
-    }
 }

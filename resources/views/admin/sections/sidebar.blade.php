@@ -49,41 +49,17 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-user-line"></i>
-                        <span>Teacher</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-
-                        <li>
-                            <a href="{{ route('manage.teacher') }}">
-                                <i class="ri-user-line"></i>
-                                <span>Teacher</span>
-                            </a>
-
-                        </li>
-                        {{-- Teacher Show Salary --}}
-                        <li>
-                            <a href="{{ route('teachershow.salary') }}">
-                                <i class="ri-wallet-line"></i>
-                                <span>Teacher Salary</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-group-line"></i>
+                         <i class="mdi mdi-school font-size-24"></i>
                         <span>Students</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
                         <li>
                             <a href="{{ route('manage.student') }}">
-                                <i class="ri-group-line"></i>
+                                <i class="mdi mdi-school font-size-24"></i>
                                 <span>Students</span>
                             </a>
                         </li>
@@ -93,7 +69,7 @@
                         {{-- adding paid --}}
                         <li>
                             <a href="{{ route('manage.paid') }}">
-                                <i class="ri-wallet-line"></i>
+                                <i class="mdi mdi-cash font-size-24"></i>
                                 <span>Paid</span>
                             </a>
 
@@ -101,6 +77,34 @@
 
                     </ul>
                 </li>
+                
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-teach font-size-24"></i>
+                        <span>Teacher</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+
+                        <li>
+                            <a href="{{ route('manage.teacher') }}">
+                                <i class="mdi mdi-teach font-size-24"></i>
+                                <span>Teacher</span>
+                            </a>
+
+                        </li>
+                        {{-- Teacher Show Salary --}}
+                        <li>
+                            <a href="{{ route('teachershow.salary') }}">
+                                <i class="mdi mdi-cash font-size-24"></i>
+                                <span>Teacher Salary</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                
 
 
 

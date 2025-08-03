@@ -56,16 +56,34 @@ class piadController extends Controller
 
 
     // لیست پرداخت‌ها
-    public function ManagePaid()
+   public function ManagePaid()
     {
-        // $paid = Paid::all();
-        // $depart = Department::all();
-        // $teachers = Teacher::all();
-        $paid = Paid::with('department' , 'teacher' , 'subject' , 'student')->get();
+
+//         public function ManagePaid()
+// {
+// // $paid = Paid::all();
+// // $depart = Department::all();
+// // $teachers = Teacher::all();
+// $paid = Paid::with('department' , 'teacher' , 'subject' , 'student')->get();
+// $depart = Department::all();
+// $teachers = Teacher::all();
+// $student = Student::all();
+// return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers' , 'student'));
+// }
+
+        $latestPaidIds = Paid::select(DB::raw('MAX(id) as id'))
+            ->groupBy('student_id')
+            ->pluck('id');
+
+        $paid = Paid::with('department', 'teacher', 'subject', 'student')
+            ->whereIn('id', $latestPaidIds)
+            ->orderByDesc('paid_date')
+            ->get();
+
         $depart = Department::all();
         $teachers = Teacher::all();
         $student = Student::all();
-        return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers' , 'student'));
+        return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'student'));
     }
 
     // نمایش فرم ویرایش

@@ -122,7 +122,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-success">Update Paid</button>
+                            <button type="submit" class="btn btn-success">Save Again</button>
 
                         </form>
                     </div>

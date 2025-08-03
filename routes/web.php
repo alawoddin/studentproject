@@ -127,6 +127,13 @@ Route::controller(ExpenseController::class)->group(function () {
     Route::get('edit/expense/{id}', 'EditExpense')->name('edit.expense');
     Route::post('update/expense/{id}', 'UpdateExpense')->name('update.expense');
     Route::get('delete/expense/{id}', 'DeleteExpense')->name('delete.expense');
+
+    Route::post('store/teacher/expense', 'StoreTeacherExpense')->name('store.techer.expense');
+
+    // Add this to your routes file (web.php)
+Route::post('teacher/{id}/paid-all', 'PaidAllForTeacher')->name('teacher.paid.all');
+    // Route::post('paid/all/student/expense', 'PaidAllStudentExpense')->name('paid.all.student.expense');
+
 });
 // -------------------------------- expense
 

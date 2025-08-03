@@ -118,7 +118,7 @@
                             </div>
                         </div>
 
-                       <div class="col-xl-12">
+                       {{-- <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-body pb-0">
                                     <h4 class="card-title mb-4">Monthly Expenses & Paid Summary</h4>
@@ -127,7 +127,7 @@
                                     <div id="mixed_chart" class="apex-charts" dir="ltr"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         

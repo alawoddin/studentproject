@@ -38,7 +38,7 @@
                 <tbody>
                     @foreach ($paid as $key => $paids)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $paids->id }}</td>
                             <td>{{ $paids->student->name }}</td>
                             {{-- <td>{{ $paids->department->depart_name }}</td> --}}
                             <td>{{ $paids->subject->subject_name ??'null' }}</td>
@@ -53,7 +53,15 @@
                             <td>{{ $paids->paid }}</td>
                             <td>{{ $paids->remaining_Fees }}</td>
                             {{-- <td>{{ $paids->entry_date }}</td> --}}
-                            <td>{{ $paids->paid_date }}</td>
+                            @php
+                                $paidDate = \Carbon\Carbon::parse($paids->paid_date);
+                                $today = \Carbon\Carbon::today();
+                                $isExpired = $paidDate->month < $today->month && $paidDate->year == $today->year;
+                            @endphp
+                            <td style="{{ $isExpired ? 'color:red;' : '' }}">
+                                {{ $paids->paid_date }}
+                            </td>
+
                             {{-- <td>
                                 @if($paids->status === 'paid')
                                     <span class="badge bg-success">paid</span>

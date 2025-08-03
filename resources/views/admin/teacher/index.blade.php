@@ -89,11 +89,7 @@
                                     <td>{{ $item->paid_date }}</td>
 
                                       <td>
-                                        @if ($teacher->status == 1)
-                                            <span class="badge bg-success">Paid</span>
-                                        @else
-                                            <span class="badge bg-danger">Unpaid</span>
-                                        @endif
+                                        {{ $item->paid * $teacher->percentage / 100 }} Af
                                       </td>
 
                                        <td style="text-align:center; font-size: 20px;">
@@ -118,17 +114,24 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div> <!-- end table-responsive --> <br> 
+                <form action="{{ route('teacher.paid.all', $teacher->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Pay All Students for This Teacher</button>
+                </form>
+
+                <br>
+                <br>
                 <div>
-                    <form action="{{ route('store.expense') }}" method="POST">
+                    <form action="{{ route('store.techer.expense') }}" method="POST">
                             @csrf
 
                             {{-- === Expense Info === --}}
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Title</label>
-                                    <input class="form-control" value="{{ $teacher->first_name }}" name="title" type="text" placeholder="Expense Title"
-                                        required>
+                                    <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
+                                    <input class="form-control" value="{{ $teacher->first_name }}" name="title" type="text" placeholder="Expense Title"required>
                                 </div>
 
                                 <div class="col-md-6">
@@ -144,9 +147,16 @@
                                     <input class="form-control" name="date" type="date" required>
                                 </div>
 
+
+
+                                
                                 <div class="col-md-6">
                                     <label class="form-label">Note (Optional)</label>
-                                    <textarea name="note" class="form-control" rows="1" placeholder="Note..."></textarea>
+
+                                    <select name="note" class="form-control" required>
+                                        <option value="Full payment">Full payment</option>
+                                        <option value="Advance payment">Advance payment</option>
+                                    </select>
                                 </div>
                             </div>
 

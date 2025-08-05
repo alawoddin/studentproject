@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Expense;
 use App\Models\Paid;
+use App\Models\Teacher;
 
 class ExpenseController extends Controller
 {
@@ -75,19 +76,27 @@ class ExpenseController extends Controller
 
     // Start Teccher Expense
     public function StoreTeacherExpense(Request $request){
+         // Save 1 if switch is ON, else save 0
+    $leetValue = $request->has('leet') ? '1' : '0';
+
+     $note = $request->note_option === 'custom' 
+        ? $request->note_custom 
+        : $request->note_option;
+
         $request->validate([
             'title' => 'required|string|max:255',
             'amount' => 'required|numeric',
             'date' => 'required|date',
-            'note' => 'nullable|string',
         ]);
 
         Expense::create([
+
             'teacher_id' => $request->teacher_id,
             'title' => $request->title,
             'amount' => $request->amount,
             'date' => $request->date,
-            'note' => $request->note,
+            'note' => $note,
+            'leet' => $leetValue,
         ]);
 
         return redirect()->back()->with('success', 'Expense added successfully');
@@ -101,5 +110,22 @@ class ExpenseController extends Controller
 
             return redirect()->back()->with('success', 'All students for this teacher have been paid.');
         }
+
+
+        public function leetDestroy($id)
+            {
+                $expense = Expense::findOrFail($id);
+                $expense->delete();
+
+                return back()->with('success', 'Record deleted successfully.');
+            }
+
+        public function allLeet()   {
+             $teacher = Teacher::get();
+            return view('admin.expense.all_leet', compact('teacher'));
+        } 
+
+
+        
 
 }

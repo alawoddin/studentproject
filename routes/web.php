@@ -131,8 +131,10 @@ Route::controller(ExpenseController::class)->group(function () {
     Route::post('store/teacher/expense', 'StoreTeacherExpense')->name('store.techer.expense');
 
     // Add this to your routes file (web.php)
-Route::post('teacher/{id}/paid-all', 'PaidAllForTeacher')->name('teacher.paid.all');
+    Route::post('teacher/{id}/paid-all', 'PaidAllForTeacher')->name('teacher.paid.all');
     // Route::post('paid/all/student/expense', 'PaidAllStudentExpense')->name('paid.all.student.expense');
+     Route::delete('/leet/{id}', 'leetDestroy')->name('leet.destroy');
+     Route::get('all/leet/', 'allLeet')->name('all.leet');
 
 });
 // -------------------------------- expense
@@ -199,5 +201,15 @@ Route::controller(AttendanceController::class)->group(function () {
 
      Route::get('teacher/subject/index/{id}', 'TeacherSubjectIndex')->name('teacher.subject.index');
      Route::post('/attendance/store',  'Attendancestore')->name('attendance.store');
+
+     Route::get('/back',  'Back')->name('back');
+
+
+     
+    Route::get('/attendance',  'َAtendanceIndex')->name('attendance.index');
+    Route::get('/attendance/{id}', 'AtendanceShow')->name('attendance.show');
+
+    
+
 
 });

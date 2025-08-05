@@ -30,6 +30,7 @@
                         @csrf
 
                         {{-- === Student Info Section === --}}
+                        
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="col-sm-4 col-form-label">Name</label>
@@ -97,6 +98,12 @@
                                         <input class="form-control" id="time" name="time" type="Time">
                                     </div>
                             </div>
+                            <div class="col-md-6">
+                                    <label class="col-sm-6 col-form-label">Entry_date</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="entry_date" type="date" placeholder="entry_date">
+                                    </div>
+                            </div>
                          
                         </div>
                         {{-- === Submit Button === --}}
@@ -109,6 +116,8 @@
     </div>
 
 </div>
+
+
 
 {{-- jQuery Script --}}
 <script>

@@ -92,23 +92,36 @@ class TeacherController extends Controller
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
+
             $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            
+            // Resize and save the image
             $img = $manager->read($image);
-            $img->resize(300,300)->save(public_path('uploads/teacher/'.$name_gen));
-            $save_url = 'uploads/teacher/'.$name_gen;
+            $img->resize(300, 300)->save(public_path('uploads/teacher/' . $name_gen));
 
-            // $teacher = Teacher::findOrFail($id);
+            $save_url = 'uploads/teacher/' . $name_gen;
 
+            // Update the teacher photo
+            $teacher = Teacher::findOrFail($id);
 
+            // Delete old photo if exists
+            if ($teacher->photo && file_exists(public_path($teacher->photo))) {
+                @unlink(public_path($teacher->photo));
+            }
 
+            $teacher->photo = $save_url;
+            $teacher->save();
         }
-        $notification = array(
-            'message' => 'Category Updated Successfully',
-            'alert-type' => 'success'
-        );
 
-        return redirect()->route('manage.teacher')->with($notification);
+        // Notification message
+        $notification = [
+            'message' => 'Teacher Photo Updated Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->back()->with($notification);
     }
 
     // Delete part

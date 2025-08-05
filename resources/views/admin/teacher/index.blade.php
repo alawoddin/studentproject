@@ -153,15 +153,25 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Note (Optional)</label>
 
-                                    <select name="note" class="form-control" required>
+                                    <select name="note_option" class="form-control" id="noteOption">
+                                        <option value="">-- Select Option --</option>
                                         <option value="Full payment">Full payment</option>
                                         <option value="Advance payment">Advance payment</option>
+                                        <option value="custom">Write your own note</option>
                                     </select>
+
+                                    <textarea name="note_custom" id="noteCustom" class="form-control mt-2" placeholder="Enter your custom note here..." style="display: none;"></textarea>
+                                </div> 
+
+                                 <div class="col-md-6"><br>
+                                    <input type="checkbox" id="switch1" name="leet" value="1" switch="none" />
+                                    <label for="switch1" data-on-label="On" data-off-label="Off"></label>
                                 </div>
                             </div>
 
                             {{-- === Submit Button === --}}
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Add Expense</button>
+                            <button type="submit" class="btn btn-outline-success waves-effect waves-light">Add Expense</button>
+                            <a href="{{ url('teachershowsalary') }}" class="btn btn-outline-danger waves-effect waves-light">Back</a>
 
                         </form>
                 </div>
@@ -191,5 +201,14 @@
 
     </div>
 
-
+<script>
+    document.getElementById('noteOption').addEventListener('change', function () {
+        let custom = document.getElementById('noteCustom');
+        if (this.value === 'custom') {
+            custom.style.display = 'block';
+        } else {
+            custom.style.display = 'none';
+        }
+    });
+</script>
 @endsection

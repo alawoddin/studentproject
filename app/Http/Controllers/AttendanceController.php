@@ -77,4 +77,19 @@ class AttendanceController extends Controller
             return back()->with('success', 'Attendance saved!');
         }
 
+        public function َAtendanceIndex(){
+             $students = Student::all();
+          return view('admin.attendance.index', compact('students'));
+        }
+
+        public function AtendanceShow($id){
+              $student = Student::with('attendances')->findOrFail($id);
+        return view('admin.attendance.show', compact('student'));
+        }
+
+        public function Back(){
+            
+            return redirect()->back();
+        }
+
 }

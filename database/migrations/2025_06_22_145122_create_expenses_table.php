@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->decimal('amount', 10, 2);
             $table->date('date');
             $table->string('teacher_id');
+            $table->string('leet')->default('0');
             $table->text('note')->nullable();
             $table->timestamps();
         });

@@ -27,7 +27,7 @@
                 <h4 class="font-size-16 mb-1"> {{ $profile ? $profile->name : 'N/A' }}</h4>
                 <span class="text-muted">
                     <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    {{ $profile ? $profile->email : 'N/A' }}
+                    {{ $profile ? $profile->first_name : 'N/A' }}
                 </span>
             </div>
         </div>
@@ -41,7 +41,7 @@
 
                 <li>
                     <a href="{{ route('teacher.dashboard') }}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -54,37 +54,16 @@
 
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-settings-3-line font-size-24"></i>
-                        <span>Settings</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-
                         @php
                         $id = Auth::guard('teacher')->id();
                         $profile = App\Models\Teacher::find($id);
                         @endphp
 
-                        <li>
-                            <a href="{{ route('teacher.view' , $profile ? $profile->id: 1) }}"> 
-                               <i class="mdi mdi-teach font-size-24"></i>
-                                <span>Class</span>
-                            </a>
-
-                        </li>
-                        {{-- Teacher Show Salary --}}
-                        <li>
-                            <a href="{{route('all.attendance')}}">
-                                <i class="mdi mdi-cash font-size-24"></i>
-                                <span>Manage Attendance</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('teacher.view' , $profile ? $profile->id: 1) }}">
+                       <i class="mdi mdi-teach font-size-24"></i>
+                        <span>Class</span>
+                    </a>
                 </li>
-
-              
-
-
             </ul>
         </div>
         <!-- Sidebar -->

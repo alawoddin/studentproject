@@ -40,7 +40,7 @@
                                 <label class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="first_name" type="text"
-                                        value="{{ $teacher->first_name }}" placeholder="First Name">
+                                        value="{{ $teacher->first_name }}" placeholder="First Name" required>
                                 </div>
                             </div>
 
@@ -48,7 +48,7 @@
                                 <label class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="last_name" type="text"
-                                        value="{{ $teacher->last_name }}" placeholder="Last Name">
+                                        value="{{ $teacher->last_name }}" placeholder="Last Name" required>
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                 <label class="col-sm-2 col-form-label">Father Name</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="father_name" type="text"
-                                        value="{{ $teacher->father_name }}" placeholder="Father Name">
+                                        value="{{ $teacher->father_name }}" placeholder="Father Name" required>
                                 </div>
                             </div>
 
@@ -64,7 +64,7 @@
                                 <label class="col-sm-2 col-form-label">Roll ID</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="roll_id" type="text"
-                                        value="{{ $teacher->roll_id }}" placeholder="Roll ID">
+                                        value="{{ $teacher->roll_id }}" placeholder="Roll ID" required> 
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                                 <label class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="email" type="email" value="{{ $teacher->email }}"
-                                        placeholder="Email">
+                                        placeholder="Email" required>
                                 </div>
                             </div>
 
@@ -80,7 +80,7 @@
                                 <label class="col-sm-2 col-form-label">Phone</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="phone" type="text" value="{{ $teacher->phone }}"
-                                        placeholder="Phone number">
+                                        placeholder="Phone number" required>
                                 </div>
                             </div>
 
@@ -89,13 +89,13 @@
                                 <div class="col-sm-10">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="gender" id="genderMale"
-                                            value="Male" {{ $teacher->gender == 'Male' ? 'checked' : '' }}>
+                                            value="Male" {{ $teacher->gender == 'Male' ? 'checked' : '' }} required>
                                         <label class="form-check-label" for="genderMale">Male</label>
                                     </div>
 
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="gender" id="genderFemale"
-                                            value="Female" {{ $teacher->gender == 'Female' ? 'checked' : '' }}>
+                                            value="Female" {{ $teacher->gender == 'Female' ? 'checked' : '' }} required>
                                         <label class="form-check-label" for="genderFemale">Female</label>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
                                 <label class="col-sm-2 col-form-label">National ID</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="national_id" type="text"
-                                        value="{{ $teacher->national_id }}" placeholder="National ID">
+                                        value="{{ $teacher->national_id }}" placeholder="National ID" required>
                                 </div>
                             </div>
 
@@ -132,7 +132,7 @@
                                 <label class="col-sm-2 col-form-label">Upload Image:</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="file" id="image" name="photo"
-                                        accept="image/*">
+                                        accept="image/*" required>
                                 </div>
                             </div>
 
@@ -155,7 +155,7 @@
                                 <label for="example-text-input" class="col-sm-2 col-form-label">teacher percentage </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="percentage" type="number"
-                                        placeholder="percentage" value="{{ $teacher->percentage }}">
+                                        placeholder="percentage" value="{{ $teacher->percentage }}" required>
                                 </div>
                             </div>
                             <!-- end row -->

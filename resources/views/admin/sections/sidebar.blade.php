@@ -15,7 +15,7 @@
             <div class="mt-3">
                 <h4 class="font-size-16 mb-1">{{ $adminData->name }}</h4>
                 <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    {{ $adminData->email }}</span>
+                    {{ $adminData->name }}</span>
             </div>
         </div>
 
@@ -116,6 +116,20 @@
                     <ul class="sub-menu" aria-expanded="false">
 
                         {{-- adding salary --}}
+                        <li>
+                            <a href="{{ route('all.leet') }}" >
+                                <i class="ri-money-dollar-circle-line"></i>
+                                <span>قرض دار ها</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('attendance.index') }}" >
+                                <i class="ri-money-dollar-circle-line"></i>
+                                <span>حاضری شاگردان</span>
+                            </a>
+                        </li>
+
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="ri-money-dollar-circle-line"></i>

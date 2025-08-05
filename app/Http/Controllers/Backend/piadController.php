@@ -39,7 +39,6 @@ class piadController extends Controller
             'total_fees' => $request->total_fees,
             'paid' => $request->paid,
             'remaining_Fees' => $request->remaining_Fees,
-            'entry_date' => $request->entry_date,
             'paid_date' => $request->paid_date,
             'order_date'   => Carbon::now()->format('Y-m-d'),
             'order_month'  => Carbon::now()->format('F'),   // Example: May

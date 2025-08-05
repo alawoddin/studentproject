@@ -42,6 +42,7 @@ class StudentController extends Controller
             'phone_number' => $request->phone_number,
             'email' => $request->email,
             'national_id' => $request->national_id,
+            'entry_date' => $request->entry_date,
             'time' => $request->time,
         ]);
 
@@ -84,6 +85,7 @@ class StudentController extends Controller
             'phone_number' => $request->phone_number,
             'email' => $request->email,
             'national_id' => $request->national_id,
+            'entry_date' => $request->entry_date,
             'time' => $request->time,
         ]);
 

@@ -8,7 +8,7 @@
                 $pending = App\Models\Pending::count();
                 $expence = App\Models\Expense::sum('amount');
                 $dates = $dates = App\Models\Expense::select('date')->distinct()->pluck('date');
-
+               $leet = App\Models\Expense::where('leet', 1)->sum('amount');
                   
 
             @endphp
@@ -144,26 +144,34 @@
                         <h4 class="card-title mb-4">سرمایه</h4>
 
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="text-center mt-4">
                                     <h5>{{$totalPaid}}</h5>
                                     <p class="mb-2 text-truncate">اید</p>
                                 </div>
                             </div>
+                            
                             <!-- end col -->
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="text-center mt-4">
                                     <h5>{{$expence}}</h5>
                                     <p class="mb-2 text-truncate">مصرف</p>
                                 </div>
                             </div>
+                             <div class="col-3">
+                                <div class="text-center mt-4">
+                                    <h5><?php echo $leet ?>    </h5>
+                                    <p class="mb-2 text-truncate">قرض</p>
+                                </div>
+                            </div>
                             <!-- end col -->
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="text-center mt-4">
                                     <h5><?php echo $totalPaid-$expence ?>    </h5>
                                     <p class="mb-2 text-truncate">دخل</p>
                                 </div>
                             </div>
+                            
                             <!-- end col -->
                         </div>
                         <!-- end row -->

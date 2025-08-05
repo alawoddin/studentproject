@@ -21,7 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('teacher_id')->nullable();
 
             $table->time('time')->nullable();
-
+            $table->date('entry_date')->nullable();
+            
             $table->timestamps();
 
             // کلید خارجی به جدول teachers

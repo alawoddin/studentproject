@@ -8,6 +8,11 @@ class Student extends Model
 {
     protected $guarded = [];
 
+    public function attendances()
+    {
+        return $this->hasMany(Attend::class);
+    }
+
 
     public function department()
     {

@@ -38,7 +38,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="first_name" type="text" placeholder="first Name">
+                                    <input class="form-control" name="first_name" type="text" placeholder="first Name" required>
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="last_name" type="text" placeholder="last Name">
+                                    <input class="form-control" name="last_name" type="text" placeholder="last Name" required>
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Father Name:</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="father_name" type="text" placeholder="father Name">
+                                    <input class="form-control" name="father_name" type="text" placeholder="father Name" required>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -63,7 +63,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Roll id</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="roll_id" type="text" placeholder="Roll id">
+                                    <input class="form-control" name="roll_id" type="text" placeholder="Roll id" required>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -71,7 +71,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="email" type="email" placeholder="Email">
+                                    <input class="form-control" name="email" type="email" placeholder="Email" required>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -79,7 +79,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Phone</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="phone" type="text" placeholder="Phone number">
+                                    <input class="form-control" name="phone" type="text" placeholder="Phone number" required>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -88,13 +88,13 @@
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Gender</label>
                                 <div class="col-sm-10">
                                     <input class="form-check-input" name="gender" value="Male" id="FormRadios1"
-                                        type="radio" placeholder="Email">
+                                        type="radio" placeholder="Email" required>
                                     <label for="formRadios1" class="form-check-label">
                                         Male
                                     </label>
 
                                     <input class="form-check-input" name="gender" value="Female" id="FormRadios1"
-                                        type="radio" placeholder="Email">
+                                        type="radio" placeholder="Email" required>
                                     <label for="formRadios1" class="form-check-label">
                                         Female
                                     </label>
@@ -121,7 +121,7 @@
                                 <label for="example-text-input" class="col-sm-2 col-form-label">National ID:</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="national_id" type="text"
-                                        placeholder="National ID">
+                                        placeholder="National ID" required>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -130,7 +130,7 @@
                                 <label class="col-sm-2 col-form-label">Upload Image:</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" type="file" id="image" name="photo"
-                                        accept="image/*">
+                                        accept="image/*" required>
                                 </div>
                             </div>
 
@@ -152,7 +152,7 @@
                                 <label for="example-text-input" class="col-sm-2 col-form-label">teacher percentage </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="percentage" type="number"
-                                        placeholder="percentage">
+                                        placeholder="percentage" required>
                                 </div>
                             </div>
                             <!-- end row -->

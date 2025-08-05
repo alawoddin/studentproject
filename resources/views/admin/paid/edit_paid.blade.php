@@ -103,11 +103,7 @@
                                         value="{{ $paid->remaining_Fees }}">
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label class="form-label">Entry Date</label>
-                                    <input class="form-control" name="entry_date" type="date"
-                                        value="{{ $paid->entry_date }}">
-                                </div>
+                               
                                 {{-- row 4 --}}
                             <div class="row mb-3">
                                 <div class="col-md-6">

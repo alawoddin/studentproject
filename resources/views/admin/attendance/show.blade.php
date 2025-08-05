@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('admin.admin_dashboard')
+@section('admin')
 <style>
     @media print {
         .no-print {

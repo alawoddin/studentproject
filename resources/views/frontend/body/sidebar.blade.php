@@ -21,13 +21,13 @@
             <div>
 
 
-                <img class="rounded-circle header-profile-user" src="{{ asset($profile->photo) }}" alt="">
+                <img class="rounded-circle header-profile-user" src="{{ $profile && $profile->photo ? asset($profile->photo) : asset('uploads/no_image.png') }}" alt="">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">{{ $profile->name }} </h4>
+                <h4 class="font-size-16 mb-1"> {{ $profile ? $profile->name : 'N/A' }}</h4>
                 <span class="text-muted">
                     <i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
-                    {{ $profile->email }}
+                    {{ $profile ? $profile->email : 'N/A' }}
                 </span>
             </div>
         </div>
@@ -55,65 +55,34 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Attendance</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        {{-- <li><a href="{{route('all.attendance')}}">Attendance sheet</a></li> --}}
-                        <li><a href="{{route('all.attendance')}}">Manage Attendance</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Teacher</span>
+                        <i class="ri-settings-3-line font-size-24"></i>
+                        <span>Settings</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                        <li><a href="#">Add Teacher</a></li>
-                        <li><a href="#">Manage Teacher</a></li>
-                        <li><a href="#">View All Teachers</a></li>
+                        @php
+                        $id = Auth::guard('teacher')->id();
+                        $profile = App\Models\Teacher::find($id);
+                        @endphp
 
+                        <li>
+                            <a href="{{ route('teacher.view' , $profile ? $profile->id: 1) }}"> 
+                               <i class="mdi mdi-teach font-size-24"></i>
+                                <span>Class</span>
+                            </a>
+
+                        </li>
+                        {{-- Teacher Show Salary --}}
+                        <li>
+                            <a href="{{route('all.attendance')}}">
+                                <i class="mdi mdi-cash font-size-24"></i>
+                                <span>Manage Attendance</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Students</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Add Student</a></li>
-                        <li><a href="#">Manage Student</a></li>
-                    </ul>
-                </li>
-
-                {{-- adding paid --}}
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Paid</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Add Paid</a></li>
-                        <li><a href="#">Manage Paid</a></li>
-                    </ul>
-                </li>
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>Utility</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter.html">Starter Page</a></li>
-                        <li><a href="pages-timeline.html">Timeline</a></li>
-
-                    </ul>
-                </li>
-
+              
 
 
             </ul>

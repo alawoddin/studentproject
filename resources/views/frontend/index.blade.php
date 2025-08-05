@@ -27,13 +27,13 @@
     $depart = App\Models\Department::first();
 @endphp --}}
 
-@php
+{{-- @php
 $id = Auth::guard('teacher')->id();
 $profile = App\Models\Teacher::find($id);
-@endphp
+@endphp --}}
 
 <div class="row">
-        <div class="col-xl-3 col-md-6">
+        {{-- <div class="col-xl-3 col-md-6">
             <div class="card">
                 <div class="card-body">
                     <a href="{{ route('teacher.view' , $profile->id) }}">
@@ -58,7 +58,7 @@ $profile = App\Models\Teacher::find($id);
                     </a>
                 </div><!-- end cardbody -->
             </div><!-- end card -->
-        </div>
+        </div> --}}
 
 
           <div class="row">

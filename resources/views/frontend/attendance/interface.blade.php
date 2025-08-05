@@ -2,251 +2,173 @@
 
 @section('teacher')
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Student Attendance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            padding: 20px;
-            background: #e9ecef;
-        }
+    <div class="container-fluid">
 
-        .table-wrapper {
-            overflow-x: auto;
-            border: 1px solid #dee2e6;
-            border-radius: .25rem;
-            background: #fff;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+        <!-- Breadcrumb -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <nav class="fs-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="#" class="fw-bold">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $teacher->first_name }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-        table {
-            min-width: 1200px;
-        }
+ <!-- Main Content -->
+<div class="row">
+    <!-- Table Section -->
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">
+                    Amount Information
+                    @if(request('subject_id'))
+                        <small class="text-muted"> - Filtered by subject</small>
+                    @endif
+                </h4>
 
-        th,
-        td {
-            white-space: nowrap;
-            vertical-align: middle;
-            text-align: center;
-        }
+                {{-- Subject Filter Links
+                <div class="mb-3">
+                    <strong>Filter by Subject:</strong>
+                    @php
 
-        th:first-child,
-        td:first-child {
-            text-align: left;
-            min-width: 140px;
-        }
+                        $subjectIds = $paids->pluck('subject.id')->unique();
+                    @endphp
+                    @foreach ($subjectIds as $subjectId)
+                        @php
+                            $subjectName = $paids->firstWhere('subject.id', $subjectId)?->subject->subject_name ?? 'Unknown';
+                        @endphp
+                        <a href="{{ route('teacher.index', ['id' => $teacher->id, 'subject_id' => $subjectId]) }}"
+                           class="badge bg-primary text-white me-2 {{ request('subject_id') == $subjectId ? 'bg-dark' : '' }}">
+                            {{ $subjectName }}
+                        </a>
+                    @endforeach
+                    <a href="{{ route('teacher.index', ['id' => $teacher->id]) }}" class="badge bg-secondary text-white">
+                        All
+                    </a>
+                </div> --}}
+        <form action="{{ route('attendance.store') }}" method="POST">
+            @csrf
 
-        th:nth-child(2),
-        td:nth-child(2) {
-            min-width: 120px;
-            text-align: left;
-        }
-
-        th:nth-child(3),
-        td:nth-child(3) {
-            min-width: 80px;
-        }
-
-        button {
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            color: #343a40;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-
-           .count-box {
-        margin-top: 5px;
-        font-size: 0.9rem;
-      }
-
-      .present {
-        color: green;
-      }
-
-      .absent {
-        color: red;
-      }
-
-
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <h2 class="mb-4 text-center">Student Attendance</h2>
-
-        <form id="attendanceForm">
-            <button type="submit" class="btn btn-success mb-3">Submit Attendance</button>
-
-            <div class="table-wrapper">
-                <table class="table table-bordered table-hover align-middle">
-                    <thead class="table-light text-center">
+               <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle table-hover">
+                    <thead class="table-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Student Name</th>
-                            <th>time</th>
-                            <th>2025-07-02</th>
-                            <th>2025-07-03</th>
-                            <th>2025-07-04</th>
-                            <th>2025-07-05</th>
-                            <th>2025-07-06</th>
-                            <th>2025-07-07</th>
-                            <th>2025-07-08</th>
-                            <th>2025-07-09</th>
-                            <th>2025-07-10</th>
-                            <th>2025-07-11</th>
-                            <th>2025-07-12</th>
-                            <th>2025-07-13</th>
-                            <th>2025-07-14</th>
-                            <th>2025-07-15</th>
-                            <th>2025-07-16</th>
-                            <th>Attendance</th>
+                            <th>Sl</th>
+                            <th>Name</th>
+                            @php
+                                // Use the first student's paid_date for all header dates
+                                $startDate = $paids->first() ? \Carbon\Carbon::parse($paids->first()->paid_date) : \Carbon\Carbon::today();
+                            @endphp
+                            @for ($d = 0; $d < 30; $d++)
+                                <th class="text-center">{{ $startDate->copy()->addDays($d)->format('d M') }}</th>
+                            @endfor
                         </tr>
                     </thead>
-                     <tbody>
-                            @foreach ($atten as $key => $student)
-                                <tr>
+                    <tbody>
+                    @php
+                    $startDate = $paids->first() ? \Carbon\Carbon::parse($paids->first()->paid_date) : \Carbon\Carbon::today();
+                @endphp
+                @foreach ($paids as $key => $item)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>
+                            <span class="fw-bold">{{ $item->student->name }}</span>
+                        </td>
+                        @for ($d = 0; $d < 30; $d++)
+                            @php
+                                $date = $startDate->copy()->addDays($d)->format('Y-m-d');
+                                $attendance = \App\Models\Attend::where('student_id', $item->student->id)
+                                    ->where('attendance_date', $date)->first();
+                                // Disable attendance if student's paid_date is after the current attendance date
+                                $isDisabled = \Carbon\Carbon::parse($item->paid_date)->gt($startDate->copy()->addDays($d));
+                            @endphp
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <input type="radio"
+                                        class="btn-check"
+                                        name="attendance[{{ $item->student->id }}][{{ $date }}]"
+                                        id="present-{{ $item->student->id }}-{{ $date }}"
+                                        value="present"
+                                        {{ $attendance && $attendance->status === 'present' ? 'checked' : '' }}
+                                        {{ $isDisabled ? 'disabled' : '' }}>
+                                    <label class="btn btn-outline-success btn-sm {{ $isDisabled ? 'disabled' : '' }}" for="present-{{ $item->student->id }}-{{ $date }}">
+                                        <i class="ri-check-line"></i>
+                                    </label>
 
-                                <td>{{ $student->id ?? 'No ID' }}</td>
-                                <td class="text-start">{{ $student->name ?? 'No Name' }}</td>
-                                <td class="text-start">{{ $student->time ?? 'No Time' }}</td>
-                                <td><input type="checkbox" name="present_1_2025-07-01" /></td>
-                                  <td><input type="checkbox" name="present_1_2025-07-02" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-03" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-04" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-05" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-06" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-07" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-08" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-09" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-10" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-11" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-12" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-13" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-14" /></td>
-                            <td><input type="checkbox" name="present_1_2025-07-15" /></td>
-                             <td>
-                <div class="count-box">
-                  <span class="present"
-                    >Present: <span class="present-count">0</span></span
-                  ><br />
-                  <span class="absent"
-                    >Absent: <span class="absent-count">18</span></span
-                  >
-                </div>
-              </td>
-
-                                </tr>
-                            @endforeach
-                        
+                                    <input type="radio"
+                                        class="btn-check"
+                                        name="attendance[{{ $item->student->id }}][{{ $date }}]"
+                                        id="absent-{{ $item->student->id }}-{{ $date }}"
+                                        value="absent"
+                                        {{ $attendance && $attendance->status === 'absent' ? 'checked' : '' }}
+                                        {{ $isDisabled ? 'disabled' : '' }}>
+                                    <label class="btn btn-outline-danger btn-sm {{ $isDisabled ? 'disabled' : '' }}" for="absent-{{ $item->student->id }}-{{ $date }}">
+                                        <i class="ri-close-line"></i>
+                                    </label>
+                                </div>
+                            </td>
+                        @endfor
+                    </tr>
+                @endforeach
                     </tbody>
-
                 </table>
+    </div>
+            <button type="submit" class="btn btn-primary mt-3">Save Attendance</button>
+
+     </form>
+                
+                        @php
+                            $totalPaid = $paids->sum('paid');
+                            $percentage = $teacher->percentage;
+                            $commission = $totalPaid * $percentage / 100;
+                        @endphp
+                <div>
+                  <div class="card shadow-sm mb-4">
+                        <div class="card-body text-center">
+                            <button type="button" class="btn btn-success mb-3" onclick="document.getElementById('salary-box').style.display='block'; this.style.display='none';">
+                                <i class="ri-money-dollar-circle-line"></i> Show Salary
+                            </button>
+                            <div id="salary-box" style="display:none;">
+                                <h2 class="text-success fw-bold">
+                                    <i class="ri-money-dollar-circle-fill"></i> Salary: {{ number_format($commission) }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <!-- Teacher Card -->
+    <div class="col-xl-4">
+        <div class="card">
+            <div class="card-body">
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center mt-4">
+                            <form action="">
+                                <input type="text" value="{{$commission}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+</div>
 
-    <script>
-    document.getElementById('attendanceForm').addEventListener('submit', function (event) {
-        event.preventDefault();
 
-        const formData = new FormData(this);
-        const attendance = {};
-
-        // Loop through form data
-        for (let [key, value] of formData.entries()) {
-            attendance[key] = value;
-        }
-
-        // Handle unchecked checkboxes explicitly
-        const checkboxes = this.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            if (!checkbox.checked) {
-                attendance[checkbox.name] = 'unchecked';
-            } else {
-                attendance[checkbox.name] = 'checked';
-            }
-        });
-
-        // Show success message
-        Swal.fire({
-            title: 'Success!',
-            text: 'Attendance has been submitted successfully.',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-
-        console.log(attendance); // Optional: for debugging
-    });
-</script>
-
-    <script>
-      function updateCounts(row) {
-        const checkboxes = row.querySelectorAll("input[type='checkbox']");
-        const presentCount = Array.from(checkboxes).filter(
-          (cb) => cb.checked
-        ).length;
-        const totalDays = checkboxes.length;
-        const absentCount = totalDays - presentCount;
-
-        row.querySelector(".present-count").innerText = presentCount;
-        row.querySelector(".absent-count").innerText = absentCount;
-      }
-
-      // پیدا کردن همه ردیف‌های دانش‌آموز
-      const studentRows = document.querySelectorAll("tbody tr");
-
-      studentRows.forEach((row) => {
-        const checkboxes = row.querySelectorAll("input[type='checkbox']");
-        checkboxes.forEach((cb) => {
-          cb.addEventListener("change", () => updateCounts(row));
-        });
-
-        // مقدار اولیه هنگام لود
-        updateCounts(row);
-      });
-    </script>
-
-</body>
-
-</html>
+    </div>
 
 @endsection
 
-    {{-- <script>
-        document.getElementById('attendanceForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const attendance = {};
-            for (let [key, value] of formData.entries()) {
-                attendance[key] = value;
-            }
-            Swal.fire({
-                title: 'Success!',
-                text: 'Attendance has been submitted successfully.',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        });
-    </script> --}}
 
  

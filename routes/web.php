@@ -196,4 +196,8 @@ Route::controller(AttendanceController::class)->group(function () {
     Route::get('all/attendance', 'AllAttendance')->name('all.attendance');
     Route::get('/add/attendance', 'AddAttendance')->name('add.attendance');
     Route::post('store/attendance', 'StoreAttendance')->name('store.attendance');
+
+     Route::get('teacher/subject/index/{id}', 'TeacherSubjectIndex')->name('teacher.subject.index');
+     Route::post('/attendance/store',  'Attendancestore')->name('attendance.store');
+
 });

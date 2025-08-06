@@ -48,7 +48,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="col-sm-4 col-form-label">Father Name</label>
+                                <label class="col-sm-4 col-form-label">Program Name</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="father_name" type="text" placeholder="Father Name">
                                 </div>

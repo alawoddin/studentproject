@@ -15,7 +15,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Lastname</th>
-                    <th>Father Name</th>
+                    <th>Program Name</th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Time</th>

@@ -65,4 +65,50 @@ public function AdminSearchByYear(Request $request){
 
      return view ('admin.reports.all_invoice' , compact('Paid', 'student'));
  }
+
+ public function TeacherSearchByMonth(Request $request)
+{
+    $month = $request->month;
+
+    // Get the start month (e.g., January) and convert it to Carbon instance
+    $startMonth = Carbon::createFromFormat('F', $month);
+
+    // Get the 3-month period
+    $months = collect();
+    for ($i = 0; $i < 3; $i++) {
+        $months->push($startMonth->copy()->addMonths($i)->format('F'));
+    }
+
+    // Fetch expenses for the next three months
+    $expense = Expense::with('teacher')
+        ->whereIn('order_month', $months) // Adjust this to match your DB format
+        ->get();
+
+    // Count the total unique students
+    $totalStudents = $expense->pluck('teacher_id')->unique()->count();
+
+    return view('admin.teacherReport.search_by_month', compact('expense', 'month', 'totalStudents'));
+}
+
+
+    public function TeacherAllReports() {
+            return view('admin.teacherReport.all_report');
+        }
+
+//         public function TeacherSearchByMonth(Request $request)
+// {
+//     $month = $request->month;
+
+//     $expense = Expense::with('teacher')
+//         ->where('order_month', $month)
+//         ->get();
+
+     
+
+//     $totalStudents = $expense->pluck('teacher_id')->unique()->count();
+
+//     return view('admin.teacherReport.search_by_month', compact(
+//         'expense',  'month'
+//     ));
+// }
 }

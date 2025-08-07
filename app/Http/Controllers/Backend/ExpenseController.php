@@ -30,6 +30,9 @@ class ExpenseController extends Controller
             'amount' => $request->amount,
             'date' => $request->date,
             'note' => $request->note,
+            'order_date'   => Carbon::now()->format('Y-m-d'),
+            'order_month'  => Carbon::now()->format('F'),   // Example: May
+            'order_year'   => Carbon::now()->format('Y'),
         ]);
 
         return redirect()->route('manage.expense')->with('success', 'Expense added successfully');
@@ -102,6 +105,9 @@ class ExpenseController extends Controller
             'date' => $request->date,
             'note' => $note,
             'leet' => $leetValue,
+            'order_date'   => Carbon::now()->format('Y-m-d'),
+            'order_month'  => Carbon::now()->format('F'),   // Example: May
+            'order_year'   => Carbon::now()->format('Y'),
         ]);
 
         return redirect()->back()->with('success', 'Expense added successfully');

@@ -165,7 +165,13 @@ Route::controller(ReportController::class)->group(function () {
     Route::post('/admin/search/bymonth', 'AdminSearchByMonth')->name('admin.search.bymonth');
     Route::post('/admin/search/byyear', 'AdminSearchByYear')->name('admin.search.byyear');
     Route::get('/all/invoice/{id}', 'AllInvoice')->name('all.invoice');
+//teacher report
+    Route::get('/teacher/all/reports', 'TeacherAllReports')->name('teacher.all.reports');
+    Route::post('/teacher/search/bymonth', 'TeacherSearchByMonth')->name('teacher.search.bymonth');
+
 });
+
+
 
 Route::controller(salaryController::class)->group(function () {
     Route::get('all/salary', 'AllSalary')->name('all.salary');

@@ -15,6 +15,10 @@ return new class extends Migration {
             $table->string('teacher_id');
             $table->string('leet')->default('0');
             $table->text('note')->nullable();
+            $table->string('method')->nullable();
+            $table->string('order_date')->nullable();
+            $table->string('order_month')->nullable();
+            $table->string('order_year')->nullable();
             $table->timestamps();
         });
     }

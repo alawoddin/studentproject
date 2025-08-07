@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Expense;
 use App\Models\Paid;
 use App\Models\Teacher;
+use Carbon\Carbon;
 
 class ExpenseController extends Controller
 {
@@ -55,6 +56,7 @@ class ExpenseController extends Controller
             'amount' => 'required|numeric',
             'date' => 'required|date',
             'note' => 'nullable|string',
+          
         ]);
 
         $expense->update([
@@ -62,6 +64,9 @@ class ExpenseController extends Controller
             'amount' => $request->amount,
             'date' => $request->date,
             'note' => $request->note,
+            'order_date'   => Carbon::now()->format('Y-m-d'),
+            'order_month'  => Carbon::now()->format('F'),   // Example: May
+            'order_year'   => Carbon::now()->format('Y'),
         ]);
 
         return redirect()->route('manage.expense')->with('success', 'Expense updated successfully');

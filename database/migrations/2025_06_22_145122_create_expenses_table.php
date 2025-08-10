@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('title');
             $table->decimal('amount', 10, 2);
             $table->date('date');
-            $table->string('teacher_id');
+            $table->string('teacher_id')->nullable();
             $table->string('leet')->default('0');
             $table->text('note')->nullable();
             $table->string('method')->nullable();

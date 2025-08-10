@@ -239,7 +239,7 @@
         $total = App\Models\Expense::sum('amount');
         $totalPaid = App\Models\Paid::sum('paid');
 
-        $totalRemains = $total - $totalPaid;
+        $totalRemains = $totalPaid - $total;
     @endphp
 
     <p>

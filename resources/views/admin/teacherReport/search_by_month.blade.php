@@ -113,7 +113,7 @@
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->amount }}</td>
-                                        <td>{{ $item->teacher->first_name  }}</td>
+                                        <td>{{ $item->teacher->first_name  ?? 'N/A' }}</td>
                                         <td>{{ $item->note }}</td>
                                         <td>{{ $item->order_month }}</td>
                                 <td><a href="{{ route('all.invoice',$item->id) }}" class="btn btn-primary waves-effect waves-light"> <i class="fas fa-eye"></i> </a>

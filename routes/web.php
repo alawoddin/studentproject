@@ -172,7 +172,6 @@ Route::controller(ReportController::class)->group(function () {
 });
 
 
-
 Route::controller(salaryController::class)->group(function () {
     Route::get('all/salary', 'AllSalary')->name('all.salary');
     Route::get('add/salary', 'AddSalary')->name('add.salary');

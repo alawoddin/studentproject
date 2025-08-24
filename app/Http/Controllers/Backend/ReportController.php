@@ -65,6 +65,8 @@ public function AdminSearchByYear(Request $request){
 
      return view ('admin.reports.all_invoice' , compact('Paid', 'student'));
  }
+ 
+ //Teacher Report
 
  public function TeacherSearchByMonth(Request $request)
 {
@@ -95,20 +97,5 @@ public function AdminSearchByYear(Request $request){
             return view('admin.teacherReport.all_report');
         }
 
-//         public function TeacherSearchByMonth(Request $request)
-// {
-//     $month = $request->month;
 
-//     $expense = Expense::with('teacher')
-//         ->where('order_month', $month)
-//         ->get();
-
-     
-
-//     $totalStudents = $expense->pluck('teacher_id')->unique()->count();
-
-//     return view('admin.teacherReport.search_by_month', compact(
-//         'expense',  'month'
-//     ));
-// }
 }

@@ -65,5 +65,11 @@ $notification = [
 return redirect()->back()->with($notification);
 
     }
+
+    public function CheckPending() {
+        $pending = pending::all();
+
+        return view('admin.pending.check_pending', compact('pending'));
+    }
    
 }

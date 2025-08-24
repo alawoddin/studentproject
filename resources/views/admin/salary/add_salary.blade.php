@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
 
-{{--
+{{-- 
                                 <div class="col-md-6">
                                     <label class="col-sm-6 col-form-label">subject</label>
                                     <div class="col-sm-10">
@@ -70,7 +70,7 @@
                                             @endforeach
                                         </select>
                                     </div> 
-</div>--}}
+</div> --}}
 
                             </div>
 

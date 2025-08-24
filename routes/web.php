@@ -183,7 +183,9 @@ Route::controller(salaryController::class)->group(function () {
 
 Route::controller(PendingController::class)->group(function () {
     Route::get('all/pending', 'AllPending')->name('all.pending');
+
     Route::get('all/pending/khanjankhan', 'CheckPending')->name('check.pending');
+    
     Route::get('/add/pending', 'AddPending')->name('add.pending');
     Route::post('store/pending', 'StorePending')->name('store.pending');
     Route::get('/pending/student/{id}',  'StudentPending')->name('student.pending');

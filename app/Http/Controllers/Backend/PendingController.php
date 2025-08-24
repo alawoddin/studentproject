@@ -66,6 +66,8 @@ return redirect()->back()->with($notification);
 
     }
 
+
+    //show bending with other user
     public function CheckPending() {
         $pending = pending::all();
 

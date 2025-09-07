@@ -1,7 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
     <div class="container-fluid">
@@ -29,11 +28,10 @@
                                     <label for="student-dropdown" class="form-label">Select Student</label>
                                     <select name="student_id" id="student-dropdown" class="form-select" required>
                                         @foreach ($student as $info)
-                                            <option value="{{ $info->id }}" 
-                                            {{ isset($paid) && $paid->student_id == $info->id ? 'selected' : '' }}>
-                                            {{ $info->name }}
-                                        </option>
-
+                                            <option value="{{ $info->id }}"
+                                                {{ isset($paid) && $paid->student_id == $info->id ? 'selected' : '' }}>
+                                                {{ $info->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -57,14 +55,15 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Subject</label>
                                     <select name="subject_id" class="form-select" id="subject-dropdown">
-                                        <option value="">Select Subject</option>
-                                        @foreach ($subjects as $subject)
-                                            <option value="{{ $subject->id }}"
-                                                {{ $paid->subject_id == $subject->id ? 'selected' : '' }}>
-                                                {{ $subject->subject_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+    <option value="">Select Subject</option>
+    @foreach ($subjects as $subject)
+        <option value="{{ $subject->id }}"
+            {{ isset($paid) && (int)$paid->subject_id === (int)$subject->id ? 'selected' : '' }}>
+            {{ $subject->subject_name }}
+        </option>
+    @endforeach
+</select>
+
 
                                 </div>
 
@@ -103,18 +102,18 @@
                                         value="{{ $paid->remaining_Fees }}">
                                 </div>
 
-                               
-                                {{-- row 4 --}}
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label class="col-sm-6 col-form-label">Paid_date</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" name="paid_date" value="{{ $paid->paid_date }}" type="date"
-                                            placeholder="paid_date">
-                                    </div>
-                                </div>
 
-                            </div>
+                                {{-- row 4 --}}
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="col-sm-6 col-form-label">Paid_date</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="paid_date" value="{{ $paid->paid_date }}"
+                                                type="date" placeholder="paid_date">
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
 
@@ -139,7 +138,7 @@
         }
 
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Recalculate on input changes
             $('#amount, #paid').on('input', calculateRemaining);
 
@@ -147,7 +146,4 @@
             calculateRemaining();
         });
     </script>
-
-
-
 @endsection

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
 
             // کلید خارجی به جدول teachers
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('set null');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }
 

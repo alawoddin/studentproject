@@ -54,16 +54,22 @@ class DepartmentController extends Controller
 
     //end method
 
-    public function UpdateDepart(Request $request, $id) {
+  public function UpdateDepart(Request $request, $id) {
+    $request->validate([
+        'depart_name' => 'required|string|max:255',
+        'depart_subjects' => 'required|array|min:1',
+        'depart_subjects.*' => 'required|string|max:255'
+    ]);
 
+    // Update department name
     Department::findOrFail($id)->update([
         'depart_name' => $request->depart_name,
     ]);
 
-
+    // Delete old subjects
     DepartmentSubject::where('department_id', $id)->delete();
 
-    
+    // Add new subjects
     foreach ($request->depart_subjects as $subject) {
         DepartmentSubject::create([
             'department_id' => $id,
@@ -71,16 +77,14 @@ class DepartmentController extends Controller
         ]);
     }
 
-    $notification = array(
+    $notification = [
         'message' => 'Department Updated Successfully',
         'alert-type' => 'success'
-    );
+    ];
 
     return redirect()->route('all.depart')->with($notification);
 }
 
-
-    //end method
 
     public function DeleteDepart($id) {
         department::findOrFail($id)->delete();

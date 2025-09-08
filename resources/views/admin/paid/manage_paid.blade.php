@@ -41,7 +41,7 @@
                             <td>{{ $paids->id }}</td>
                             <td>{{ $paids->student->name }}</td>
                             {{-- <td>{{ $paids->department->depart_name }}</td> --}}
-                            <td>{{ $paids->subject->subject_name ??'null' }}</td>
+                            <td>{{ $paids->subject->subject_name?? 'null' }}</td>
                             {{-- <td>
                                 @foreach ($paids->subjects as $subject)
                                     <span class="badge bg-success">{{ $subject->subject_name }}</span>

@@ -20,8 +20,8 @@ class DepartmentSubject extends Model
         return $this->hasMany(teacher::class);
     }
 
-    // public function paid()
-    // {
-    //     return $this->belongsTo(Paid::class);
-    // }
+    public function paid()
+    {
+        return $this->belongsTo(Paid::class);
+    }
 }

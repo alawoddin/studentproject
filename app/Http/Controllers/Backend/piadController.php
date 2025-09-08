@@ -55,9 +55,14 @@ class piadController extends Controller
 
 
     // لیست پرداخت‌ها
-   public function ManagePaid()
-    {
+public function ManagePaid()
+{
+    // Get the latest Paid record for each student
+    $latestPaidIds = Paid::select(DB::raw('MAX(id) as id'))
+        ->groupBy('student_id')
+        ->pluck('id');
 
+<<<<<<< HEAD
 //         public function ManagePaid()
 // {
 // $paid = Paid::all();
@@ -84,17 +89,43 @@ return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers' , 'st
         // $student = Student::all();
         // return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'student'));
     }
+=======
+    // Eager load all relations
+    $paid = Paid::with('department.subjects', 'teacher', 'subject', 'student')
+        ->whereIn('id', $latestPaidIds)
+        ->orderByDesc('paid_date')
+        ->get();
+
+    // Get departments with their subjects
+    $depart = Department::with('subjects')->get();
+    $teachers = Teacher::all();
+    $students = Student::all();
+
+    return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'students'));
+}
+
+>>>>>>> 392f1b58e2a3444a56e444a008ce237dabe7e7cd
 
     // نمایش فرم ویرایش
-    public function EditPaid($id)
-    {
-        $paid = Paid::findOrFail($id);
-        $depart = Department::all();
-        $teachers = Teacher::all();
-        $student = Student::all();
-        $subjects = DepartmentSubject::where('department_id', $paid->department_id)->get();
-        return view('admin.paid.edit_paid', compact('paid' , 'depart', 'teachers', 'subjects' , 'student'));
-    }
+ public function EditPaid($id)
+{
+    $paid = Paid::with('subject')->findOrFail($id); // eager load subject relation
+    $depart = Department::with('subjects')->get(); // all departments with subjects
+    $teachers = Teacher::all();
+    $student = Student::all();
+
+    // Subjects of the paid's department
+    $subjects = $paid->department ? $paid->department->subjects : collect();
+
+    return view('admin.paid.edit_paid', compact(
+        'paid',
+        'depart',
+        'teachers',
+        'student',
+        'subjects'
+    ));
+}
+
 
     // به‌روزرسانی پرداخت
     public function UpdatePaid(Request $request, $id)

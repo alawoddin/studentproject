@@ -41,7 +41,11 @@
                             <td>{{ $paids->id }}</td>
                             <td>{{ $paids->student->name }}</td>
                             {{-- <td>{{ $paids->department->depart_name }}</td> --}}
+<<<<<<< HEAD
                             <td>{{ $paids->subject->subject_name?? 'null' }}</td>
+=======
+                            <td>{{ $paids->subject->subject_name ?? 'null' }}</td>
+>>>>>>> 392f1b58e2a3444a56e444a008ce237dabe7e7cd
                             {{-- <td>
                                 @foreach ($paids->subjects as $subject)
                                     <span class="badge bg-success">{{ $subject->subject_name }}</span>

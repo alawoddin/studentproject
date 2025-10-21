@@ -1,6 +1,8 @@
 @extends('admin.admin_dashboard')
 
 @section('admin')
+
+
     <!-- start page title -->
     <div class="row">
         <div class="col-12">

@@ -9,19 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class PendingController extends Controller
 {
-    public function AllPending() {
+    public function AllPending()
+    {
         $pending = pending::all();
 
         return view('admin.pending.all_pending', compact('pending'));
     }
 
-    public function AddPending() {
+    public function AddPending()
+    {
         $pending = pending::all();
 
-        return view ('admin.pending.add_pending', compact('pending'));
+        return view('admin.pending.add_pending', compact('pending'));
     }
 
-    public function StorePending(Request $request) {
+    public function StorePending(Request $request)
+    {
         pending::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
@@ -34,44 +37,44 @@ class PendingController extends Controller
         return redirect()->route('all.pending')->with('success', 'Pending added successfully');
     }
 
-    public function StudentPending($id) {
+    public function StudentPending($id)
+    {
 
         $record = DB::table('pendings')->select('status')->where('id', $id)->first();
 
-if (!$record) {
-    return redirect()->back()->with([
-        'message' => 'Paid record not found',
-        'alert-type' => 'error'
-    ]);
-}
+        if (!$record) {
+            return redirect()->back()->with([
+                'message' => 'Paid record not found',
+                'alert-type' => 'error'
+            ]);
+        }
 
-$newStatus = '';
+        $newStatus = '';
 
-if ($record->status === 'wait') {
-    $newStatus = 'done';
-} elseif ($record->status === 'done') {
-    $newStatus = 'reject';
-} else {
-    $newStatus = 'wait';
-}
+        if ($record->status === 'wait') {
+            $newStatus = 'done';
+        } elseif ($record->status === 'done') {
+            $newStatus = 'reject';
+        } else {
+            $newStatus = 'wait';
+        }
 
-DB::table('pendings')->where('id', $id)->update(['status' => $newStatus]);
+        DB::table('pendings')->where('id', $id)->update(['status' => $newStatus]);
 
-$notification = [
-    'message' => "Status changed to '{$newStatus}' successfully",
-    'alert-type' => 'info'
-];
+        $notification = [
+            'message' => "Status changed to '{$newStatus}' successfully",
+            'alert-type' => 'info'
+        ];
 
-return redirect()->back()->with($notification);
-
+        return redirect()->back()->with($notification);
     }
 
 
     //show bending with other user
-    public function CheckPending() {
+    public function CheckPending()
+    {
         $pending = pending::all();
 
         return view('admin.pending.check_pending', compact('pending'));
     }
-   
 }

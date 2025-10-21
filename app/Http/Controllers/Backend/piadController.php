@@ -62,6 +62,34 @@ public function ManagePaid()
         ->groupBy('student_id')
         ->pluck('id');
 
+<<<<<<< HEAD
+//         public function ManagePaid()
+// {
+// $paid = Paid::all();
+// $depart = Department::all();
+// $teachers = Teacher::all();
+$paid = Paid::with('department' , 'teacher' , 'subject' , 'student')->get();
+$depart = Department::all();
+$teachers = Teacher::all();
+$student = Student::all();
+return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers' , 'student'));
+// }
+
+        // $latestPaidIds = Paid::select(DB::raw('MAX(id) as id'))
+        //     ->groupBy('student_id')
+        //     ->pluck('id');
+
+        // $paid = Paid::with('department', 'teacher', 'subject', 'student')
+        //     ->whereIn('id', $latestPaidIds)
+        //     ->orderByDesc('paid_date')
+        //     ->get();
+
+        // $depart = Department::all();
+        // $teachers = Teacher::all();
+        // $student = Student::all();
+        // return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'student'));
+    }
+=======
     // Eager load all relations
     $paid = Paid::with('department.subjects', 'teacher', 'subject', 'student')
         ->whereIn('id', $latestPaidIds)
@@ -76,6 +104,7 @@ public function ManagePaid()
     return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'students'));
 }
 
+>>>>>>> 392f1b58e2a3444a56e444a008ce237dabe7e7cd
 
     // نمایش فرم ویرایش
  public function EditPaid($id)

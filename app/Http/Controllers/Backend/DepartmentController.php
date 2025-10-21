@@ -84,7 +84,10 @@ public function UpdateDepart(Request $request, $id) {
 }
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 392f1b58e2a3444a56e444a008ce237dabe7e7cd
     public function DeleteDepart($id) {
         department::findOrFail($id)->delete();
 
@@ -94,5 +97,9 @@ public function UpdateDepart(Request $request, $id) {
         );
 
         return redirect()->route('all.depart')->with($notification);
+<<<<<<< HEAD
+  }
+=======
     }
+>>>>>>> 392f1b58e2a3444a56e444a008ce237dabe7e7cd
 }

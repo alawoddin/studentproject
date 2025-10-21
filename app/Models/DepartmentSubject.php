@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class DepartmentSubject extends Model
 {
     // ✅ Allow mass assignment for these fields
-    protected $fillable = ['department_id', 'subject_name'];
+    // protected $fillable = ['department_id', 'subject_name'];
+     protected $guarded = [];
 
     public function department()
     {

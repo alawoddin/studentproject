@@ -54,6 +54,11 @@
                                 <i class="fas fa-times btn btn-danger waves-effect waves-light" title="Rejected"></i>
                             @endif
                         </a>
+
+                        <a href="{{ route('edit.pending', $pend->id) }}">
+                                    <i class="fas fa-edit btn btn-primary"></i>
+                                </a>
+
                     </td>
 
 

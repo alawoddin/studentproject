@@ -77,4 +77,30 @@ class PendingController extends Controller
 
         return view('admin.pending.check_pending', compact('pending'));
     }
+
+    //end method 
+    public function EditPending($id)
+    {
+       $pending = pending::find($id);
+
+       return view('admin.pending.edit_pending', compact('pending'));   
+    }
+
+    //end method 
+
+    public function UpdatePending(Request $request)
+    {
+        $pending_id = $request->id;
+
+        pending::findOrFail($pending_id)->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'father_name' => $request->father_name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'time' => $request->time,
+        ]);
+
+        return redirect()->route('all.pending')->with('success', 'Pending updated successfully');
+    }
 }

@@ -119,14 +119,14 @@
                         <li>
                             <a href="{{ route('all.leet') }}" >
                                 <i class="ri-money-dollar-circle-line"></i>
-                                <span>قرض دار ها</span>
+                                <span>Due Stuff</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="{{ route('attendance.index') }}" >
                                 <i class="ri-money-dollar-circle-line"></i>
-                                <span>حاضری شاگردان</span>
+                                <span>Student attendance</span>
                             </a>
                         </li>
 

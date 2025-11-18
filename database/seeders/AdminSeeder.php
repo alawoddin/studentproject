@@ -15,12 +15,15 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
 
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'photo' => 'image.jpg',
-            'password' => Hash::make('123'),
-        ]);
+       DB::table('users')->insert([
+    'name' => 'Admin',
+    'email' => 'admin@gmail.com',
+    'photo' => 'image.jpg',
+    'password' => Hash::make('123'),
+    'two_factor_code' => rand(100000, 999999),
+    'two_factor_expires_at' => now()->addMinutes(5),
+]);
+
 
         // DB:table('users')->insert([
         //     'name' => 'Admin',

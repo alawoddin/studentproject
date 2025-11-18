@@ -17,7 +17,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\salaryController;
 use App\Http\Controllers\Backend\teacherShowSalaryController;
 use App\Http\Controllers\AttendanceController;
-
+use App\Http\Controllers\TwoFactorController;
 
 // Route::get('/', function () {
 //     return view('frontend.teacher_login');
@@ -27,6 +27,25 @@ Route::get('/', [TeachersController::class, 'index'])->name('index');
 
 
 Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
+
+// Routes for logged-in users
+Route::middleware(['auth'])->group(function () {
+
+    // Two-factor page (accessible without completing 2FA)
+    Route::get('/two-factor', [TwoFactorController::class, 'index'])
+        ->name('two-factor.index');
+
+    Route::post('/two-factor', [TwoFactorController::class, 'verify'])
+        ->name('two-factor.verify');
+
+    // Protected pages (require 2FA)
+    Route::middleware(['twofactor'])->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])
+            ->name('dashboard');
+
+        // Add more protected routes here
+    });
+});
 
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
@@ -38,6 +57,8 @@ Route::middleware('teacher')->group(function () {
     // Route::get('', 'TeacherIndex')->name('teacher.index');
 
 });
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('admin.index');

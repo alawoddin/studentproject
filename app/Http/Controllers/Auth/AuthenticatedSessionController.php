@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Notifications\TwoFactorCodeNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,19 +23,41 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+   public function store(LoginRequest $request): RedirectResponse
+{
+    // Authenticate the user
+    $request->authenticate();
 
-        $request->session()->regenerate();
+    // Regenerate session
+    $request->session()->regenerate();
 
-        $notification = array(
-            'message' => 'Admin login  Successfully',
+    // Get logged-in user
+    $user = Auth::user();
+
+    // Generate 6-digit OTP
+    $code = rand(100000, 999999);
+
+    // Save OTP and expiration to database
+    $user->update([
+        'two_factor_code' => $code,
+        'two_factor_expires_at' => now()->addMinutes(5),
+    ]);
+
+    // Send OTP via email
+    $user->notify(new TwoFactorCodeNotification($code));
+
+    // Reset 2FA session (force 2FA page)
+    session(['two_factor_authenticated' => false]);
+
+      $notification = array(
+            'message' => 'Admin Two Factor Successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->intended(route('dashboard', absolute: false))->with($notification);
-    }
+    // Redirect to two-factor verification page
+    return redirect()->route('two-factor.index')
+                     ->with($notification);
+}
 
     /**
      * Destroy an authenticated session.

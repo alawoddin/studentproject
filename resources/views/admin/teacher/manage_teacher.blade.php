@@ -60,7 +60,7 @@
                             <td>{{ $teacher->email }}</td>
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->gender }}</td>
-                            <td>{{ $teacher->department->depart_name }}</td>
+                            <td>{{ $teacher->department->depart_name ?? 'null' }}</td>
                             <td>{{ $teacher->national_id }}</td>
                             <td>
                                 <img class="header-profile-user"

@@ -69,6 +69,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        session()->forget('2fa_verified');
 
 
 

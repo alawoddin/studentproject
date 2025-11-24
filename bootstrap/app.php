@@ -12,14 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
 
+        // Register all route middleware in a single alias call
         $middleware->alias([
-            'teacher' => \App\Http\Middleware\TeacherMiddleware::class,
-        ]);
-
-        $middleware->appendToGroup('twofactor' , [
-            Verify2FAMiddleware::class,
+            'teacher'   => \App\Http\Middleware\TeacherMiddleware::class,
+            'twofactor' => \App\Http\Middleware\Verify2FAMiddleware::class,
         ]);
 
     })

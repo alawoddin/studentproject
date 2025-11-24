@@ -26,26 +26,13 @@ use App\Http\Controllers\TwoFactorController;
 Route::get('/', [TeachersController::class, 'index'])->name('index');
 
 
+
+
 Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
 
-// Routes for logged-in users
-Route::middleware(['auth'])->group(function () {
 
-    // Two-factor page (accessible without completing 2FA)
-    Route::get('/two-factor', [TwoFactorController::class, 'index'])
-        ->name('two-factor.index');
 
-    Route::post('/two-factor', [TwoFactorController::class, 'verify'])
-        ->name('two-factor.verify');
 
-    // Protected pages (require 2FA)
-    Route::middleware(['twofactor'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])
-            ->name('dashboard');
-
-        // Add more protected routes here
-    });
-});
 
 
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
@@ -64,9 +51,26 @@ Route::middleware('teacher')->group(function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function () {
+
+    // Two-factor routes (no OTP required)
+    Route::get('/two-factor', [TwoFactorController::class, 'index'])
+        ->name('two-factor.index');
+
+    Route::post('/two-factor', [TwoFactorController::class, 'verify'])
+        ->name('two-factor.verify');
+
+    // 🔥 IMPORTANT: Put protected routes inside the twofactor middleware
+    Route::middleware(['twofactor'])->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])
+            ->name('dashboard');
+    });
+
+});
+
 Route::controller(AdminController::class)->group(function () {
 
-    Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])->name('dashboard');
+    // Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])->name('dashboard');
 
 
     Route::get('admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');

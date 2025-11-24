@@ -24,7 +24,7 @@ class TwoFactorController extends Controller
             $user->two_factor_expires_at > now()) 
         {
             // Mark 2FA complete
-            session(['two_factor_authenticated' => true]);
+             session(['2fa_verified' => true]);
 
             // Clear code
             $user->update([

@@ -13,13 +13,12 @@ class Verify2FAMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-
-        if(auth()->check() && !session('two_factor_authenticated')) {
-    return redirect()->route('two-factor.index');
-}
-
-        return $next($request);
+public function handle($request, Closure $next)
+{
+    if (!session('2fa_verified')) {
+        return redirect()->route('two-factor.index');
     }
+
+    return $next($request);
+}
 }

@@ -62,7 +62,6 @@ public function ManagePaid()
         ->groupBy('student_id')
         ->pluck('id');
 
-<<<<<<< HEAD
 //         public function ManagePaid()
 // {
 // $paid = Paid::all();
@@ -89,22 +88,6 @@ return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers' , 'st
         // $student = Student::all();
         // return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'student'));
     }
-=======
-    // Eager load all relations
-    $paid = Paid::with('department.subjects', 'teacher', 'subject', 'student')
-        ->whereIn('id', $latestPaidIds)
-        ->orderByDesc('paid_date')
-        ->get();
-
-    // Get departments with their subjects
-    $depart = Department::with('subjects')->get();
-    $teachers = Teacher::all();
-    $students = Student::all();
-
-    return view('admin.paid.manage_paid', compact('paid', 'depart', 'teachers', 'students'));
-}
-
->>>>>>> 392f1b58e2a3444a56e444a008ce237dabe7e7cd
 
     // نمایش فرم ویرایش
  public function EditPaid($id)

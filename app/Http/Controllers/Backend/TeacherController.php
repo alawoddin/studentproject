@@ -94,11 +94,10 @@ class TeacherController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->update($request->all());
 
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->password);
-        } else {
-            unset($data['password']); // keep old password
-        }
+         // Hash password if provided
+    if ($request->filled('password')) {
+        $data['password'] = Hash::make($request->password);
+    }
 
 
 

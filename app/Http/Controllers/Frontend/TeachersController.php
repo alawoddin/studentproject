@@ -10,41 +10,40 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class TeachersController extends Controller
 {
-    public function teacherLogin(Request $request)
-    {
+public function teacherLogin(Request $request)
+{
+    $request->validate([
+        'roll_id' => 'required|numeric',
+        'email' => 'required|email',
+        'password' => 'required|string',
+        'department_id' => 'required|numeric',
+    ]);
 
-        $request->validate([
-            'roll_id' => 'required|numeric',
-            'department_id' => 'required|numeric',
+    $teacher = Teacher::where('roll_id', $request->roll_id)
+        ->where('email', $request->email)
+        ->where('department_id', $request->department_id)
+        ->first();
+
+    // Check password separately
+    if ($teacher && Hash::check($request->password, $teacher->password)) {
+
+        Auth::guard('teacher')->login($teacher);
+
+        return redirect()->route('teacher.dashboard')->with([
+            'message' => 'You logged in successfully',
+            'alert-type' => 'success'
         ]);
-
-        // $teacher = Teacher::where('roll_id', $request->roll_id)->first();
-        $teacher = Teacher::where('roll_id', $request->roll_id)
-            ->where('department_id', $request->department_id)
-            ->first();
-
-        if ($teacher) {
-            Auth::guard('teacher')->login($teacher);
-
-            $notification = array(
-                'message' => 'your login successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('teacher.dashboard')->with($notification);
-        } else {
-
-            $notification = array(
-                'message' => 'your roll_id is invalid',
-                'alert-type' => 'error'
-            );
-
-            return redirect()->back()->with($notification);
-        }
     }
+
+    return redirect()->back()->with([
+        'message' => 'Invalid credentials',
+        'alert-type' => 'error'
+    ]);
+}
 
     public function index()
     {

@@ -74,6 +74,18 @@
                             <input type="text" class="form-control" name="roll_id" required=""  placeholder="Enter Your Roll ID">
                         </div>
                     </div>
+                     <div class="mb-3">
+                        <label>Teacher Email</label>
+                        <div>
+                            <input type="emaill" class="form-control" name="email" required=""  placeholder="Enter Your Roll ID">
+                        </div>
+                    </div>
+                     <div class="mb-3">
+                        <label>Teacher Password</label>
+                        <div>
+                            <input type="password" class="form-control" name="password" required=""  placeholder="Enter Your Roll ID">
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label>Teacher Department</label>
                         <div>

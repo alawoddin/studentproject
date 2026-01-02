@@ -9,6 +9,7 @@ use App\Models\Paid;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -18,30 +19,33 @@ use Intervention\Image\ImageManager;
 class TeacherController extends Controller
 {
     // add part
-    public function AddTeacher() {
+    public function AddTeacher()
+    {
         $depart = department::all();
 
-        return view('admin.teacher.add_teacher' , compact('depart'));
+        return view('admin.teacher.add_teacher', compact('depart'));
     }
 
     // show part
 
-    public function ManageTeacher() {
+    public function ManageTeacher()
+    {
         $teachers = Teacher::with('department')->get();
         // $depart = department::all();
         return view('admin.teacher.manage_teacher', compact('teachers'));
     }
     // store part
 
-    public function StoreTeacher(Request $request){
+    public function StoreTeacher(Request $request)
+    {
 
         if ($request->file('photo')) {
             $image = $request->file('photo');
             $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             $img = $manager->read($image);
-            $img->resize(300,300)->save(public_path('uploads/teacher/'.$name_gen));
-            $save_url = 'uploads/teacher/'.$name_gen;
+            $img->resize(300, 300)->save(public_path('uploads/teacher/' . $name_gen));
+            $save_url = 'uploads/teacher/' . $name_gen;
 
             Teacher::create([
                 'first_name' => $request->first_name,
@@ -54,6 +58,7 @@ class TeacherController extends Controller
                 'gender' => $request->gender,
                 'national_id' => $request->national_id,
                 'percentage' => $request->percentage,
+                'password' => Hash::make($request->password),
                 'photo' => $save_url,
             ]);
         }
@@ -69,16 +74,17 @@ class TeacherController extends Controller
 
     // Edit part
 
-    public function EditTeacher($id) {
+    public function EditTeacher($id)
+    {
         $teacher = Teacher::findOrFail($id);
         $departments = Department::all();
-         // Capitalized model name and clearer variable name
+        // Capitalized model name and clearer variable name
         return view('admin.teacher.edit_teacher', compact('teacher', 'departments'));
     }
 
 
 
-     // update part
+    // update part
 
     public function UpdateTeacher(Request $request, $id)
     {
@@ -88,6 +94,12 @@ class TeacherController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->update($request->all());
 
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        } else {
+            unset($data['password']); // keep old password
+        }
+
 
 
         if ($request->file('photo')) {
@@ -96,7 +108,7 @@ class TeacherController extends Controller
             $manager = new ImageManager(new Driver());
 
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            
+
             // Resize and save the image
             $img = $manager->read($image);
             $img->resize(300, 300)->save(public_path('uploads/teacher/' . $name_gen));
@@ -121,12 +133,13 @@ class TeacherController extends Controller
             'alert-type' => 'success'
         ];
 
-        return redirect()->back()->with($notification);
+        return redirect()->route('manage.teacher')->with($notification);
     }
 
     // Delete part
 
-    public function DeleteTeacher($id) {
+    public function DeleteTeacher($id)
+    {
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
 
@@ -161,22 +174,22 @@ class TeacherController extends Controller
 
     //     return view('admin.teacher.index', compact('teachers', 'teacher', 'paids'));
     // }
-        public function TeacherIndex($id, Request $request)
-        {
-            $subjectId = $request->query('subject_id');  
+    public function TeacherIndex($id, Request $request)
+    {
+        $subjectId = $request->query('subject_id');
 
-            $teacher = Teacher::findOrFail($id);
+        $teacher = Teacher::findOrFail($id);
 
-            $paidsQuery = Paid::with(['student', 'subject', 'department'])
-                ->where('teacher_id', $id)
-                ->where('status', 'paid');
+        $paidsQuery = Paid::with(['student', 'subject', 'department'])
+            ->where('teacher_id', $id)
+            ->where('status', 'paid');
 
-            if ($subjectId) {
-                $paidsQuery->where('subject_id', $subjectId);  
-            }
-
-            $paids = $paidsQuery->get();
-
-            return view('admin.teacher.index', compact('teacher', 'paids', 'subjectId'));
+        if ($subjectId) {
+            $paidsQuery->where('subject_id', $subjectId);
         }
+
+        $paids = $paidsQuery->get();
+
+        return view('admin.teacher.index', compact('teacher', 'paids', 'subjectId'));
+    }
 }

@@ -39,6 +39,7 @@
                         <th>Father Name</th>
                         <th>Roll ID</th>
                         <th>Email</th>
+                        <th>password</th>
                         <th>Phone</th>
                         <th>Gender</th>
                         <th>Department</th>
@@ -58,6 +59,7 @@
                             <td>{{ $teacher->father_name }}</td>
                             <td>{{ $teacher->roll_id }}</td>
                             <td>{{ $teacher->email }}</td>
+                            <td>******</td>
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->gender }}</td>
                             <td>{{ $teacher->department->depart_name ?? 'null' }}</td>

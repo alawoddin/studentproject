@@ -8,22 +8,12 @@ use App\Models\Paid;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\Student;
-use Illuminate\Support\Carbon;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 
 class TeachersController extends Controller
 {
-
-     // Show login page
-    public function new() 
-    {
-        return view('frontend.teacher_login'); // your login Blade
-    
-    }
-
-
 public function teacherLogin(Request $request)
 {
     $request->validate([
@@ -38,31 +28,20 @@ public function teacherLogin(Request $request)
         ->where('department_id', $request->department_id)
         ->first();
 
-    if (!$teacher || !Hash::check($request->password, $teacher->password)) {
-        return redirect()->back()->with([
-            'message' => 'Invalid credentials',
-            'alert-type' => 'error'
+    // Check password separately
+    if ($teacher && Hash::check($request->password, $teacher->password)) {
+
+        Auth::guard('teacher')->login($teacher);
+
+        return redirect()->route('teacher.dashboard')->with([
+            'message' => 'You logged in successfully',
+            'alert-type' => 'success'
         ]);
     }
 
-    // ✅ Generate OTP instead of logging in
-    $otp = rand(100000, 999999);
-
-    $teacher->update([
-        'otp' => $otp,
-        'otp_expires_at' => Carbon::now()->addMinutes(5)
-    ]);
-
-    // Send OTP email
-    Mail::to($teacher->email)->send(new \App\Mail\TeacherOtpMail($otp));
-
-    // Save teacher ID in session for OTP verification
-    session(['otp_teacher_id' => $teacher->id]);
-
-    // Redirect to OTP page
-    return redirect()->route('teacher.otp.form')->with([
-        'message' => 'OTP sent to your email. Please check and enter it.',
-        'alert-type' => 'info'
+    return redirect()->back()->with([
+        'message' => 'Invalid credentials',
+        'alert-type' => 'error'
     ]);
 }
 

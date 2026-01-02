@@ -34,9 +34,6 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 
 
-
-    Route::get('/teacher/otp', [TeacherOtpController::class, 'showOtpForm'])->name('teacher.otp.form');
-    Route::post('/teacher/otp', [TeacherOtpController::class, 'verifyOtp'])->name('teacher.otp.verify');
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
 
 Route::middleware('teacher')->group(function () {

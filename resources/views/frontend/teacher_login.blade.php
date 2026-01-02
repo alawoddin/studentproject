@@ -77,7 +77,7 @@
                      <div class="mb-3">
                         <label>Teacher Email</label>
                         <div>
-                            <input type="emaill" class="form-control" name="email" required=""  placeholder="Enter Your Roll ID">
+                            <input type="email" class="form-control" name="email" required=""  placeholder="Enter Your Roll ID">
                         </div>
                     </div>
                      <div class="mb-3">

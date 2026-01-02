@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\salaryController;
 use App\Http\Controllers\Backend\teacherShowSalaryController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\TeacherOtpController;
 use App\Http\Controllers\TwoFactorController;
 
 // Route::get('/', function () {
@@ -34,12 +35,14 @@ Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->
 
 
 
-
+    Route::get('/teacher/otp', [TeacherOtpController::class, 'showOtpForm'])->name('teacher.otp.form');
+    Route::post('/teacher/otp', [TeacherOtpController::class, 'verifyOtp'])->name('teacher.otp.verify');
 // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
 
 Route::middleware('teacher')->group(function () {
     Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
     Route::get('teacher/view/{id}', [TeachersController::class, 'TeacherView'])->name('teacher.view');
+
     // Route::get('teacher/index/{id}', [TeachersController::class, 'TeacherIndex'])->name('teachers.index');
     // Route::get('', 'TeacherIndex')->name('teacher.index');
 
@@ -68,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+
+
+
 Route::controller(AdminController::class)->group(function () {
 
     // Route::get('/dashboard', [AdminController::class, 'AdminDashbord'])->name('dashboard');
@@ -89,6 +96,9 @@ Route::controller(StudentController::class)->group(function () {
     Route::get('delete/student/{id}', 'DeleteStudent')->name('delete.student');
     Route::get('/print/invoice/{id}', 'PrintInvoice')->name('print.invoice');
 });
+// web.php
+
+
 
 
 Route::controller(TeacherController::class)->group(function () {

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('national_id')->unique();
             $table->string('roll_id')->unique();
             $table->integer('status')->default(1);
+            $table->string('otp')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
             $table->timestamps();
 
         });

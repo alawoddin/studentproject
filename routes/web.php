@@ -27,20 +27,22 @@ use App\Http\Controllers\TwoFactorController;
 
 Route::get('/', [TeachersController::class, 'index'])->name('index');
 
-// login form
-Route::get('/teacher/login', [TeacherAuthController::class, 'index'])
+// Login form
+Route::get('/teacher/login', [TeachersController::class, 'index'])
     ->name('teacher.login.form');
 
-// login submit (send OTP)
-Route::post('/teacher/login', [TeacherAuthController::class, 'teacherLogin'])
+// Login submit → Send OTP
+Route::post('/teacher/login', [TeachersController::class, 'teacherLogin'])
     ->name('teacher.login');
 
-// OTP
-Route::get('/teacher/otp', [TeacherAuthController::class, 'otpForm'])
+// OTP form
+Route::get('/teacher/otp', [TeachersController::class, 'otpForm'])
     ->name('teacher.otp.form');
 
-Route::post('/teacher/otp', [TeacherAuthController::class, 'verifyOtp'])
+// Verify OTP
+Route::post('/teacher/otp', [TeachersController::class, 'verifyOtp'])
     ->name('teacher.otp.verify');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -49,10 +51,12 @@ Route::post('/teacher/otp', [TeacherAuthController::class, 'verifyOtp'])
 */
 Route::middleware('auth:teacher')->group(function () {
 
-    Route::get('/teacher/dashboard', [TeacherAuthController::class, 'teacherDashboard'])
+    // Dashboard
+    Route::get('/teacher/dashboard', [TeachersController::class, 'teacherDashboard'])
         ->name('teacher.dashboard');
 
-    Route::get('/teacher/view/{id}', [TeacherAuthController::class, 'teacherView'])
+    // Teacher view
+    Route::get('/teacher/view/{id}', [TeachersController::class, 'TeacherView'])
         ->name('teacher.view');
 });
 

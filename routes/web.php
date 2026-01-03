@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\salaryController;
 use App\Http\Controllers\Backend\teacherShowSalaryController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\TeacherAuthController;
 use App\Http\Controllers\TeacherOtpController;
 use App\Http\Controllers\TwoFactorController;
 
@@ -26,24 +27,53 @@ use App\Http\Controllers\TwoFactorController;
 
 Route::get('/', [TeachersController::class, 'index'])->name('index');
 
+// login form
+Route::get('/teacher/login', [TeacherAuthController::class, 'index'])
+    ->name('teacher.login.form');
 
+// login submit (send OTP)
+Route::post('/teacher/login', [TeacherAuthController::class, 'teacherLogin'])
+    ->name('teacher.login');
 
+// OTP
+Route::get('/teacher/otp', [TeacherAuthController::class, 'otpForm'])
+    ->name('teacher.otp.form');
 
-Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
+Route::post('/teacher/otp', [TeacherAuthController::class, 'verifyOtp'])
+    ->name('teacher.otp.verify');
 
+/*
+|--------------------------------------------------------------------------
+| Teacher Protected Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth:teacher')->group(function () {
 
+    Route::get('/teacher/dashboard', [TeacherAuthController::class, 'teacherDashboard'])
+        ->name('teacher.dashboard');
 
-
-// Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
-
-Route::middleware('teacher')->group(function () {
-    Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
-    Route::get('teacher/view/{id}', [TeachersController::class, 'TeacherView'])->name('teacher.view');
-
-    // Route::get('teacher/index/{id}', [TeachersController::class, 'TeacherIndex'])->name('teachers.index');
-    // Route::get('', 'TeacherIndex')->name('teacher.index');
-
+    Route::get('/teacher/view/{id}', [TeacherAuthController::class, 'teacherView'])
+        ->name('teacher.view');
 });
+
+
+
+// Route::post('/teacher/dashboard', [TeachersController::class, 'TeacherLogin'])->name('teacher.login');
+
+// Route::get('/teacher/otp', [TeacherAuthController::class, 'otpForm'])->name('teacher.otp.form');
+// Route::post('/teacher/otp', [TeacherAuthController::class, 'verifyOtp'])->name('teacher.otp.verify');
+
+
+
+// // Route::get('/teacher/dashboard' , [TeacherController::class , 'TeacherDashboard'])->name('teacher.dashboard');
+
+// Route::middleware('teacher')->group(function () {
+//     Route::get('/teacher/dashboard', [TeachersController::class, 'TeacherDashboard'])->name('teacher.dashboard');
+//     Route::get('teacher/view/{id}', [TeachersController::class, 'TeacherView'])->name('teacher.view');
+//     // Route::get('teacher/index/{id}', [TeachersController::class, 'TeacherIndex'])->name('teachers.index');
+//     // Route::get('', 'TeacherIndex')->name('teacher.index');
+
+// });
 
 
 

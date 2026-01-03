@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paid;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -97,4 +98,18 @@ class TeacherAuthController extends Controller
             'alert-type' => 'success',
         ]);
     }
+
+            public function teacherDashboard()
+        {
+            $id = Auth::guard('teacher')->id();
+            $teacher = Teacher::with('department')->findOrFail($id);
+
+        
+            $studentCount = Paid::where('teacher_id', $id)
+                                ->where('status', 'paid')
+                                ->distinct('student_id')
+                                ->count('student_id');
+
+            return view('frontend.index', compact('teacher', 'studentCount'));
+        }
 }

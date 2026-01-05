@@ -11,7 +11,7 @@
     position: sticky;
     left: 0;
     z-index: 5;
-    background: #fff;
+    background: #ff0000;
 }
 
 .sticky-name {
@@ -84,7 +84,7 @@ thead th.sticky-name {
             @csrf
 
                <div class="table-responsive">
-            <table class="table table-bordered table-striped align-middle table-hover">
+            <table class="table table-bordered table-info align-middle table-hover">
                     <thead class="table-dark">
                         <tr>
                             <th class="sticky-sl">Sl</th>

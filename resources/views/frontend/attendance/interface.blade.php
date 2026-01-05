@@ -2,6 +2,34 @@
 
 @section('teacher')
 
+<style>
+    .table-responsive {
+    overflow-x: auto;
+}
+
+.sticky-sl {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background: #fff;
+}
+
+.sticky-name {
+    position: sticky;
+    left: 30px; /* width of Sl column */
+    z-index: 6;
+    background: #fff;
+}
+
+/* keep header above body */
+thead th.sticky-sl,
+thead th.sticky-name {
+    z-index: 10;
+    background: #212529; /* bootstrap dark */
+    color: #fff;
+}
+</style>
+
 
     <div class="container-fluid">
 
@@ -59,8 +87,8 @@
             <table class="table table-bordered table-striped align-middle table-hover">
                     <thead class="table-dark">
                         <tr>
-                            <th>Sl</th>
-                            <th>Name</th>
+                            <th class="sticky-sl">Sl</th>
+                            <th class="sticky-name">Name</th>
                             @php
                                 // Use the first student's paid_date for all header dates
                                 $startDate = $paids->first() ? \Carbon\Carbon::parse($paids->first()->paid_date) : \Carbon\Carbon::today();
@@ -76,10 +104,10 @@
                 @endphp
                 @foreach ($paids as $key => $item)
                     <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>
-                            <span class="fw-bold">{{ $item->student->name }}</span>
-                        </td>
+                        <td class="sticky-sl">{{ $key + 1 }}</td>
+                       <td class="sticky-name">
+    <span class="fw-bold">{{ $item->student->name }}</span>
+</td>
                         @for ($d = 0; $d < 30; $d++)
                             @php
                                 $date = $startDate->copy()->addDays($d)->format('Y-m-d');

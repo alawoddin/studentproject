@@ -16,12 +16,12 @@
                     <div class="card-body">
                         <h4 class="card-title mb-4">Active Student</h4>
 
-                        @php
+                        {{-- @php
                             $paids = App\Models\Paid::with(['department', 'subject', 'student'])->limit('5')->get();
 
-                        @endphp
+                        @endphp --}}
 
-                        <div class="table-responsive">
+                        {{-- <div class="table-responsive">
                             <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
                                 <thead class="table-light">
                                     <tr>
@@ -50,7 +50,7 @@
 
                                 </tbody><!-- end tbody -->
                             </table> <!-- end table -->
-                        </div>
+                        </div> --}}
                     </div><!-- end card -->
                 </div><!-- end card -->
             </div>

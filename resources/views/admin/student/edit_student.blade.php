@@ -107,7 +107,7 @@
                              <div class="col-md-6">
                                     <label class="form-label">Entry Date</label>
                                     <input class="form-control" name="entry_date" type="date"
-                                        value="{{ $paid->entry_date }}">
+                                        value="{{ $student->entry_date }}">
                             </div>
 
 

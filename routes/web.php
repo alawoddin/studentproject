@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\salaryController;
 use App\Http\Controllers\Backend\teacherShowSalaryController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Backend\CheckController;
 use App\Http\Controllers\TeacherAuthController;
 use App\Http\Controllers\TeacherOtpController;
 use App\Http\Controllers\TwoFactorController;
@@ -129,6 +130,15 @@ Route::controller(StudentController::class)->group(function () {
 });
 // web.php
 
+Route::controller(CheckController::class)->group(function () {
+    Route::get('check/users', 'CheckUsers')->name('check.users');
+    // Route::get('/teacher/{id}/dashboard', 'CheckUsersdashboard')->name('check.teacher.dashboard');
+});
+
+Route::get('/admin/impersonate/teacher/{id}', [AdminController::class, 'impersonateTeacher'])
+     ->name('admin.teacher.impersonate');
+
+// Route::get('/admin/teacher/{id}/dashboard', [TeacherController::class, 'TeacherView'])->name('admin.teacher.view');
 
 
 

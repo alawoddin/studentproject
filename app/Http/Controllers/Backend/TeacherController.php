@@ -160,6 +160,20 @@ class TeacherController extends Controller
         return view('admin.teacher.view_teachers', compact('teacher', 'studentCount', 'paid'));
     }
 
+    
+// public function TeacherView($id)
+// {
+//     $teacher = Teacher::with('department')->findOrFail($id);
+
+//     $paid = Paid::where('teacher_id', $id)
+//         ->where('status', 'paid')
+//         ->get();
+
+//     $studentCount = $paid->unique('student_id')->count(); 
+
+//     return view('frontend.teacher_view', compact('teacher', 'paid', 'studentCount'));
+// }
+
 
     //end method
     // public function TeacherIndex($id) {

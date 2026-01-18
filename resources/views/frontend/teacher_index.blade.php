@@ -4,6 +4,13 @@
 
 
 <div class="container-fluid">
+    @if(session()->has('impersonate'))
+    <div class="mb-3">
+        <a href="{{ route('admin.stop.impersonation') }}" class="btn btn-warning">
+            Return to Admin
+        </a>
+    </div>
+@endif
 
     <!-- start page title -->
     <div class="row">

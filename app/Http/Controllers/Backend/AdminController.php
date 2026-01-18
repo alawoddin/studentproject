@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -131,5 +132,27 @@ class AdminController extends Controller
     }
 
     //end method
+
+     public function impersonateTeacher($teacher_id)
+    {
+        $teacher = Teacher::findOrFail($teacher_id);
+
+        // Log in as teacher
+        Auth::guard('teacher')->login($teacher);
+
+        // Redirect to teacher dashboard
+        return redirect()->route('teacher.dashboard');
+    }
+
+    public function stopImpersonation()
+    {
+        // Log out the teacher
+        Auth::guard('teacher')->logout();
+
+        // Optionally log back in as admin
+        Auth::guard('web')->login(auth()->user());
+
+        return redirect()->route('admin.dashboard');
+    }
 
 }

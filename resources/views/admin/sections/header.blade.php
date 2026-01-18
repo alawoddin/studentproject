@@ -1,4 +1,3 @@
-
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
@@ -24,11 +23,12 @@
                     <i class="ri-search-line"></i>
                 </button>
             </div>
-            <div class="dropdown d-none d-lg-inline-block ms-1">
-                <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
-                    <i class="ri-fullscreen-line"></i>
-                </button>
-            </div>
+
+
+            <button type="button" class="btn header-item noti-icon waves-effect"
+                onclick="window.location='{{ route('check.users') }}'">
+                <i class="ri-refresh-line"></i>
+            </button>
             @php
                 $adminData = App\Models\User::find(Auth::user()->id);
             @endphp
@@ -41,10 +41,13 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item d-block" href="{{ route('admin.pasword.change') }}"><i class="ri-settings-2-line align-middle me-1"></i> change password</a>
+                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                            class="ri-user-line align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item d-block" href="{{ route('admin.pasword.change') }}"><i
+                            class="ri-settings-2-line align-middle me-1"></i> change password</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"><i
+                            class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
         </div>
